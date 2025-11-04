@@ -1,0 +1,215 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User{
+  id String   @id @default(cuid())
+  name String
+  email String @unique
+  img String?
+  phone String? @unique
+  password String
+  refreshToken String?
+  otp_code String?
+  otp_expires String?
+  role Role @default(User)
+
+  profile Profile?
+  orders Order[]
+  comments Comment[]
+  payments Payment[]
+
+  created_at   DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@index([email, name])
+}
+
+model Profile{
+  id String   @id @default(cuid())
+  user_id String @unique
+  address String?
+  postal_code String?
+  national_id String?
+  card_number String?
+  birth String?
+  job String?
+
+  user User @relation(fields:[user_id], references: [id], onDelete: Cascade)
+  
+  created_at   DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@index([national_id, card_number])
+}
+
+model Car{
+  id String   @id @default(cuid())
+  name String
+  model Int
+  type CarType
+  description String
+  capacity Int
+  gear  GearType @default(Automatic)
+  steering  SteeringType @default(Hydraulic)
+  fuel  FuelType @default(Gasoline)
+  price_day Decimal
+  price_month Decimal
+  price_garranty Decimal
+
+  features CarFeature[]
+  images   CarImage[]
+  comments Comment[]
+  orders Order[]
+
+  created_at   DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@index([name, type, price_day, price_month])
+}
+
+model CarFeature {
+  id String @id @default(cuid())
+  car Car @relation(fields:[carId], references:[id])
+  carId String
+  feature String
+
+  @@index([feature])
+}
+
+
+model CarImage {
+  id String @id @default(cuid())
+  car Car @relation(fields:[carId], references:[id])
+  carId String
+  url String
+}
+
+
+model Order{
+  id String   @id @default(cuid())
+  user_id String
+  car_id String
+  start_date String
+  end_date String
+  total_price Decimal
+  paymentstatus OrderStatus @default(Pending)
+
+  user User @relation(fields:[user_id], references: [id])
+  car Car @relation(fields:[car_id], references: [id])
+  insurance Insurance?
+  payment Payment?
+
+  created_at   DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@index([user_id, car_id, start_date, end_date])
+}
+
+model Payment {
+  id            String        @id @default(cuid())
+  user_id        String 
+  order_id       String @unique
+  amount        Decimal
+  status        PaymentStatus
+  authority     String?
+  method String?
+  ref_id   String?
+
+  order         Order         @relation(fields: [order_id], references: [id])
+  user          User          @relation(fields: [user_id], references: [id])
+
+  created_at    DateTime      @default(now())
+
+  @@index([order_id, ref_id, status])
+}
+
+model Comment{
+  id String   @id @default(cuid())
+  user_id String
+  car_id String
+  rating Int
+  text String
+
+  user User @relation(fields:[user_id], references: [id], onDelete: Cascade)
+  car Car @relation(fields:[car_id], references: [id], onDelete: Cascade)
+
+  created_at   DateTime @default(now())
+  updated_at DateTime @default(now())
+}
+
+
+model Insurance{
+  id String   @id @default(cuid())
+  order_id String @unique
+  type InsuranceType
+  price Decimal
+
+  order Order @relation(fields:[order_id], references: [id], onDelete: Cascade)
+
+  created_at   DateTime @default(now())
+  updated_at DateTime @default(now())
+}
+
+enum InsuranceType{
+  Basic
+  Premium
+}
+
+enum CarType{
+  SUV
+  Sedan
+  Coupe
+  Crook
+  Hatchback
+  Sport
+}
+
+enum FuelType{
+  Gasoline 
+  Gas
+}
+
+enum GearType{
+  Manual
+  Automatic
+}
+
+enum SteeringType{
+  Hydraulic 
+  Electric 
+}
+
+
+enum Role{
+  Admin
+  User
+  Owner
+}
+
+enum PaymentStatus{
+  Success
+  Failed
+  Pending
+}
+
+enum OrderStatus{
+  Pending
+  Success
+  Failed
+  Cancelled
+}
+
