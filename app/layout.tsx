@@ -21,13 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="rtl">
+    <html lang="en" dir="rtl" className="scroll-smooth">
       <body
         className={`${outfit.variable} ${iranSans.className} antialiased bg-slate-50 max-w-[1920px] mx-auto overflow-x-hidden`}
       >
         <Header />
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

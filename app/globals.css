@@ -43,6 +43,15 @@
   --radius-xl: calc(var(--radius) + 4px);
   --size-8xl: 1690px;
   --size-9xl: 1920px;
+  --animate-infinite-slider: scroll 15s infinite linear;
+  @keyframes scroll {
+    from {
+      transform: translate(0%);
+    }
+    to {
+      transform: translate(100%);
+    }
+  }
 }
 
 :root {
@@ -120,5 +129,14 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .scroll-none {
+    scrollbar-width: none;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
