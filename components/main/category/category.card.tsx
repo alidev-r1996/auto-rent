@@ -12,7 +12,7 @@ export const CardCategory: FC<CardCategoryProps> = ({ alt, img, variant, text })
   };
   return (
     <div
-      className={`rounded-full ${bgStyle[variant]} p-2 relative size-40 md:size-70 px-4 flex items-center justify-center group cursor-pointer`}
+      className={`rounded-full ${bgStyle[variant]} mx-auto p-2 relative size-40 md:size-70 px-4 flex items-center justify-center group cursor-pointer`}
     >
       <div className="relative rounded-full flex-1 p-2 group-hover:p-1 transtion-all duration-300 aspect-video">
         <Image
@@ -23,8 +23,8 @@ export const CardCategory: FC<CardCategoryProps> = ({ alt, img, variant, text })
           className="group-hover:scale-115 transtion-all duration-300"
         />
       </div>
-      <div className="top-1/2 group-hover:flex left-1/2 size-full rounded-full absolute -translate-x-1/2 -translate-y-1/2 hidden items-center justify-center bg-linear-to-t from-slate-800 from-20% to-transparent text-slate-200">
-        <p className="font-bold text-5xl">{text}</p>
+      <div className="top-1/2 group-hover:scale-100 scale-0 left-1/2 size-full rounded-full absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center bg-linear-to-t from-slate-800 from-20% to-transparent text-slate-200">
+        <p className="font-bold text-2xl md:text-5xl">{text}</p>
       </div>
     </div>
   );

@@ -2,8 +2,11 @@ import HeroSection from "@/components/main/hero-section";
 import LogoSlider from "@/components/main/logo-slider";
 import Image, { StaticImageData } from "next/image";
 import WhyUs from "@/components/main/why-us/why-us";
-import { FC } from "react";
 import CarCategory from "@/components/main/category/category.car";
+import { Button } from "@/components/ui/button";
+
+import Reserve from "@/components/reserve/reserver";
+
 
 
 
@@ -14,8 +17,8 @@ export default function Home() {
       <LogoSlider />
       <WhyUs />
       <CarCategory />
+      <Reserve />
+      
     </main>
   );
 }
-
-

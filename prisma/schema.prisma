@@ -71,6 +71,7 @@ model Car{
   price_month Decimal
   price_garranty Decimal
 
+  discount  CarDiscount[]
   features CarFeature[]
   images   CarImage[]
   comments Comment[]
@@ -84,8 +85,8 @@ model Car{
 
 model CarFeature {
   id String @id @default(cuid())
-  car Car @relation(fields:[carId], references:[id])
-  carId String
+  car Car @relation(fields:[car_id], references:[id])
+  car_id String
   feature String
 
   @@index([feature])
@@ -94,9 +95,30 @@ model CarFeature {
 
 model CarImage {
   id String @id @default(cuid())
-  car Car @relation(fields:[carId], references:[id])
-  carId String
+  car Car @relation(fields:[car_id], references:[id])
+  car_id String
   url String
+}
+
+
+model Discount {
+  id          String @id @default(cuid())
+  title       String
+  percentage  Float         
+  startDate   String?
+  endDate     String?
+  active      Boolean       @default(true)
+  cars        CarDiscount[]
+}
+
+
+model CarDiscount {
+  car_id       String 
+  discount_id  String
+  car         Car       @relation(fields: [car_id], references: [id])
+  discount    Discount  @relation(fields: [discount_id], references: [id])
+
+  @@id([car_id, discount_id])
 }
 
 

@@ -47,3 +47,14 @@ export function PersianDigits(number: number | string): string {
   const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
   return String(number).replace(/\d/g, digit => farsiDigits[digit]);
 }
+
+export function PersianDate(date) {
+  return new Date(date).toLocaleDateString("fa-IR");
+}
+
+export function PersianCurrency(currency: string) {
+  return parseInt(currency).toLocaleString("fa-IR");
+}
+export function TruncateText(text, length = 25) {
+  return text.length > length ? text.slice(0, length) + "..." : text;
+}
