@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { iranSans } from "@/lib/utils";
+import Header from "@/components/navigation/header/header";
+import Footer from "@/components/navigation/footer/footer";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -19,8 +21,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${outfit.variable} ${iranSans.className} antialiased`}>{children}</body>
+    <html lang="en" dir="rtl">
+      <body
+        className={`${outfit.variable} ${iranSans.className} antialiased bg-slate-50 max-w-[1920px] mx-auto overflow-x-hidden`}
+      >
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

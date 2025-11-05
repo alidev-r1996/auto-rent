@@ -56,6 +56,7 @@ model Profile{
   @@index([national_id, card_number])
 }
 
+
 model Car{
   id String   @id @default(cuid())
   name String
@@ -105,6 +106,10 @@ model Order{
   car_id String
   start_date String
   end_date String
+  start_time String
+  end_time String
+  receive_location String
+  return_location String
   total_price Decimal
   paymentstatus OrderStatus @default(Pending)
 

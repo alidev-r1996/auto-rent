@@ -42,3 +42,8 @@ export const iranSans = localFont({
   variable: "--font-iransans",
   display: "swap",
 });
+
+export function PersianDigits(number: number | string): string {
+  const farsiDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+  return String(number).replace(/\d/g, digit => farsiDigits[digit]);
+}
