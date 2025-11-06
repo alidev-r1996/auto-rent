@@ -8,6 +8,7 @@ const CarCard = () => {
     <div className="rounded-xl flex flex-col gap-3 shadow border border-slate-200 p-4">
       <div className="relative border border-slate-200 rounded-lg h-70 bg-radial p-4 from-slate-50 from-30% to-slate-300">
         <Image src={Coupe} alt="car" fill />
+        <p className="bg-rose-500 text-white rounded-md px-3 py-1 text-xs w-max mr-auto"> {PersianDigits(`20`)} %</p>
       </div>
       <h2 className="font-bold">تویوتا</h2>
       <p className="text-slate-400 text-sm">مدل: {PersianDigits(2016)}</p>

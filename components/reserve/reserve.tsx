@@ -1,6 +1,7 @@
-import { ChevronLeft, Link } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { Button } from "../ui/button";
 import CarList from "./carlist";
+import Link from "next/link";
 
 const Reserve = () => {
   return (
@@ -8,18 +9,17 @@ const Reserve = () => {
       <h2 className="font-bold md:text-4xl md:mb-4 text-2xl text-center flex items-center gap-4 justify-center">
         رزرو خودرو در <p className="text-amber-400"> اُتـــورِنت</p>
       </h2>
-      <div className="flex items-center justify-between mt-5 md:p-3">
+      <div className="flex items-center justify-between mt-5 md:p-2">
         <div className="flex items-center gap-1">
           <Button variant={"outline_blue"}>پرطرفدار</Button>
           <Button variant={"outline_blue"}>لوکس</Button>
           <Button variant={"outline_blue"}>اقتصادی</Button>
         </div>
-        <Link
-          href={"/reserves"}
-          className="flex items-center gap-2 text-sm md:text-base text-indigo-600"
-        >
-          مشاهده همه
-          <ChevronLeft />
+        <Link href="/reserves">
+          <div className="mr-auto flex items-center gap-2 text-sm md:text-base text-indigo-600 justify-end">
+            <p> مشاهده همه</p>
+            <ChevronLeft className="size-5" />
+          </div>
         </Link>
       </div>
       <CarList />

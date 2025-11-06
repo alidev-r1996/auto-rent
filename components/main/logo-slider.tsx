@@ -27,7 +27,7 @@ const logos = [
 export default function LogoSlider() {
   return (
     <div className="max-w-[1920px] w-screen overflow-x-auto  flex items-center gap-10 p-4 scroll-none mt-5 mb-8 group">
-      <div className="w-max lg:min-w-full flex items-center gap-10 animate-infinite-slider group-hover:[animation-play-state:paused]">
+      <div className="w-max lg:min-w-full flex items-center gap-10 animate-infinite-slider group-hover:paused">
         {logos.map((i, index) => {
           const Logo = i;
           return (
@@ -37,7 +37,7 @@ export default function LogoSlider() {
           );
         })}
       </div>
-      <div className="w-max lg:min-w-full flex items-center gap-10 animate-infinite-slider group-hover:[animation-play-state:paused]">
+      <div className="w-max lg:min-w-full flex items-center gap-10 animate-infinite-slider group-hover:paused">
         {logos.map((i, index) => {
           const Logo = i;
           return (

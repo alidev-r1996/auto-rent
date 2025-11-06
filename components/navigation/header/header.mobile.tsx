@@ -16,7 +16,7 @@ const MobileHeader = () => {
   return (
     <Sheet>
       <SheetTrigger asChild className="md:hidden">
-        <Button variant={"ghost"} className="!p-2 size-9 rounded md:hidden">
+        <Button variant={"ghost"} className="p-1 size-10 rounded md:hidden !important">
           <TextAlignJustify className="size-full" />
         </Button>
       </SheetTrigger>

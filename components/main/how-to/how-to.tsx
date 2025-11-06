@@ -7,7 +7,7 @@ const HowTo = () => {
   return (
     <section className="max-w-[1690px] mx-auto mt-20">
       <h2 className="font-bold md:text-4xl mb-4 text-2xl text-center flex flex-wrap items-center gap-4 justify-center">
-        چگونه در وسایت <p className="text-amber-400">اُتـــورِنت، </p> خودرو رزرو کنیم؟
+        چگونه در وبسایت <p className="text-amber-400">اُتـــورِنت، </p> خودرو رزرو کنیم؟
       </h2>
       <div className="flex flex-col gap-4 relative p-4 h-150">
         <div className="absolute top-7 md:top-0 left-0  md:left-1/2 md:-translate-x-1/2 h-130  md:w-1/6 w-[35%] mr-auto md:mx-auto mt-8">

@@ -1,8 +1,6 @@
 import { FC } from "react";
 import { WhyCardProps } from "./why-us.type";
 
-
-
 export const WhyCard: FC<WhyCardProps> = ({ icon, text, title }) => {
   const Icon = icon;
   return (

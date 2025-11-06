@@ -12,7 +12,7 @@ export const footerIcons = [
 
 const Footer = () => {
   return (
-    <footer className="bg-stone-800 rounded-2xl flex flex-col md:grid md:grid-cols-5 p-4 gap-y-8 md:gap-4 mb-6 max-w-[1690px] mx-auto">
+    <footer className="bg-stone-800 rounded-2xl z-10 flex flex-col md:grid md:grid-cols-5 p-4 gap-y-8 md:gap-4 mb-6 max-w-[1690px] mx-auto">
       <div className="md:col-span-5 md:w-4/5 md:mx-auto col-span-2 flex md:my-5 flex-wrap md:flex-row  gap-4 md:items-center md:justify-around md:py-5  p-3 border border-slate-500 rounded-lg text-slate-300">
         {footerIcons.map(({ id, icon, label, info }) => {
           const Icon = icon;
@@ -29,7 +29,7 @@ const Footer = () => {
           );
         })}
       </div>
-      <div className="flex flex-col gap-4 col-span-2">
+      <div className="flex flex-col gap-4 col-span-2 md:px-8">
         <Image src="/assets/logo/footer-logo.svg" alt="Logo" width={140} height={140} />
         <p className="text-sm text-slate-100 leading-7">
           اتورنت با رویکرد اعتماد به مشتری، با در اختیار داشتن بزرگترین ناوگان خودرویی متشکل از
@@ -53,13 +53,14 @@ const Footer = () => {
             className="appearance-none outline-none text-sm flex-1 text-slate-300 placeholder:text-xs"
             placeholder="ایمیل خود را وارد کنید"
           />
-          <Button variant={"amber"} className="!text-xs">
+          <Button variant={"amber"} className="text-xs !important">
             ارسال
           </Button>
         </div>
       </div>
       <div className="py-4 border-t border-t-slate-500 col-span-2 md:col-span-5 mx-auto md:w-4/5 w-full mt-4 flex items-center justify-center text-slate-400 text-sm">
-        تمامی حقوقی این سایت متعلق به اتورنت می‌باشد
+        تمامی حقوقی این سایت متعلق به <strong className="text-amber-400 px-2">اُتورنت</strong>{" "}
+        می‌باشد
       </div>
     </footer>
   );

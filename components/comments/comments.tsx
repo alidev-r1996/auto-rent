@@ -11,12 +11,12 @@ const Comments = () => {
       </h2>
       <p className=" text-slate-400 text-center">آنچه مشتریان ما درموردمان گفته‌اند.</p>
       <div className="w-full flex items-center gap-4 overflow-x-auto scroll-none group">
-        <div className="flex gap-4 h-full min-w-max items-center justify-center my-8 animate-infinite-scroll group-hover:[animation-play-state:paused]">
+        <div className="flex gap-4 h-full min-w-max items-center justify-center my-8 animate-infinite-scroll group-hover:paused">
           {commentItems.map(i => {
             return <CommentCard key={i.id} {...i} />;
           })}
         </div>
-        <div className="flex gap-4 h-full min-w-max items-center justify-center my-8 animate-infinite-scroll group-hover:[animation-play-state:paused]">
+        <div className="flex gap-4 h-full min-w-max items-center justify-center my-8 animate-infinite-scroll group-hover:paused">
           {commentItems.map(i => {
             return <CommentCard key={i.id} {...i} />;
           })}

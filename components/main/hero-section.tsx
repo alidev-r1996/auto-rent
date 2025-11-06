@@ -26,13 +26,13 @@ const HeroSection = () => {
             سرویس دهنده رزرو خودرو در ایران با کمترین زمان ممکن!
           </p>
           <div className="flex items-center gap-3">
-            <Button variant={"amber"} className="!px-8 !py-5 md:!text-base">
+            <Button variant={"amber"} className="px-8 py-5 md:text-base !important">
               <CarFront className="size-6" />
               رزرو خودرو
             </Button>
             <Button
               variant={"outline"}
-              className="!px-8 !py-5 md:!text-base text-white hover:text-slate-800"
+              className="px-8 py-5 md:text-base text-white hover:text-slate-800 !important"
             >
               <Headset className="size-5" />
               تماس با ما
@@ -44,7 +44,7 @@ const HeroSection = () => {
             src={HeroCar}
             alt="Hero Section"
             fill
-            className="object-contain  brightness-90 contrast-115"
+            className="object-contain  brightness-90 contrast-115 bg-blend-multiply"
           />
         </div>
       </div>
