@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import Reserve from "@/components/reserve/reserver";
 import HowTo from "@/components/main/how-to/how-to";
 import Faq from "@/components/faq/faq";
+import Comments from "@/components/comments/comments";
+import BlogList from "@/components/blogs/bloglist";
 
 export default function Home() {
   return (
@@ -18,12 +20,8 @@ export default function Home() {
       <Reserve />
       <HowTo />
       <Faq />
-      <section className="max-w-[1690px] mx-auto mt-12">
-        <h2 className="font-bold md:text-4xl mb-4 text-2xl text-center flex items-center gap-4 justify-center">
-          نظرات <p className="text-amber-400">مشتریان</p>
-        </h2>
-        <p className=" text-slate-400 text-center">آنچه مشتریان ما درموردمان گفته‌اند.</p>
-      </section>
+      <Comments />
+      <BlogList />
     </main>
   );
 }

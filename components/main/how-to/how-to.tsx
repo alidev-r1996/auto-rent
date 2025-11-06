@@ -5,7 +5,7 @@ import TimeLineImg from "@/public/assets/images/timeline.png";
 
 const HowTo = () => {
   return (
-    <section className="max-w-[1690px] mx-auto">
+    <section className="max-w-[1690px] mx-auto mt-20">
       <h2 className="font-bold md:text-4xl mb-4 text-2xl text-center flex flex-wrap items-center gap-4 justify-center">
         چگونه در وسایت <p className="text-amber-400">اُتـــورِنت، </p> خودرو رزرو کنیم؟
       </h2>

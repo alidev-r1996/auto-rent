@@ -58,3 +58,22 @@ export function PersianCurrency(currency: string) {
 export function TruncateText(text, length = 25) {
   return text.length > length ? text.slice(0, length) + "..." : text;
 }
+
+export function PaginateMaker(total_Page: number, current_page: number) {
+  if (total_Page <= 5) return Array.from({ length: total_Page }, (_, i) => i + 1);
+
+  if (total_Page > 3 && current_page > 3) {
+    if (current_page == total_Page - 1)
+      return [1, "...", total_Page - 3, total_Page - 2, total_Page - 1, total_Page];
+    if (current_page < total_Page - 1) {
+      if (current_page + 1 == total_Page - 1) {
+        return [1, "...", current_page - 1, current_page, current_page + 1, total_Page];
+      } else {
+        return [1, "...", current_page - 1, current_page, current_page + 1, "...", total_Page];
+      }
+    } else {
+      return [1, "...", total_Page - 3, total_Page - 2, total_Page - 1, total_Page];
+    }
+  }
+  return [1, 2, 3, 4, "...", total_Page];
+}

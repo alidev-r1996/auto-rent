@@ -16,12 +16,12 @@ const Faq = () => {
         سؤالات <p className="text-amber-400">متداول</p>
       </h2>
       <p className=" text-slate-400 text-center">پر تکرارترین سؤالاتی که پرسیدید</p>
-      <div className="flex items-center gap-8 mt-10">
+      <div className="flex items-center gap-8 mt-10 p-4">
         <Accordion
           type="single"
           collapsible
           defaultValue="item-2"
-          className="flex-2/3 flex flex-col gap-2"
+          className="md:flex-2/3 flex-1 flex flex-col gap-2"
         >
           {faqItems.map(faq => (
             <AccordionItem
@@ -38,7 +38,7 @@ const Faq = () => {
             </AccordionItem>
           ))}
         </Accordion>
-        <div className="w-1/3 aspect-video relative">
+        <div className="md:w-1/3 hidden aspect-video relative">
           <Image src={FaqImg} alt="faq picture" fill placeholder="blur" />
         </div>
       </div>

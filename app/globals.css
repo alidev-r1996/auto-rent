@@ -44,7 +44,18 @@
   --size-8xl: 1690px;
   --size-9xl: 1920px;
   --animate-infinite-slider: scroll 15s infinite linear;
+  --animate-infinite-scroll: slider 30s infinite linear;
+
   @keyframes scroll {
+    from {
+      transform: translate(0%);
+    }
+    to {
+      transform: translate(100%);
+    }
+  }
+
+  @keyframes slider {
     from {
       transform: translate(0%);
     }
@@ -139,4 +150,5 @@
       display: none;
     }
   }
+
 }
