@@ -17,7 +17,6 @@ export const CardCategory: FC<CardCategoryProps> = ({ alt, img, variant, text })
       <div className="relative rounded-full flex-1 p-2 group-hover:p-1 transtion-all duration-300 aspect-video">
         <Image
           src={img}
-          placeholder="blur"
           fill
           alt={alt}
           className="group-hover:scale-115 transtion-all duration-300"

@@ -1,21 +1,9 @@
 import { whyCardItems } from "@/components/main/why-us/why-us.constant";
 import { PersianDigits } from "@/lib/utils";
 import ContactImg from "@/public/assets/images/contactus.png";
-import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 
-export const contactItems = [
-  {
-    id: 1,
-    title: "آدرس",
-    text: "تهران، میدان آزادی، خیابان آزادی، خیابان شادمان، پلاک 23",
-    icon: MapPin,
-  },
-  { id: 2, title: "شماره تماس", text: " 66552589 - 021", icon: Phone },
-  { id: 3, title: "ایمیل", text: "info@AutoRent.com", icon: Mail },
-];
-
-const Contact = () => {
+const About = () => {
   return (
     <section className="max-w-[1920px]">
       <div className="absolute  top-0 mx-auto max-w-screen w-[1905px] h-98 -z-5">
@@ -87,4 +75,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default About;
