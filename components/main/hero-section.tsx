@@ -13,6 +13,7 @@ const HeroSection = () => {
           alt="Hero Section"
           fill
           placeholder="blur"
+          priority
           className="object-cover brightness-55 contrast-115"
         />
       </div>

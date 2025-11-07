@@ -7,7 +7,6 @@ import HowTo from "@/components/main/how-to/how-to";
 import Faq from "@/components/faq/faq";
 import Comments from "@/components/comments/comments";
 import BlogList from "@/components/blogs/bloglist";
-import Footer from "@/components/navigation/footer/footer";
 
 export default function Home() {
   return (

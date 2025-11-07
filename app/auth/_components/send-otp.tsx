@@ -67,7 +67,8 @@ const SendOTP: FC<SendOTPProps> = ({ mobile, onBack, setMobile }) => {
           onChange={e => setCheck(e.target.checked)}
         />
         <p className="text-slate-400 text-xs">
-          با ورود و ثبت‌نام در سایت، با قوانین <strong className="text-amber-500 px-0.5">اُتورنت</strong>
+          با ورود و ثبت‌نام در سایت، با قوانین{" "}
+          <strong className="text-amber-500 px-0.5">اُتورنت</strong>
           موافقت می‌کنم.
         </p>
       </label>

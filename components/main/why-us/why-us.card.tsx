@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { WhyCardProps } from "./why-us.type";
+import { PersianDigits } from "@/lib/utils";
 
 export const WhyCard: FC<WhyCardProps> = ({ icon, text, title }) => {
   const Icon = icon;
@@ -8,7 +9,7 @@ export const WhyCard: FC<WhyCardProps> = ({ icon, text, title }) => {
       <p className="p-2 md:size-18 size-14 rounded-lg border border-indigo-400 bg-blue-500">
         <Icon className="size-full text-white stroke-1" />
       </p>
-      <h3 className="font-bold text-indigo-400 text-center">{title} </h3>
+      <h3 className="font-bold text-indigo-400 text-center">{PersianDigits(title)} </h3>
       <p className="text-center text-slate-200 text-xs">{text}</p>
     </div>
   );

@@ -23,7 +23,7 @@ const Auth = () => {
           height={140}
           className="brightness-85 mt-20 md:mt-0"
         />
-        {isShow ? (
+        {!isShow ? (
           <SendOTP mobile={mobile} setMobile={setMobile} onBack={() => setShow(!isShow)} />
         ) : (
           <CheckOTP mobile={mobile} onBack={() => setShow(!isShow)} />

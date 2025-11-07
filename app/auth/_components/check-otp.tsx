@@ -2,11 +2,7 @@
 import { EnglishDigits, PersianDigits } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Activity, FC, FormEvent, useEffect, useRef, useState } from "react";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { Clock4 } from "lucide-react";
 
 type checkOTPProps = {
