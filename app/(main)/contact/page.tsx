@@ -9,7 +9,7 @@ import { contactItems } from "./constant";
 const Contact = () => {
   return (
     <section className="max-w-[1920px]">
-      <div className="absolute  top-0 mx-auto max-w-screen w-[1905px] h-98 -z-5">
+      <div className="absolute  top-0 mx-auto max-w-screen w-[1905px] h-60 md:h-98 -z-5">
         <Image
           src={ContactImg}
           alt="Hero Section"
@@ -19,9 +19,9 @@ const Contact = () => {
         />
       </div>
       <div className="p-4 md:p-0">
-        <div className="max-w-[1690px] mx-auto bg-white mt-82 md:mt-87 shadow rounded-xl p-4 flex flex-col gap-4 md:flex-row items-center justify-between">
+        <div className="max-w-[1690px] mx-auto bg-white mt-45 md:mt-87 shadow rounded-xl p-4 flex flex-col gap-4 md:flex-row items-center justify-between">
           <div className="flex flex-col gap-8 md:w-1/2 p-2 md:p-4">
-            <h1 className="font-bold text-slate-500 text-2xl md:text-3xl">
+            <h1 className="font-bold text-slate-500 text-2xl md:text-2xl">
               ارتباط با دفتـر مرکزی <strong className="text-amber-500">اُتورِنت</strong>
             </h1>
             <p className="border-b border-b-slate-300 md:w-1/2"></p>
@@ -56,7 +56,7 @@ const Contact = () => {
                   type="text"
                   name="name"
                   id="name"
-                  className=" border border-slate-300 rounded-lg w-full p-2  outline-none"
+                  className=" border border-slate-200 focus:shadow rounded-lg w-full p-2  outline-none"
                 />
               </label>
               <label htmlFor="phone" className="flex-1 flex flex-col gap-1 text-sm">
@@ -65,7 +65,7 @@ const Contact = () => {
                   type="text"
                   name="phone"
                   id="phone"
-                  className=" border border-slate-300 rounded-lg w-full p-2  outline-none"
+                  className=" border border-slate-200 focus:shadow rounded-lg w-full p-2  outline-none"
                 />
               </label>
 
@@ -75,7 +75,7 @@ const Contact = () => {
                   name="phone"
                   id="phone"
                   maxLength={80}
-                  className=" border border-slate-300 rounded-lg w-full p-2  outline-none resize-none"
+                  className=" border border-slate-200 focus:shadow rounded-lg w-full p-2  outline-none resize-none"
                 />
               </label>
               <Button type="submit" variant="blue" className="w-full mt-4  bg-amber-500!">

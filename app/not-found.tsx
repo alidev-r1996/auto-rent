@@ -4,8 +4,8 @@ import Link from "next/link";
 
 const NotFoundPage = () => {
   return (
-    <section className="max-w-[1690px] bg-white my-8 h-[80vh] mx-auto rounded-xl shadow">
-      <div className="relative w-1/2 mx-auto aspect-video">
+    <section className="max-w-[1690px] bg-white my-8 h-[80vh] rounded-xl shadow mx-4 md:mx-auto">
+      <div className="relative md:w-1/2 w-full mx-auto aspect-video">
         <Image
           src={NotFoundImg}
           alt="Hero Section"
@@ -13,7 +13,7 @@ const NotFoundPage = () => {
           className="object-cover mix-blend-multiply brightness-105 contrast-110"
         />
       </div>
-      <h1 className="font-bold text-3xl text-center text-slate-600 -translate-y-20">
+      <h1 className="font-bold text-2xl mt-10 md:mt-0 md:text-3xl text-center text-slate-600 -translate-y-20">
         صفحه موردنظر یافت نشد.
       </h1>
       <div className="flex items-center justify-cente">

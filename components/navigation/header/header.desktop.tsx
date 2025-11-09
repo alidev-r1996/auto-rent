@@ -39,8 +39,8 @@ const DesktopHeader = () => {
           className="appearance-none outline-none flex-1 placeholder:text-sm"
           placeholder="جستجو..."
         />
-        <Button variant={"ghost"} onClick={() => setSearchBar(!searchBar)}>
-          <X className="size-5 text-slate-600" />
+        <Button variant={"ghost"} onClick={() => setSearchBar(!searchBar)} className="rounded-full">
+          <X className="size-5 text-slate-600 " />
         </Button>
       </div>
     </ul>

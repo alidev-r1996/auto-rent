@@ -6,7 +6,7 @@ import Image from "next/image";
 const FaqPage = () => {
   return (
     <section className="max-w-[1920px]">
-      <div className="absolute  top-0 mx-auto max-w-screen w-[1905px] h-98 -z-5">
+      <div className="absolute  top-0 mx-auto max-w-screen w-[1905px] h-60 md:h-98 -z-5">
         <Image
           src={QuestionImg}
           alt="Hero Section"
@@ -15,7 +15,7 @@ const FaqPage = () => {
           className="object-cover brightness-70 contrast-110"
         />
       </div>
-      <div className="mt-82 md:mt-87">
+      <div className="mt-45 md:mt-87">
         <Faq />
       </div>
       <div className="my-8">

@@ -21,7 +21,7 @@ const Auth = () => {
           alt="Logo"
           width={140}
           height={140}
-          className="brightness-85 mt-20 md:mt-0"
+          className="brightness-85 mt-10 md:mt-0"
         />
         {!isShow ? (
           <SendOTP mobile={mobile} setMobile={setMobile} onBack={() => setShow(!isShow)} />

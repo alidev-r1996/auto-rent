@@ -5,7 +5,7 @@ import { insuransItems, ruleItems } from "./constant";
 const Rules = () => {
   return (
     <section className="max-w-[1920px]">
-      <div className="absolute  top-0 mx-auto max-w-screen w-[1905px] h-98 -z-5">
+      <div className="absolute  top-0 mx-auto max-w-screen w-[1905px] h-60 md:h-98 -z-5">
         <Image
           src={ContactImg}
           alt="Hero Section"
@@ -14,7 +14,7 @@ const Rules = () => {
           className="object-cover brightness-70 contrast-110"
         />
       </div>
-      <div className="mt-82 md:mt-87 flex flex-col gap-8">
+      <div className="mt-45 md:mt-87 flex flex-col gap-4 p-4">
         {ruleItems.map(({ id, title, options }) => (
           <div
             key={id}
@@ -42,7 +42,7 @@ const Rules = () => {
             زیان‌ها بر عهده اجاره کننده است.
           </p>
         </div>
-        <div className="flex flex-col gap-8 md:flex-row max-w-[1690px] mx-auto w-full mb-8">
+        <div className="flex flex-col gap-4 md:flex-row max-w-[1690px] mx-auto w-full mb-8">
           {insuransItems.map(({ id, title, options }) => (
             <div
               key={id}

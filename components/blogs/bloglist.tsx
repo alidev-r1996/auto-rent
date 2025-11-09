@@ -3,6 +3,7 @@ import { blogItems } from "./blog.constant";
 import { PersianDigits, TruncateText } from "@/lib/utils";
 import { ChevronLeft, Clock4 } from "lucide-react";
 import Link from "next/link";
+import BlogCard from "./blog.card";
 
 const BlogList = () => {
   return (
@@ -20,35 +21,8 @@ const BlogList = () => {
       </Link>
 
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-3">
-        {blogItems.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col gap-4 p-4 bg-white shadow rounded-xl group cursor-pointer"
-          >
-            <div className="relative w-full aspect-video rounded-md overflow-hidden">
-              <Image
-                src={`/assets/images/blogs/${item.image}`}
-                alt={item.title}
-                fill
-                className="object-cover rounded-md group-hover:scale-105 transition-all duration-300"
-              />
-            </div>
-            <h3 className="font-bold text-slate-800 hover:text-indigo-500">{item.title}</h3>
-            <p className="text-sm text-slate-600 leading-6">{TruncateText(item.text, 200)}</p>
-            <div className="flex items-center justify-between text-xs p-1">
-              <div className="flex items-center gap-1  text-slate-500">
-                <Clock4 className="size-4" />
-                <p>زمان مورد نیاز : </p>
-                <p>{PersianDigits(item.readingTime)}</p>
-              </div>
-              <Link
-                href={`/blogs/${item.id}`}
-                className="px-3 py-1 rounded bg-indigo-500 text-white transition-all duration-300 hover:bg-indigo-600 hover:scale-105 active:scale-95"
-              >
-                ادامه مطلب
-              </Link>
-            </div>
-          </div>
+        {blogItems.map(item => (
+          <BlogCard key={item.id} {...item} />
         ))}
       </div>
     </section>
