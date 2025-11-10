@@ -12,6 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { PersianDigits } from "@/lib/utils";
+import CarFilter from "./car-filter";
 
 const carFilterItems = [
   { id: 1, title: "پژو", query: "pegouet" },
@@ -45,62 +46,7 @@ const ReservePage = () => {
       </div>
       <div className="mt-38 md:mt-89  p-4 md:p-0"></div>
       <div className="flex flex-col-reverse max-w-[1690px] mx-auto md:flex-row items-start justify-between gap-8 md:gap-10 md:mt-5 mb-6 p-4">
-        <div className="w-full md:w-1/6 md:flex flex-col gap-5 hidden">
-          <div className="bg-white rounded-xl shadow border border-slate-100 p-4 flex flex-col gap-3">
-            <h2 className="font-bold text-slate-500 text-lg ">فیلتر جستجو </h2>
-            <p className="border-b border-b-slate-300 relative after:w-20 after:h-0.5 after:bg-amber-500 after:absolute after:top-0 after:right-0"></p>
-            <div className="flex flex-col text-sm mt-5 gap-2">
-              <h3 className="font-bold text-slate-700 mb-1">انتخاب برند خودرو</h3>
-              {carFilterItems.map((i, index) => {
-                return (
-                  <label
-                    key={index}
-                    htmlFor={i.query}
-                    className="flex items-center gap-2 text-slate-600 cursor-pointer"
-                  >
-                    <input
-                      type="checkbox"
-                      id={i.query}
-                      name={i.query}
-                      value={i.query}
-                      className="cursor-pointer"
-                    />
-                    <p>{i.title}</p>
-                  </label>
-                );
-              })}
-            </div>
-            <div className="flex flex-col text-sm mt-6 gap-2">
-              <h3 className="font-bold text-slate-700 mb-1">انتخاب نوع خودرو</h3>
-              {carTypeFilterItems.map((i, index) => {
-                return (
-                  <label
-                    key={index}
-                    htmlFor={i.query}
-                    className="flex items-center gap-2 text-slate-600 cursor-pointer"
-                  >
-                    <input
-                      type="checkbox"
-                      id={i.query}
-                      name={i.query}
-                      value={i.query}
-                      className="cursor-pointer"
-                    />
-                    <p>{i.title}</p>
-                  </label>
-                );
-              })}
-            </div>
-            <div className="flex flex-col text-sm mt-6 gap-2">
-              <h3 className="font-bold text-slate-700 mb-1">انتخاب بازه قیمتی </h3>
-              <div className="flex items-center justify-between text-slate-500 text-xs">
-                <p>تا {PersianDigits(`${"6,000,000"}`)} تومان</p>
-                <p>از {PersianDigits(`${"60,000,000"}`)} تومان</p>
-              </div>
-              <input type="range" name="price" id="price" />
-            </div>
-          </div>
-        </div>
+      <CarFilter />
         <div className="w-full md:w-5/6 grid md:grid-cols-2 gap-5">
           <div className="flex items-center justify-between gap-2 col-span-2 w-full text-xs md:text-sm">
             <div className="flex items-center bg-white border border-slate-200 shadow-xs rounded-lg gap-2 p-2 flex-1">

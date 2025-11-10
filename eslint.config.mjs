@@ -18,7 +18,7 @@ const eslintConfig = defineConfig([
       "@typescript-eslint/no-explicit-any": "off",
     },
   },
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+  globalIgnores([".next/**", "out/**", "build/**", "prisma/**", "next-env.d.ts"]),
 ]);
 
 export default eslintConfig;

@@ -20,7 +20,6 @@ import { Button } from "@/components/ui/button";
 import DropDown from "@/components/ui/dropdown";
 import DatePickerCar from "../../reserve/date-picker";
 
-
 const featureItems = [
   { id: 1, title: "مسافت پیموده", text: "۱۲ کیلومتر", icon: AiOutlineDashboard },
   { id: 2, title: "نوع دنده", text: "اتوماتیک", icon: GiGearStickPattern },
@@ -73,7 +72,6 @@ const CarDetailPage = () => {
           <div className="rounded-lg shadow-xs border border-slate-100 flex flex-col gap-4 p-4 bg-white">
             <h2 className="font-bold text-slate-700 text-lg ">بنز s500 </h2>
             <p className="border-b border-b-slate-300 -mt-2 relative after:w-20 after:h-0.5 after:bg-amber-500 after:absolute after:top-0 after:right-0"></p>
-            
             <Carousel className="md:w-4/5 w-3/4 md:p-8 p-4 mx-auto" dir="ltr">
               <CarouselContent>
                 {carImages.map(i => (
@@ -89,21 +87,23 @@ const CarDetailPage = () => {
               <CarouselNext />
             </Carousel>
             <div className="flex items-center gap-2 flex-col md:flex-row mb-2 w-full ">
-            <div className="bg-slate-200/50 rounded-md p-2 flex w-full flex-1 text-sm items-center justify-between">
-              <div className="flex items-center gap-2">
-                <p className="text-slate-500 text-sm">قیمت:</p>
-                <p className="font-bold text-indigo-500">{PersianCurrency(`${12500000}`)} تومان</p>
+              <div className="bg-slate-200/50 rounded-md p-2 flex w-full flex-1 text-sm items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <p className="text-slate-500 text-sm">قیمت:</p>
+                  <p className="font-bold text-indigo-500">
+                    {PersianCurrency(`${12500000}`)} تومان
+                  </p>
+                </div>
+                <p className="text-slate-500 text-sm">روزانه</p>
               </div>
-              <p className="text-slate-500 text-sm">روزانه</p>
-            </div>
-            <div className="bg-slate-200/50 rounded-md p-2 flex w-full flex-1 text-sm items-center justify-between">
-              <div className="flex items-center gap-2">
-                <p className="text-slate-500 text-sm">قیمت:</p>
-                <p className="font-bold text-indigo-500">{PersianCurrency(`${2500000}`)} تومان</p>
+              <div className="bg-slate-200/50 rounded-md p-2 flex w-full flex-1 text-sm items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <p className="text-slate-500 text-sm">قیمت:</p>
+                  <p className="font-bold text-indigo-500">{PersianCurrency(`${2500000}`)} تومان</p>
+                </div>
+                <p className="text-slate-500 text-sm">ماهانه</p>
               </div>
-              <p className="text-slate-500 text-sm">ماهانه</p>
             </div>
-          </div>
           </div>
 
           <div className="rounded-lg shadow-xs border border-slate-100 flex flex-col gap-4 p-4 bg-white">
@@ -312,7 +312,9 @@ const CarDetailPage = () => {
                     </p>
                     <div className="flex flex-col gap-0.5">
                       <p className="text-slate-600">{i.title}</p>
-                      <p className="text-slate-400 text-[11px] md:text-xs">{PersianDigits(i.text)}</p>
+                      <p className="text-slate-400 text-[11px] md:text-xs">
+                        {PersianDigits(i.text)}
+                      </p>
                     </div>
                   </div>
                 );
