@@ -188,18 +188,44 @@ const Layout = () => {
             <div className="mt-1 border-b border-slate-200 relative after:absolute after:right-0 after:top-0 after:h-0.5 after:w-20 after:bg-amber-500" />
           </div>
 
-          <div className="border border-slate-200 rounded-xl p-3 md:p-5 h-[50vh] max-h-[50vh] md:h-[70vh] md:max-h-[70vh] overflow-y-auto relative ">
-            <div
-              className={`${false ? "ml-auto border-blue-500 bg-blue-500 text-white" : "mr-auto border-slate-300 bg-slate-300 text-slate-800"} border  shadow-xs p-2 rounded-lg text-xs w-max md:max-w-1/3   flex flex-col gap-2`}
-            >
-              <p>سلام چطور میتونم کمکتون کنم؟</p>
-              <p className={`${false && "mr-auto"}`}>{PersianDigits(`${`14:15`}`)}</p>
-            </div>
-            <div
-              className={`${true ? "ml-auto border-blue-500 bg-blue-500 text-white" : "mr-auto border-slate-300 bg-slate-300 text-slate-800"} border  shadow-xs p-2 rounded-lg text-xs w-max md:max-w-1/3   flex flex-col gap-2`}
-            >
-              <p>سلام وقت بخیر میخواستم بدونم امکان کنسل کردن رزروی هست؟</p>
-              <p className={`${true && "mr-auto"}`}>{PersianDigits(`${`14:15`}`)}</p>
+          <div className="border border-slate-200 rounded-xl p-3 md:p-5 h-[70vh] max-h-[70vh] relative ">
+            <div className="flex flex-col gap-4 w-full  h-[90%] max-h-[85%] overflow-y-auto  scroll-none">
+              <div
+                className={`${false ? "ml-auto border-blue-500 bg-blue-500 text-white rounded-tr-none!" : "mr-auto rounded-tl-none!  border-slate-300 bg-slate-300 text-slate-800"} border  shadow-xs p-2 rounded-xl text-xs w-max md:max-w-1/3 max-w-full   flex flex-col gap-1`}
+              >
+                <p>سلام چطور میتونم کمکتون کنم؟</p>
+                <p className={`${false && "mr-auto"}`}>{PersianDigits(`${`14:15`}`)}</p>
+              </div>
+              <div
+                className={`${true ? "ml-auto border-blue-500 bg-blue-500 text-white rounded-tr-none!" : "mr-auto rounded-tl-none! border-slate-300 bg-slate-300 text-slate-800"} border  shadow-xs p-2 rounded-xl text-xs w-max md:max-w-1/3 max-w-full   flex flex-col gap-1`}
+              >
+                <p>سلام وقت بخیر میخواستم بدونم امکان کنسل کردن رزروی هست؟</p>
+                <p className={`${true && "mr-auto"}`}>{PersianDigits(`${`14:15`}`)}</p>
+              </div>
+              <div
+                className={`${false ? "ml-auto border-blue-500 bg-blue-500 text-white rounded-tr-none!" : "mr-auto rounded-tl-none!  border-slate-300 bg-slate-300 text-slate-800"} border  shadow-xs p-2 rounded-xl text-xs w-max md:max-w-1/3 max-w-full   flex flex-col gap-1`}
+              >
+                <p>سلام چطور میتونم کمکتون کنم؟</p>
+                <p className={`${false && "mr-auto"}`}>{PersianDigits(`${`14:15`}`)}</p>
+              </div>
+              <div
+                className={`${true ? "ml-auto border-blue-500 bg-blue-500 text-white rounded-tr-none!" : "mr-auto rounded-tl-none! border-slate-300 bg-slate-300 text-slate-800"} border  shadow-xs p-2 rounded-xl text-xs w-max md:max-w-1/3 max-w-full   flex flex-col gap-1`}
+              >
+                <p>سلام وقت بخیر میخواستم بدونم امکان کنسل کردن رزروی هست؟</p>
+                <p className={`${true && "mr-auto"}`}>{PersianDigits(`${`14:15`}`)}</p>
+              </div>
+              <div
+                className={`${false ? "ml-auto border-blue-500 bg-blue-500 text-white rounded-tr-none!" : "mr-auto rounded-tl-none!  border-slate-300 bg-slate-300 text-slate-800"} border  shadow-xs p-2 rounded-xl text-xs w-max md:max-w-1/3 max-w-full   flex flex-col gap-1`}
+              >
+                <p>سلام چطور میتونم کمکتون کنم؟</p>
+                <p className={`${false && "mr-auto"}`}>{PersianDigits(`${`14:15`}`)}</p>
+              </div>
+              <div
+                className={`${true ? "ml-auto border-blue-500 bg-blue-500 text-white rounded-tr-none!" : "mr-auto rounded-tl-none! border-slate-300 bg-slate-300 text-slate-800"} border  shadow-xs p-2 rounded-xl text-xs w-max md:max-w-1/3 max-w-full   flex flex-col gap-1`}
+              >
+                <p>سلام وقت بخیر میخواستم بدونم امکان کنسل کردن رزروی هست؟</p>
+                <p className={`${true && "mr-auto"}`}>{PersianDigits(`${`14:15`}`)}</p>
+              </div>
             </div>
             <form className="flex items-center md:gap-2 gap-1 absolute bottom-2 md:w-[96%] mx-auto w-[93%]">
               <input
@@ -213,6 +239,18 @@ const Layout = () => {
                 <p className="sr-only md:not-sr-only">ارسال پیام </p> <Send size={5} />
               </Button>
             </form>
+          </div>
+        </div>
+
+        <div className="bg-white border border-slate-200 shadow-xs rounded-lg p-4 flex flex-col">
+          <h2 className="font-bold text-slate-600 md:text-lg "> خروج از حساب کاربری</h2>
+          <p className="border-b mt-1 border-b-slate-300 relative after:w-20 after:h-0.5 after:bg-amber-500 after:absolute after:top-0 after:right-0"></p>
+          <div className="flex flex-col gap-6 mt-8 p-4">
+            <p>برای خروج از حساب کاربری خود اطمینان دارید؟</p>
+            <div className="flex items-center gap-2 w-full md:w-1/3">
+              <Button variant={"outline"}>انصراف</Button>
+              <Button variant={"destructive"}>خروج از حساب</Button>
+            </div>
           </div>
         </div>
       </div>
