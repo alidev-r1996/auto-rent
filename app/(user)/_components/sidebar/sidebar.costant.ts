@@ -5,6 +5,6 @@ export const profileMenuItems = [
   { title: "رزروهای من", englishTitle: "reserve", icon: ShoppingCart },
   { title: "پرداخت‌های من", englishTitle: "payment", icon: CreditCard },
   { title: "نظرات من", englishTitle: "comment", icon: MessageSquareMore },
-  { title: " پشتیبانی", englishTitle: "comment", icon: Headset },
+  { title: " پشتیبانی", englishTitle: "support", icon: Headset },
   { title: " خروج از حساب کاربری", englishTitle: "logout", icon: LogOut },
 ];

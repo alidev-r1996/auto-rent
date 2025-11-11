@@ -118,8 +118,7 @@ const CarDetailPage = () => {
                       htmlFor="basic"
                       className="flex items-center  cursor-pointer gap-2 justify-center"
                     >
-                      {" "}
-                      <input type="radio" name="insurance" id="basic" value={"basic"} />{" "}
+                      
                       <p>بیمه پایه</p>
                     </label>
                   </th>
@@ -128,8 +127,7 @@ const CarDetailPage = () => {
                       htmlFor="premium"
                       className="flex items-center cursor-pointer  gap-2 justify-center"
                     >
-                      {" "}
-                      <input type="radio" name="insurance" id="premium" value={"premium"} />{" "}
+                      
                       <p>بیمه کامل</p>
                     </label>
                   </th>
@@ -335,6 +333,9 @@ const CarDetailPage = () => {
                 </div>
               ))}
             </div>
+          </div>
+          <div className="rounded-lg shadow-xs border border-slate-200 md:border-slate-100 flex flex-col gap-4 p-8 bg-white/50 backdrop-blur-sm  md:bg-white md:static fixed bottom-0 z-10 w-screen mx-auto md:translate-x-0 md:w-full left-1/2 -translate-x-1/2">
+            <Button variant={"blue"} className="py-5! ">درخواست رزرو</Button>
           </div>
         </div>
       </div>

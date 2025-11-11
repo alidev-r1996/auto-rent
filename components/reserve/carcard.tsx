@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 const CarCard = () => {
   return (
     <div className="rounded-xl flex flex-col gap-3 shadow border border-slate-200 p-4">
-      <div className="relative border border-slate-200 rounded-lg h-70 bg-radial p-4 from-slate-50 from-30% to-slate-300">
+      <div className="relative rounded-lg h-70  p-4 ">
         <Image src={Coupe} alt="car" fill />
         <p className="bg-rose-500 text-white rounded-md px-3 py-1 text-xs w-max mr-auto">
           {" "}
