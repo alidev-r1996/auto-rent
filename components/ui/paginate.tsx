@@ -1,6 +1,5 @@
 "use client";
 
-
 import { PaginateMaker, PersianDigits } from "@/lib/utils";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { memo, useMemo } from "react";
@@ -14,7 +13,8 @@ type PaginateProps = {
 
 const btnStyle = {
   red: "hover:bg-rose-100 hover:text-rose-600 border border-rose-300 text-rose-600 hover:border-rose-600 dark:hover:bg-slate-700 dark:border-rose-800 dark:hover:text-rose-300",
-  green: "hover:bg-emerald-100 hover:text-emerald-600 border border-emerald-300 text-emerald-600 hover:border-emerald-600 dark:hover:bg-slate-700 dark:border-emerald-800 dark:hover:text-emerald-300",
+  green:
+    "hover:bg-emerald-100 hover:text-emerald-600 border border-emerald-300 text-emerald-600 hover:border-emerald-600 dark:hover:bg-slate-700 dark:border-emerald-800 dark:hover:text-emerald-300",
   blue: "hover:bg-blue-100 hover:text-blue-600 border border-blue-300 text-blue-600 hover:border-blue-600 dark:hover:bg-slate-700 dark:border-blue-800 dark:hover:text-blue-300",
 };
 
@@ -29,16 +29,15 @@ const shapeStyle = {
   square: "rounded",
 };
 
-const Paginate: React.FC<PaginateProps> = ({
-  theme,
-  shape,
-  totalPage,
-}) => {
+const Paginate: React.FC<PaginateProps> = ({ theme, shape, totalPage }) => {
   const pathname = usePathname() ?? "";
   const searchParams = useSearchParams() ?? new URLSearchParams("");
   const router = useRouter();
   const currentPage = searchParams.get("page") ?? 1;
-  const pages = useMemo(() => PaginateMaker(totalPage, Number(currentPage)), [currentPage, totalPage]);
+  const pages = useMemo(
+    () => PaginateMaker(totalPage, Number(currentPage)),
+    [currentPage, totalPage]
+  );
 
   const goToPage = (page: number) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -85,4 +84,4 @@ const Paginate: React.FC<PaginateProps> = ({
   );
 };
 
-export default  Paginate;
+export default Paginate;

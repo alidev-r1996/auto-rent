@@ -11,8 +11,9 @@ type SideBarProps = {
 };
 
 const SideBar: FC<SideBarProps> = ({ setMenu, setShow, show, menu }) => {
-  const menuHandler = (menu: string) => {
-    setMenu(menu);
+  const menuHandler = (path: string) => {
+    if (menu == path) return;
+    setMenu(path);
     setShow();
   };
 
@@ -32,7 +33,7 @@ const SideBar: FC<SideBarProps> = ({ setMenu, setShow, show, menu }) => {
             <div
               key={index}
               onClick={() => menuHandler(englishTitle)}
-              className={`${menu == englishTitle ? "bg-blue-500 text-white" : "hover:bg-slate-100"} flex gap-2 p-4 cursor-pointer text-sm md:text-base transition-colors duration-300 last:hover:bg-rose-100  rounded-xl `}
+              className={`${menu == englishTitle && !show ? "bg-blue-500 text-white" : "hover:bg-slate-100"} flex gap-2 p-4 cursor-pointer text-sm md:text-base transition-colors duration-300 last:hover:bg-rose-100  rounded-xl `}
             >
               <Icon className="size-6" />
               <p>{title}</p>

@@ -9,8 +9,15 @@ type DatePickerProps = {
   className?: string;
 };
 
-const DatePicker: FC<DatePickerProps> = ({ className , date, setDate }) => {
-  return <Calendar mode="single" selected={date} onSelect={setDate} className={`${className} rounded-lg `} />;
+const DatePicker: FC<DatePickerProps> = ({ className, date, setDate }) => {
+  return (
+    <Calendar
+      mode="single"
+      selected={date}
+      onSelect={setDate}
+      className={`${className} rounded-lg `}
+    />
+  );
 };
 
 export default DatePicker;

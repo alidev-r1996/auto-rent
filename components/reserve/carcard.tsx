@@ -2,6 +2,7 @@ import Image from "next/image";
 import Coupe from "@/public/assets/images/category/coupe.png";
 import { PersianCurrency, PersianDigits } from "@/lib/utils";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const CarCard = () => {
   return (
@@ -34,7 +35,9 @@ const CarCard = () => {
         <p>مبلغ ضمانت</p>
         <p className="font-bold">{PersianCurrency(`${45000000}`)} تومان</p>
       </div>
-      <Button variant={"blue"}>درخواست رزرو</Button>
+      <Link href="/reserve">
+        <Button variant={"blue"}>درخواست رزرو</Button>
+      </Link>
     </div>
   );
 };

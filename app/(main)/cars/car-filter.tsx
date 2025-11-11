@@ -22,9 +22,6 @@ const carTypeFilterItems = [
 ];
 
 const CarFilter = () => {
-
-
-
   return (
     <div className="w-full md:w-1/6 md:flex flex-col gap-5 hidden">
       <div className="bg-white rounded-xl shadow border border-slate-100 p-4 flex flex-col gap-3">

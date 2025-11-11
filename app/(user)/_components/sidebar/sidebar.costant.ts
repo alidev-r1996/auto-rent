@@ -1,4 +1,4 @@
-import { CreditCard, Headset, IdCard, LogOut, MapPin, MessageSquareMore, ShoppingCart } from "lucide-react";
+import { CreditCard, Headset, IdCard, LogOut, MessageSquareMore, ShoppingCart } from "lucide-react";
 
 export const profileMenuItems = [
   { title: "پروفایل من", englishTitle: "profile", icon: IdCard },

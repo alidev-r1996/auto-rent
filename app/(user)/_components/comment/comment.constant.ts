@@ -1,4 +1,4 @@
- export const commentTabItems = [
+export const commentTabItems = [
   {
     value: "all",
     label: "همه نظرات",

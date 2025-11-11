@@ -14,7 +14,7 @@ type RangeSliderProps = {
 
 export function RangeSlider({
   min = 6000000,
-  max =60000000,
+  max = 60000000,
   step = 1,
   value = [6000000, 60000000],
   onValueChange,
@@ -28,7 +28,7 @@ export function RangeSlider({
   };
 
   return (
-    <div  className="w-full space-y-2">
+    <div className="w-full space-y-2">
       <Slider min={min} max={max} step={step} value={range} onValueChange={handleChange} />
       <div className="flex justify-between text-xs text-muted-foreground">
         <p>از {PersianCurrency(`${range[1]}`)} تومان</p>

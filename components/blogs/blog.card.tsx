@@ -17,7 +17,9 @@ const BlogCard: FC<BlogCardProps> = ({ id, image, readingTime, text, title, slug
         />
       </div>
       <h3 className="font-bold text-slate-800 hover:text-indigo-500">{title}</h3>
-      <p className="text-xs md:text-sm text-slate-500 leading-6 md:leading-7">{TruncateText(text, 200)}</p>
+      <p className="text-xs md:text-sm text-slate-500 leading-6 md:leading-7">
+        {TruncateText(text, 200)}
+      </p>
       <div className="flex items-center justify-between text-xs p-1">
         <div className="flex items-center gap-1  text-slate-500">
           <Clock4 className="size-4" />

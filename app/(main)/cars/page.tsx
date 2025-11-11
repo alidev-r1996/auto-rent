@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sheet";
 import { PersianDigits } from "@/lib/utils";
 import CarFilter from "./car-filter";
+import { RangeSlider } from "@/components/ui/range-slider";
 
 const carFilterItems = [
   { id: 1, title: "پژو", query: "pegouet" },
@@ -46,7 +47,7 @@ const ReservePage = () => {
       </div>
       <div className="mt-38 md:mt-89  p-4 md:p-0"></div>
       <div className="flex flex-col-reverse max-w-[1690px] mx-auto md:flex-row items-start justify-between gap-8 md:gap-10 md:mt-5 mb-6 p-4">
-      <CarFilter />
+        <CarFilter />
         <div className="w-full md:w-5/6 grid md:grid-cols-2 gap-5">
           <div className="flex items-center justify-between gap-2 col-span-2 w-full text-xs md:text-sm">
             <div className="flex items-center bg-white border border-slate-200 shadow-xs rounded-lg gap-2 p-2 flex-1">
@@ -118,11 +119,7 @@ const ReservePage = () => {
                       </div>
                       <div className="flex flex-col text-sm mt-5 gap-2">
                         <h3 className="font-bold text-slate-700 mb-1">انتخاب بازه قیمتی </h3>
-                        <div className="flex items-center justify-between text-slate-500 text-xs">
-                          <p>تا {PersianDigits(`${"6,000,000"}`)} تومان</p>
-                          <p>از {PersianDigits(`${"60,000,000"}`)} تومان</p>
-                        </div>
-                        <input type="range" name="price" id="price" />
+                        <RangeSlider />
                       </div>
                     </div>
                   </SheetDescription>

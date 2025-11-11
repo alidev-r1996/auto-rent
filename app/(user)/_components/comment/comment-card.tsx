@@ -28,7 +28,10 @@ const CommentCard: FC<CommentCardProps> = ({ status }) => {
           </div>
         )}
       </div>
-        <p className="text-xs md:mr-auto"><strong className="text-xs">تاریخ ثبت نظر: </strong>{PersianDate(`2023-01-01`)}</p>
+      <p className="text-xs md:mr-auto">
+        <strong className="text-xs">تاریخ ثبت نظر: </strong>
+        {PersianDate(`2023-01-01`)}
+      </p>
     </div>
   );
 };

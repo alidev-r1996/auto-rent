@@ -1,4 +1,4 @@
-const UserHeader = ({title}: {title: string}) => {
+const UserHeader = ({ title }: { title: string }) => {
   return (
     <>
       <h2 className="font-bold text-slate-600 md:text-lg ">{title}</h2>

@@ -4,19 +4,18 @@ import Image from "next/image";
 import { FC } from "react";
 
 type PaymentCardProps = {
-    id?: string;
-    img?: string;
-    title?: string;
-    model?: string;
-    price?: string;
-    pay_date?: string;
-    ref_id?: string;
-    receive_date?: string;
-    status: "success" | "failed";
+  id?: string;
+  img?: string;
+  title?: string;
+  model?: string;
+  price?: string;
+  pay_date?: string;
+  ref_id?: string;
+  receive_date?: string;
+  status: "success" | "failed";
+};
 
-}
-
-const PaymentCard: FC<PaymentCardProps> = ({status}) => {
+const PaymentCard: FC<PaymentCardProps> = ({ status }) => {
   return (
     <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 py-3 border-b border-dashed border-slate-300 last:border-none transition-all duration-300 hover:bg-slate-50 hover:shadow-sm">
       <p className="relative md:w-40 aspect-16/14 w-28">
@@ -51,16 +50,15 @@ const PaymentCard: FC<PaymentCardProps> = ({status}) => {
             {PersianDigits("12345678")}
           </p>
           {status == "failed" && (
-              <span className="px-4 py-1.5 w-max rounded-full text-rose-600 bg-rose-50 border border-rose-200 shadow-sm text-center whitespace-nowrap">
-            پرداخت ناموفق
-          </span>
+            <span className="px-4 py-1.5 w-max rounded-full text-rose-600 bg-rose-50 border border-rose-200 shadow-sm text-center whitespace-nowrap">
+              پرداخت ناموفق
+            </span>
           )}
           {status == "success" && (
-              <span className="px-4 py-1.5 w-max rounded-full text-emerald-600 bg-emerald-50 border border-emerald-200 shadow-sm text-center whitespace-nowrap">
-            پرداخت موفق
-          </span>
+            <span className="px-4 py-1.5 w-max rounded-full text-emerald-600 bg-emerald-50 border border-emerald-200 shadow-sm text-center whitespace-nowrap">
+              پرداخت موفق
+            </span>
           )}
-          
         </div>
       </div>
 

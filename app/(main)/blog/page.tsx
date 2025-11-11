@@ -1,7 +1,7 @@
 import BlogCard from "@/components/blogs/blog.card";
 import { blogItems } from "@/components/blogs/blog.constant";
 import BlogImg from "@/public/assets/images/contactus.png";
-import { ChevronDown, Clock4, Link, Search } from "lucide-react";
+import { Clock4, Search } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 import BlogImg1 from "@/public/assets/images/blogs/last/1.png";
 import BlogImg2 from "@/public/assets/images/blogs/last/2.png";
@@ -110,7 +110,13 @@ export type ThumbnailBlogProps = {
 export const ThumbnailBlog: FC<ThumbnailBlogProps> = ({ href, id, image, readingTime, title }) => {
   return (
     <div className="flex items-center gap-2 transition-all duration-300 hover:scale-103 hover:bg-slate-50 cursor-pointer p-4 border-b last:border-none border-b-slate-200">
-      <Image src={image} alt="user-img" width={80} height={80} className=" rounded-lg border-3 border-slate-300 shadow" />
+      <Image
+        src={image}
+        alt="user-img"
+        width={80}
+        height={80}
+        className=" rounded-lg border-3 border-slate-300 shadow"
+      />
       <div className="flex flex-col justify-between gap-4">
         <h1 className="font-bold text-slate-600"> {title} </h1>
         <div className="flex items-center gap-1  text-slate-400 text-xs">

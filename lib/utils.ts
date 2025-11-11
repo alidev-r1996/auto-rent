@@ -57,8 +57,8 @@ export function PersianDate(date) {
   return new Date(date).toLocaleDateString("fa-IR");
 }
 
-export function PersianTime(date){
-  return new Date(date).toLocaleTimeString("fa-IR",{hour: '2-digit', minute: '2-digit'});
+export function PersianTime(date) {
+  return new Date(date).toLocaleTimeString("fa-IR", { hour: "2-digit", minute: "2-digit" });
 }
 
 export function PersianCurrency(currency: string) {

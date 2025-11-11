@@ -3,7 +3,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { reserveTabItems } from "./reserve-constant";
 import UserHeader from "../user-header";
 
-
 const Reserve = () => {
   return (
     <div className="bg-white border border-slate-200 shadow-xs rounded-lg p-4 flex flex-col">
