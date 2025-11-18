@@ -35,9 +35,9 @@ const SendOTP: FC<SendOTPProps> = ({ mobile, onBack, setMobile }) => {
       phoneNumber: EnglishDigits(mobile),
     });
     if (error) {
-      console.log(error);
+      console.log(error, "error");
     }
-    console.log(data);
+    console.log(data, "data");
     onBack();
   };
 

@@ -18,7 +18,7 @@ import Logout from "@/components/common/signout";
 import { useState } from "react";
 
 const Header = () => {
-  const { data: session, isPending, error, refetch } = useSession();
+  const { data: session, isPending } = useSession();
   const [open, setOpen] = useState(false);
 
   return (

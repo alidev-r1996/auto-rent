@@ -87,3 +87,33 @@ export function PaginateMaker(total_Page: number, current_page: number) {
   }
   return [1, 2, 3, 4, "...", total_Page];
 }
+
+export function carGearConveter(gear: string) {
+  if (gear == "Automatic") {
+    return "اتوماتیک";
+  }
+  if (gear == "Manual") {
+    return "دنده‌ای";
+  }
+  return gear;
+}
+
+export function carSteeringConveter(steering: string) {
+  if (steering == "Electric") {
+    return "برقی";
+  }
+  if (steering == "Hydraulic") {
+    return "هیدرولیک";
+  }
+  return steering;
+}
+
+export function carFuelConveter(fuel: string) {
+  if (fuel == "Gasoline") {
+    return "بنزین";
+  }
+  if (fuel == "Electric") {
+    return "برقی";
+  }
+  return fuel;
+}

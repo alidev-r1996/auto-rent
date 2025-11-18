@@ -34,10 +34,17 @@ const CheckOTP: FC<checkOTPProps> = ({ mobile, onBack }) => {
     router.push("/");
   };
 
-  const retryCodeHandler = () => {
+  const retryCodeHandler = async () => {
     setMinutes(1);
     setSeconds(59);
     setRetry(false);
+    const { data, error } = await phoneNumber.sendOtp({
+      phoneNumber: EnglishDigits(mobile),
+    });
+    if (error) {
+      console.log(error, "error");
+    }
+    console.log(data, "data");
   };
 
   useEffect(() => {

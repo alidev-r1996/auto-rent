@@ -2,7 +2,6 @@ import Image from "next/image";
 import BlogImg from "@/public/assets/images/contactus.png";
 import Paginate from "@/components/ui/paginate";
 import { Search, SlidersHorizontal } from "lucide-react";
-import CarCard from "@/components/reserve/carcard";
 import {
   Sheet,
   SheetContent,
@@ -11,7 +10,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { PersianDigits } from "@/lib/utils";
 import CarFilter from "./car-filter";
 import { RangeSlider } from "@/components/ui/range-slider";
 
@@ -128,12 +126,12 @@ const ReservePage = () => {
             </Sheet>
           </div>
           <div className="w-full col-span-2 grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {/* <CarCard />
             <CarCard />
             <CarCard />
             <CarCard />
             <CarCard />
-            <CarCard />
-            <CarCard />
+            <CarCard /> */}
           </div>
 
           <div className="flex item-center justify-center md:col-span-2 my-6 w-full">

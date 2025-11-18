@@ -1,7 +1,6 @@
 "use client";
 
 import { RangeSlider } from "@/components/ui/range-slider";
-import { PersianDigits } from "@/lib/utils";
 
 const carFilterItems = [
   { id: 1, title: "پژو", query: "pegouet" },

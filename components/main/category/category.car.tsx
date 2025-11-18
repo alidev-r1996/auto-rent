@@ -11,7 +11,6 @@ const CarCategory = () => {
         {carCategory.map(i => (
           <CardCategory key={i.id} {...i} />
         ))}
-        <p className="md:hidden size-40 mx-auto"></p>
       </div>
     </section>
   );
