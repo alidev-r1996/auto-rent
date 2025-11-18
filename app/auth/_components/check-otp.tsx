@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Activity, FC, FormEvent, useEffect, useRef, useState } from "react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { Clock4 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { phoneNumber } from "@/lib/auth-client";
 
 type checkOTPProps = {
   mobile: string;
@@ -16,11 +18,20 @@ const CheckOTP: FC<checkOTPProps> = ({ mobile, onBack }) => {
   const [seconds, setSeconds] = useState(59);
   const [retry, setRetry] = useState(false);
   const otpRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(otp);
-    onBack();
+    if (otp.length < 6) return;
+    const { data, error } = await phoneNumber.verify({
+      code: EnglishDigits(otp),
+      phoneNumber: EnglishDigits(mobile),
+    });
+    if (error) {
+      console.log(error);
+    }
+    console.log(data);
+    router.push("/");
   };
 
   const retryCodeHandler = () => {

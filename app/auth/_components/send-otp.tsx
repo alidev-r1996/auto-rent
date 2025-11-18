@@ -4,6 +4,7 @@ import Image from "next/image";
 import { EnglishDigits, PersianDigits } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { FC, FormEvent, useState } from "react";
+import { phoneNumber } from "@/lib/auth-client";
 
 type SendOTPProps = {
   mobile: string;
@@ -28,9 +29,15 @@ const SendOTP: FC<SendOTPProps> = ({ mobile, onBack, setMobile }) => {
     setMobile(PersianDigits(value));
   };
 
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(mobile);
+    const { data, error } = await phoneNumber.sendOtp({
+      phoneNumber: EnglishDigits(mobile),
+    });
+    if (error) {
+      console.log(error);
+    }
+    console.log(data);
     onBack();
   };
 
@@ -73,7 +80,7 @@ const SendOTP: FC<SendOTPProps> = ({ mobile, onBack, setMobile }) => {
         </p>
       </label>
       <Button
-        disabled={mobile.length < 11 || !check}
+        disabled={mobile.length < 11 || (!check && true)}
         type="submit"
         variant={"amber"}
         className="w-full mt-8 bg-amber-500!"
