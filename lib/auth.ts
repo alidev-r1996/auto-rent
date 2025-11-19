@@ -10,7 +10,8 @@ export const auth = betterAuth({
   plugins: [
     phoneNumber({
       expiresIn: 3000,
-      sendOTP: ({ phoneNumber, code }) => {
+      sendOTP: ({ phoneNumber, code }, request) => {
+        // console.log(request)
         console.log(`successfully sent ${code} to ${phoneNumber}`);
       },
       signUpOnVerification: {

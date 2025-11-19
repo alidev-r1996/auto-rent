@@ -18,10 +18,15 @@ const Logout = ({ className }: { className?: string }) => {
   const [open, setOpen] = useState(false);
 
   const logoutHandler = async () => {
-    await signOut();
-    setOpen(false);
-    console.log("Successfully logged out");
-    router.push("/login");
+    await signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          setOpen(false);
+          console.log("Successfully logged out");
+          router.refresh();
+        },
+      },
+    });
   };
 
   return (

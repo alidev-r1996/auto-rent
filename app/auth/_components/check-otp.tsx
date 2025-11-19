@@ -155,7 +155,7 @@ const CheckOTP: FC<checkOTPProps> = ({ mobile, onBack }) => {
 
       <Button
         type="submit"
-        disabled={otp.length !== 6}
+        disabled={otp.length !== 6 ? true : false}
         variant={"amber"}
         className="w-full mt-8 bg-amber-500!"
       >

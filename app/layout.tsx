@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
 import "./globals.css";
 import { iranSans } from "@/lib/utils";
 import Header from "@/components/navigation/header/header";
 import Footer from "@/components/navigation/footer/footer";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" dir="rtl" className="scroll-smooth">
       <body
-        className={`${outfit.variable} ${iranSans.className} antialiased bg-slate-50 max-w-[1920px] mx-auto overflow-x-hidden`}
+        className={`${iranSans.className} antialiased bg-slate-50 max-w-[1920px] mx-auto overflow-x-hidden`}
       >
         <Header />
         {children}

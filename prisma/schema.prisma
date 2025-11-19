@@ -244,19 +244,16 @@ model Payment {
 model Comment{
   id String   @id @default(cuid())
   user_id String
-  car_id String
-  blog_id String
-  parent_id String
+  car_id String?
+  blog_id String?
+  parent_id String?
   rating Int?
   text String
-  ancestors   String[]
   verified Boolean? @default(false)
 
   user User @relation(fields:[user_id], references: [id], onDelete: Cascade)
-  car Car @relation(fields:[car_id], references: [id], onDelete: Cascade)
-  blog Blog @relation(fields: [blog_id], references: [id], onDelete: Cascade)
-  parent     Comment?  @relation("CommentReplies", fields: [parent_id], references: [id])
-  replies    Comment[] @relation("CommentReplies")
+  car Car? @relation(fields:[car_id], references: [id], onDelete: Cascade)
+  blog Blog? @relation(fields: [blog_id], references: [id], onDelete: Cascade)
 
   created_at   DateTime @default(now())
   updated_at DateTime @default(now())

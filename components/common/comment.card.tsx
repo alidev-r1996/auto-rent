@@ -27,6 +27,7 @@ const CommentCardSingle = () => {
       <p className="px-3 py-1 text-xs bg-emerald-500 text-white rounded mr-auto ml-3 hover:scale-103 transition-all duration-200 active:scale-95 cursor-pointer hover:bg-emerald-600">
         پاسخ دادن
       </p>
+      
     </div>
   );
 };

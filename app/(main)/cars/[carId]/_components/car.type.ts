@@ -41,3 +41,53 @@ export type CarCarouselProps = {
   images: string[];
   name: string;
 };
+
+export type CarCommentFormProps = {
+  carId?: string;
+  blogId?: string;
+  parentId?: string | null;
+  userId: string;
+  title?: string;
+};
+
+type CarComment = {
+  id: string;
+  user_id: string;
+  blog_id: never;
+  car_id: string;
+  parent_id: string | null;
+  rating: string | null;
+  verified: boolean;
+  text: string;
+  created_at: string;
+  user: {
+    name: string;
+    image: string | null;
+  };
+};
+
+type BlogComment = {
+  id: string;
+  user_id: string;
+  blog_id: string;
+  car_id: never;
+  parent_id: string | null;
+  rating: string | null;
+  verified: boolean;
+  text: string;
+  created_at: string;
+  user: {
+    name: string;
+    image: string | null;
+  };
+  hasReply: boolean;
+  onShow: () => void;
+};
+
+export type ReplyCommentProps = CarComment & BlogComment;
+
+type ReplyComments = {
+  replies: ReplyCommentProps[];
+};
+
+export type CommentCardProps = ReplyCommentProps & ReplyComments & { author: string };

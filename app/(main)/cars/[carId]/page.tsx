@@ -9,8 +9,6 @@ import Link from "next/link";
 import CarCarousel from "./_components/car.carousel";
 import { getCarInfo } from "./_components/car.request";
 
-const carImages = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png"];
-
 const CarDetailPage = async ({ params }: { params: Promise<{ [index: string]: string }> }) => {
   const { carId } = await params;
   const { car, featureItems } = await getCarInfo(carId);
@@ -30,7 +28,7 @@ const CarDetailPage = async ({ params }: { params: Promise<{ [index: string]: st
       <div className="flex flex-col md:flex-row gap-4 max-w-[1690px] mx-auto mb-8 p-2 md:p-0">
         <div className=" w-full md:w-2/3 flex flex-col gap-4">
           <CarCarousel
-            images={carImages}
+            images={[car.cover, ...car.images]}
             name={car.name}
             day_price={car.price_day}
             month_price={car.price_month}
@@ -49,7 +47,7 @@ const CarDetailPage = async ({ params }: { params: Promise<{ [index: string]: st
             </p>
           </div>
 
-          <CarComment />
+          <CarComment carId={car.id} />
         </div>
         {/* ----------------------------Desktop----------------------- */}
         <div className="flex flex-col gap-4">
