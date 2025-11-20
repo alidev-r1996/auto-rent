@@ -281,11 +281,12 @@ model Blog {
   id          String   @id @default(cuid())
   title       String
   slug        String   @unique
-  content     Json
+  content     String   @db.Text
   cover_img String?
   reading_time String
   author_id    String
-  views Int?
+  views Int? @default(0)
+  status BlogStatus @default(Published)
 
   comments Comment[]
   author      User     @relation(fields: [author_id], references: [id])
@@ -341,5 +342,11 @@ enum OrderStatus{
   Success
   Failed
   Cancelled
+}
+
+enum BlogStatus{
+  Published
+  Archived
+  Draft
 }
 

@@ -46,7 +46,7 @@
   --size-8xl: 1690px;
   --size-9xl: 1920px;
   --animate-infinite-slider: scroll 15s infinite linear;
-  --animate-infinite-scroll: slider 30s infinite linear;
+  --animate-infinite-scroll: slider 50s infinite linear;
 
   @keyframes scroll {
     from {
