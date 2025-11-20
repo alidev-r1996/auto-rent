@@ -1,16 +1,86 @@
+"use client";
 
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import UserHeader from "../user-header";
+import "@blocknote/core/fonts/inter.css";
+import { useCreateBlockNote } from "@blocknote/react";
+import { BlockNoteView } from "@blocknote/shadcn";
+import "@blocknote/shadcn/style.css";
+import { useState } from "react";
+import Input from "@/components/ui/input";
+import { Captions, Clock4, Copy, ScanBarcode, SquareCheckBig } from "lucide-react";
+import { uploadToCloudinary } from "@/lib/utils";
 
+export default function AdminBlogEditor() {
+  const [title, setTitle] = useState("");
+  const [readingTime, setReadingTime] = useState("");
+  const [slug, setSlug] = useState("");
 
-const AdminBlog = () => {
-  const [value, setValue] = useState("**Hello world!!!**");
+  const editor = useCreateBlockNote({
+    uploadFile: async file => {
+      const url = await uploadToCloudinary(file);
+      console.log(url);
+      return url;
+    },
+  });
+
+  const editorBLogHandler = async () => {
+    const content = editor.blocksToMarkdownLossy();
+    const newBLog = {
+      content,
+      title,
+      reading_time: readingTime,
+      slug,
+    };
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/blog`, {
+      method: "POST",
+      body: JSON.stringify(newBLog),
+    });
+    const data = await res.json();
+    console.log(data);
+    console.log(content);
+  };
+
   return (
-    <div className="bg-white border border-slate-200 shadow-xs rounded-lg p-4 flex flex-col">
-      <UserHeader title=" بلاگ‌ها" />
-      
+    <div className="p-4 bg-white rounded-lg shadow flex flex-col gap-4">
+      <form className="grid md:grid-cols-2 gap-4">
+        <Input
+          name="title"
+          label="عنوان بلاگ"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+        >
+          <Captions className="size-5" />
+        </Input>
+        <Input
+          name="slug"
+          label="شناسه مقاله لاتین"
+          value={slug}
+          onChange={e => setSlug(e.target.value)}
+        >
+          <ScanBarcode className="size-5" />
+        </Input>
+        <Input
+          name="readingTime"
+          label="زمان مطالعه "
+          value={readingTime}
+          onChange={e => setReadingTime(e.target.value)}
+        >
+          <Clock4 className="size-5" />
+        </Input>
+      </form>
+      <UserHeader title="ویرایش بلاگ" />
+      <BlockNoteView
+        className={`min-h-80 border border-slate-200 rounded-lg shadow-xs p-4`}
+        editor={editor}
+        shadCNComponents={
+          {
+            // Pass modified ShadCN components from your project here.
+            // Otherwise, the default ShadCN components will be used.
+          }
+        }
+      />
+      <Button onClick={editorBLogHandler}>ذخیره بلاگ</Button>
     </div>
   );
-};
-
-export default AdminBlog;
+}

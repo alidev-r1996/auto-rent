@@ -1,21 +1,50 @@
-import * as React from "react";
-
 import { cn } from "@/lib/utils";
+import { FC } from "react";
 
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+type InputProps = {
+  name: string;
+  label: string;
+  value: string;
+  onChange: (e) => void;
+  children: React.ReactNode;
+  type?: string;
+  labelStyle?: string;
+  inputStyle?: string;
+};
+
+const Input: FC<InputProps> = ({
+  children,
+  label,
+  name,
+  onChange,
+  value,
+  type = "text",
+  labelStyle,
+  inputStyle,
+}) => {
   return (
-    <input
-      type={type}
-      data-slot="input"
+    <label
+      htmlFor={name}
       className={cn(
-        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-        className
+        labelStyle,
+        "flex items-center gap-2 rounded-lg border border-slate-200 relative p-3 text-slate-400 text-xs md:text-sm flex-1"
       )}
-      {...props}
-    />
+    >
+      {children}
+      <p className="border-r border-r-slate-300">&nbsp;</p>
+      <input
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        className={cn(inputStyle, "appearance-none outline-none flex-1 peer text-slate-500")}
+        placeholder={label}
+      />
+      <p className="absolute hidden md:block peer-placeholder-shown:hidden text-[10px] bg-white px-1 py-1 -top-3 right-6">
+        {label}
+      </p>
+    </label>
   );
-}
+};
 
-export { Input };
+export default Input;

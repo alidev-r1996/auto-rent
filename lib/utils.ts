@@ -1,3 +1,4 @@
+import axios from "axios";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import localFont from "next/font/local";
@@ -117,3 +118,20 @@ export function carFuelConveter(fuel: string) {
   }
   return fuel;
 }
+
+export const uploadToCloudinary = async (file: File) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME as string);
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME as string;
+
+  const res = await axios.post(
+    `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`,
+    formData,
+    {
+      headers: { "Content-Type": "multipart/form-data" },
+      withCredentials: false,
+    }
+  );
+  return res.data.secure_url as string;
+};
