@@ -286,7 +286,7 @@ model Blog {
   reading_time String
   author_id    String
   views Int? @default(0)
-  status BlogStatus @default(Published)
+  status Boolean @default(true)
 
   comments Comment[]
   author      User     @relation(fields: [author_id], references: [id])
@@ -311,7 +311,7 @@ enum CarType{
 
 enum FuelType{
   Gasoline 
-  Gas
+  Electric
 }
 
 enum GearType{
@@ -344,9 +344,5 @@ enum OrderStatus{
   Cancelled
 }
 
-enum BlogStatus{
-  Published
-  Archived
-  Draft
-}
+
 

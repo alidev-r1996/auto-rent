@@ -6,7 +6,7 @@ type InputProps = {
   label: string;
   value: string;
   onChange: (e) => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   type?: string;
   labelStyle?: string;
   inputStyle?: string;
@@ -31,7 +31,7 @@ const Input: FC<InputProps> = ({
       )}
     >
       {children}
-      <p className="border-r border-r-slate-300">&nbsp;</p>
+      {children && <p className="border-r border-r-slate-300">&nbsp;</p>}
       <input
         type={type}
         name={name}

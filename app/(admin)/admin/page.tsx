@@ -1,56 +1,40 @@
-"use client";
-
-import { useState } from "react";
-import SideBar from "../_components/sidebar/sideBar";
-import Profile from "../_components/profile/profile";
-import Reserve from "../_components/reserves/reserve";
-import Payment from "../_components/payment/payment";
-import Support from "../_components/support/support";
-import Comment from "../_components/comment/comment";
-import Logout from "../_components/logout/logout";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
-import AdminBlog from "../_components/blog/blog";
+import UserHeader from "../_components/user-header";
+import { profileItems } from "../_components/profile/profile.constant";
 
-const UserDashboard = () => {
-  const [open, setOpen] = useState(false);
-  const [menu, setMenu] = useState<any>("profile");
-
+const Profile = () => {
   return (
-    <div className="grid md:grid-cols-5 p-4 gap-4 mx-auto max-w-[1690px]">
-      {/* Sidebar component would go here */}
-      <SideBar
-        setMenu={menu => setMenu(menu)}
-        show={open}
-        setShow={() => setOpen(!open)}
-        menu={menu}
-      />
-      {/* Main content area */}
-      <div
-        className={`${open ? "hidden md:flex" : "flex"} md:col-span-4! flex-col gap-4 min-w-full! max-w-full!`}
-      >
-        <Button
-          variant={"outline"}
-          className="py-5! md:hidden group"
-          onClick={() => {
-            setOpen(!open);
-            setMenu("");
-          }}
-        >
-          <ChevronRight className="group-hover:translate-x-4 transition-all duration-300" /> بازگشت
-          به منوی اصلی
+    <div className="bg-white border border-slate-200 shadow-xs rounded-lg p-4 flex flex-col">
+      <UserHeader title="حساب کاربری" />
+      <form className="grid md:grid-cols-2 gap-5 mt-8">
+        {profileItems.map((i, index) => {
+          const Icon = i.icon;
+          return (
+            <label
+              key={index}
+              htmlFor={i.name}
+              className="flex items-center gap-2 rounded-lg border border-slate-200 relative p-3 text-slate-400 text-xs md:text-sm flex-1"
+            >
+              <Icon className="size-5" />
+              <p className="border-r border-r-slate-300">&nbsp;</p>
+              <input
+                type="text"
+                name={i.name}
+                className="appearance-none outline-none flex-1 peer text-slate-500"
+                placeholder={i.label}
+              />
+              <p className="absolute hidden md:block peer-placeholder-shown:hidden text-[10px] bg-white px-1 py-1 -top-3 right-6">
+                {i.label}
+              </p>
+            </label>
+          );
+        })}
+        <Button variant={"blue"} className="h-full! md:col-start-2">
+          ویرایش حساب کاربری
         </Button>
-
-        {menu == "profile" && <Profile />}
-        {menu == "reserve" && <Reserve />}
-        {menu == "payment" && <Payment />}
-        {menu == "comment" && <Comment />}
-        {menu == "support" && <Support />}
-        {menu == "logout" && <Logout />}
-        {menu == "blog" && <AdminBlog />}
-      </div>
+      </form>
     </div>
   );
 };
 
-export default UserDashboard;
+export default Profile;

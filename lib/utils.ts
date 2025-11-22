@@ -66,6 +66,10 @@ export function PersianCurrency(currency: string) {
   return parseInt(currency).toLocaleString("fa-IR");
 }
 
+export function PersianCurrencyToDigit(currency: string) {
+  return currency.replace("", "");
+}
+
 export function TruncateText(text, length = 25) {
   return text.length > length ? text.slice(0, length) + "..." : text;
 }

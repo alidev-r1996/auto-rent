@@ -1,25 +1,27 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import UserHeader from "../user-header";
 import "@blocknote/core/fonts/inter.css";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/shadcn";
 import "@blocknote/shadcn/style.css";
 import { useState } from "react";
 import Input from "@/components/ui/input";
-import { Captions, Clock4, Copy, ScanBarcode, SquareCheckBig } from "lucide-react";
+import { Captions, Clock4, ScanBarcode } from "lucide-react";
 import { uploadToCloudinary } from "@/lib/utils";
+import UserHeader from "@/app/(admin)/_components/user-header";
+import Link from "next/link";
+import { useAddBlog } from "../_hooks/blog.hook";
 
 export default function AdminBlogEditor() {
   const [title, setTitle] = useState("");
   const [readingTime, setReadingTime] = useState("");
   const [slug, setSlug] = useState("");
+  const { isError, isPending, mutateAsync } = useAddBlog();
 
   const editor = useCreateBlockNote({
     uploadFile: async file => {
       const url = await uploadToCloudinary(file);
-      console.log(url);
       return url;
     },
   });
@@ -32,17 +34,12 @@ export default function AdminBlogEditor() {
       reading_time: readingTime,
       slug,
     };
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/blog`, {
-      method: "POST",
-      body: JSON.stringify(newBLog),
-    });
-    const data = await res.json();
-    console.log(data);
-    console.log(content);
+    mutateAsync(newBLog);
   };
 
   return (
     <div className="p-4 bg-white rounded-lg shadow flex flex-col gap-4">
+      <UserHeader title="ایجاد بلاگ جدید" />
       <form className="grid md:grid-cols-2 gap-4">
         <Input
           name="title"
@@ -69,7 +66,7 @@ export default function AdminBlogEditor() {
           <Clock4 className="size-5" />
         </Input>
       </form>
-      <UserHeader title="ویرایش بلاگ" />
+
       <BlockNoteView
         className={`min-h-80 border border-slate-200 rounded-lg shadow-xs p-4`}
         editor={editor}
@@ -80,7 +77,16 @@ export default function AdminBlogEditor() {
           }
         }
       />
-      <Button onClick={editorBLogHandler}>ذخیره بلاگ</Button>
+      <div className="flex items-center gap-2 w-max mr-auto">
+        <Link href={"/admin/blog"}>
+          <Button type="button" variant={"outline"}>
+            منصرف شدن
+          </Button>
+        </Link>
+        <Button disabled={isPending} type="submit" onClick={editorBLogHandler}>
+          {isPending ? "در حال ذخیره کردن..." : "ذخیره بلاگ"}
+        </Button>
+      </div>
     </div>
   );
 }

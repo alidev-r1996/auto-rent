@@ -6,14 +6,16 @@ import {
   MessageSquareMore,
   ShoppingCart,
   Rss,
+  CarFront,
 } from "lucide-react";
 
 export const profileMenuItems = [
-  { title: "پروفایل من", englishTitle: "profile", icon: IdCard },
-  { title: "رزروها ", englishTitle: "reserve", icon: ShoppingCart },
-  { title: "پرداخت‌ها ", englishTitle: "payment", icon: CreditCard },
-  { title: "نظرات ", englishTitle: "comment", icon: MessageSquareMore },
-  { title: " بلاگ", englishTitle: "blog", icon: Rss },
-  { title: " پشتیبانی", englishTitle: "support", icon: Headset },
-  { title: " خروج از حساب کاربری", englishTitle: "logout", icon: LogOut },
+  { title: "پروفایل من", englishTitle: "admin", icon: IdCard, href: "" },
+  { title: "رزروها ", englishTitle: "reserve", icon: ShoppingCart, href: "reserve" },
+  { title: "پرداخت‌ها ", englishTitle: "payment", icon: CreditCard, href: "payment" },
+  { title: "خودروها ", englishTitle: "car", icon: CarFront, href: "car" },
+  { title: "نظرات ", englishTitle: "comment", icon: MessageSquareMore, href: "comment" },
+  { title: " بلاگ", englishTitle: "blog", icon: Rss, href: "blog" },
+  { title: " پشتیبانی", englishTitle: "support", icon: Headset, href: "support" },
+  { title: " خروج از حساب کاربری", englishTitle: "logout", icon: LogOut, href: "logout" },
 ];

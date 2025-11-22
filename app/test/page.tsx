@@ -8,7 +8,6 @@ import { ThumbnailBlog, thumbnailBlogs } from "../(main)/blog/page";
 import Markdown from "markdown-to-jsx";
 import { CalendarDays, Clock4 } from "lucide-react";
 
-
 const SingleBlog = async () => {
   const blogs = await prisma.blog.findUnique({ where: { id: "cmi80mddf00018t6c0ryi34zt" } });
   const content = blogs?.content && JSON.parse(blogs.content);
@@ -41,8 +40,8 @@ const SingleBlog = async () => {
                 <p>{PersianDate(blogs?.created_at)}</p>
               </div>
             </div>
-            <div className="md:p-4 prose max-w-none prose-li:text-sm prose-li:leading-7 prose-li:list-disc marker:text-slate-500 prose-img:w-full prose-img:aspect-video prose-li:text-slate-600 prose-h2:text-slate-700 prose-h2:text-lg md:prose-h2:text-2xl">
-             <Markdown>{content}</Markdown>
+            <div className="md:p-4 prose max-w-none prose-li:text-sm prose-img:border-3 prose-img:rounded-lg prose-img:mx-auto prose-img:border-slate-200 prose-li:leading-7 prose-li:list-disc marker:text-slate-500 prose-img:w-full md:prose-img:w-3/4 prose-img:aspect-video prose-li:text-slate-600 prose-h2:text-slate-700 prose-h2:text-lg md:prose-h2:text-2xl">
+              <Markdown>{content}</Markdown>
             </div>
           </div>
           <div className="my-2 w-full bg-white border border-slate-100 shadow rounded-xl p-4">
