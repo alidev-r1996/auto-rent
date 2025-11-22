@@ -37,7 +37,7 @@ const Input: FC<InputProps> = ({
         name={name}
         value={value}
         onChange={onChange}
-        className={cn(inputStyle, "appearance-none outline-none flex-1 peer text-slate-500")}
+        className={cn(inputStyle, "appearance-none h-full outline-none flex-1 peer text-slate-500")}
         placeholder={label}
       />
       <p className="absolute hidden md:block peer-placeholder-shown:hidden text-[10px] bg-white px-1 py-1 -top-3 right-6">

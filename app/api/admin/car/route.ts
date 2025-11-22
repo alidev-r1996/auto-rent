@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { UpdateBlogstatus } from "@/lib/actions/blog.action";
-import { GetCars, RemoveCarById } from "@/lib/actions/car.action";
+import { CreateCar, GetCars, RemoveCarById } from "@/lib/actions/car.action";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -36,24 +36,12 @@ export async function DELETE(req: Request) {
 }
 
 export async function POST(req: Request) {
+  const { car } = await req.json();
   try {
-    const {
-      blog: { content, reading_time, slug, title },
-    } = await req.json();
-
-    await prisma.blog.create({
-      data: {
-        reading_time,
-        title,
-        slug,
-        content: JSON.stringify(content),
-        author_id: "wptQyUkNrTJkCW75edCxT5YIPGBLSoTl",
-      },
-    });
-
-    return NextResponse.json({ status: 201, message: "success" });
+    const newCar = await CreateCar(car);
+    return NextResponse.json({ status: 201, message: "success", car: newCar });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ status: 500, message: "Internal Server Error" });
+    return NextResponse.json({ status: 500, message: "Internal Server Error", car: null });
   }
 }

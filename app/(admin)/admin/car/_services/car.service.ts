@@ -19,9 +19,9 @@ export async function RemoveCar(carId) {
   }
 }
 
-export async function CreateBlog(blog) {
+export async function CreateCar(car) {
   try {
-    const res = await AdminAxios.post("/blog", { blog });
+    const res = await AdminAxios.post("/car", { car });
     return await res.data;
   } catch (err) {
     return err;

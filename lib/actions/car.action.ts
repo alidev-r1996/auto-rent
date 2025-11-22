@@ -45,3 +45,48 @@ export async function RemoveCarById(id: string) {
     where: { id },
   });
 }
+
+export async function CreateCar(car: any) {
+  const {
+    name,
+    model,
+    brand,
+    type,
+    description,
+    mile_age,
+    capacity,
+    gear,
+    steering,
+    fuel,
+    price_day,
+    price_month,
+    price_garranty,
+    features,
+    images,
+    cover,
+  } = car;
+  try {
+    return await prisma.car.create({
+      data: {
+        name,
+        model: Number(model),
+        brand,
+        type,
+        description,
+        mile_age: Number(mile_age),
+        capacity: Number(capacity),
+        gear,
+        steering,
+        fuel,
+        price_day,
+        price_month,
+        price_garranty,
+        features,
+        images,
+        cover,
+      },
+    });
+  } catch (error) {
+    return error;
+  }
+}

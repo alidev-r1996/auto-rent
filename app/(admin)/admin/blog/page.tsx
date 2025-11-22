@@ -12,10 +12,12 @@ const AdminBlog = () => {
   const { data, isLoading, isError } = useGetBlogs(page);
 
   if (isLoading) {
-    <div className="bg-white border border-slate-200 shadow-sm rounded-2xl p-4 flex flex-col gap-4">
-      <UserHeader title="نظرات کاربران" />
-      <Loading />
-    </div>;
+    return (
+      <div className="bg-white border border-slate-200 shadow-sm rounded-2xl p-4 flex flex-col gap-4">
+        <UserHeader title="نظرات کاربران" />
+        <Loading />
+      </div>
+    );
   }
   return (
     <div className="bg-white border border-slate-200 shadow-xs rounded-lg p-4 flex flex-col h-full">
