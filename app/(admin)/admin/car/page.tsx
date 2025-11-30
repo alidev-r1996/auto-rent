@@ -19,7 +19,7 @@ const AdminCar = () => {
       </div>
     );
   }
-
+  console.log(data)
   return (
     <div className="bg-white border border-slate-200 shadow-xs rounded-lg p-4 flex flex-col h-full">
       <UserHeader title="لیست خودروهای مجموعه " />
@@ -33,7 +33,7 @@ const AdminCar = () => {
       </div>
       {!data || (data.cars?.length == 0 && <div>هیچ داده ای وجود ندارد</div>)}
       {isError && <div>خطایی رخ داده است</div>}
-      {data && <CarTable cars={data.cars} info={data.info} />}
+      {data && data.cars?.length > 0 && <CarTable cars={data.cars} info={data.info} />}
       {data?.info?.totalPage > 1 && (
         <div className="flex items-center justify-center my-8">
           <Paginate shape="square" theme="blue" totalPage={data.info.totalPage} />

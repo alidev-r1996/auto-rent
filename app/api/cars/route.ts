@@ -1,22 +1,16 @@
-// app/api/seed/route.ts
+import { GetCarsWithFilter } from "@/lib/actions/car.action";
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
 
-export async function GET() {
-  const cars = await prisma.car.findMany({
-    select: {
-      id: true,
-      name: true,
-      model: true,
-      type: true,
-      brand: true,
-      price_day: true,
-      price_garranty: true,
-      price_month: true,
-      cover: true,
-    },
-    take: 6,
-  });
-
-  return NextResponse.json({ code: 200, status: "success", cars });
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const page = searchParams.get("page") ?? "1";
+  const sort = searchParams.get("sort") ?? "desc";
+  const q = searchParams.get("search") ?? "";
+  const limit = searchParams.get("limit") ?? "6";
+  const min = searchParams.get("min") ?? "";
+  const max = searchParams.get("max") ?? "";
+  const type = searchParams.getAll("type").join().split(",").filter(Boolean) ?? [];
+  const brand = searchParams.getAll("brand").join().split(",").filter(Boolean) ?? [];
+  const { cars, info } = await GetCarsWithFilter({ page, limit, sort, q, min, max, type, brand });
+  return NextResponse.json({ code: 200, status: "success", cars, info });
 }

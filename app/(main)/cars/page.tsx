@@ -12,6 +12,9 @@ import {
 } from "@/components/ui/sheet";
 import CarFilter from "./car-filter";
 import { RangeSlider } from "@/components/ui/range-slider";
+import BlogFilter from "../blog/[slug]/_components/blog.filter";
+import NotFoundSearch from "../blog/[slug]/_components/notfound-search";
+import CarCard from "@/components/reserve/carcard";
 
 const carFilterItems = [
   { id: 1, title: "پژو", query: "pegouet" },
@@ -31,7 +34,30 @@ const carTypeFilterItems = [
   { id: 6, title: "اسپرت", query: "Sport" },
 ];
 
-const ReservePage = () => {
+const fetchCars = async (page = "1", sort = "desc", q = "", min = "", max = "", type, brand) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/cars?page=${page}&sort=${sort}&search=${q}&limit=6&min=${min}&max=${max}&${type && `type=${type}`}&${brand && `brand=${brand}`}`,
+    { next: { tags: ["cars"] } }
+  );
+  const { cars, info } = await res.json();
+  return { cars, info };
+};
+
+const ReservePage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ [index: string]: string }>;
+}) => {
+  const page = (await searchParams).page ?? "1";
+  const sort = (await searchParams).sort ?? "desc";
+  const search = (await searchParams).q ?? "";
+  const min = (await searchParams).min ?? "";
+  const max = (await searchParams).max ?? "";
+  const type = (await searchParams).type ?? [];
+  const brand = (await searchParams).brand ?? [];
+
+  const { cars, info } = await fetchCars(page, sort, search, min, max, type, brand);
+
   return (
     <article className="max-w-[1920px]">
       <div className="absolute  top-0 mx-auto max-w-screen w-[1920px] h-60 md:h-98 -z-5">
@@ -48,14 +74,13 @@ const ReservePage = () => {
         <CarFilter />
         <div className="w-full md:w-5/6 grid md:grid-cols-2 gap-5">
           <div className="flex items-center justify-between gap-2 col-span-2 w-full text-xs md:text-sm">
-            <div className="flex items-center bg-white border border-slate-200 shadow-xs rounded-lg gap-2 p-2 flex-1">
-              <Search className="size-5 text-slate-500" />
-              <input
-                type="text"
-                className="appearance-none outline-none flex-1 placeholder:text-slate-400 text-slate-600"
-                placeholder="جستجو..."
-              />
-            </div>
+            <BlogFilter
+              title="مرتب کردن"
+              options={[
+                { label: "قدیمی‌ترین", value: "asc" },
+                { label: "جدیدترین", value: "desc" },
+              ]}
+            />
 
             <Sheet>
               <SheetTrigger>
@@ -126,16 +151,12 @@ const ReservePage = () => {
             </Sheet>
           </div>
           <div className="w-full col-span-2 grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {/* <CarCard />
-            <CarCard />
-            <CarCard />
-            <CarCard />
-            <CarCard />
-            <CarCard /> */}
+            {cars.length > 0 && cars.map(item => <CarCard key={item.id} {...item} />)}
+            {!cars.length && <NotFoundSearch search={search} title="خودروی" />}
           </div>
 
           <div className="flex item-center justify-center md:col-span-2 my-6 w-full">
-            <Paginate shape="square" theme="blue" totalPage={20} />
+            <Paginate shape="square" theme="blue" totalPage={info.totalPage} />
           </div>
         </div>
       </div>

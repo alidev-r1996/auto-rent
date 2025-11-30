@@ -197,9 +197,9 @@ model Availability {
   car_id        String
   start_date    String
   end_date      String
-  isBlocked Boolean  @default(false)
+  isBlocked     Boolean  @default(false)
   reason        String?
-  createdAt     DateTime @default(now())
+  created_at    DateTime @default(now())
 
   @@index([start_date, end_date, car_id])
 
@@ -216,6 +216,9 @@ model CarDiscount {
 }
 
 
+
+
+
 model Order{
   id String   @id @default(cuid())
   user_id String
@@ -228,17 +231,17 @@ model Order{
   return_location String
   total_price Decimal
   status OrderStatus @default(Pending)
-
   user User @relation(fields:[user_id], references: [id])
   car Car @relation(fields:[car_id], references: [id])
   insurance Insurance?
   payment Payment?
-
   created_at   DateTime @default(now())
   updated_at DateTime @default(now())
 
   @@index([user_id, car_id, start_date, end_date])
 }
+
+
 
 model Payment {
   id            String        @id @default(cuid())
@@ -249,14 +252,17 @@ model Payment {
   authority     String?
   method        String?
   ref_id        String?
-
   order         Order         @relation(fields: [order_id], references: [id])
   user          User          @relation(fields: [user_id], references: [id])
-
   created_at    DateTime      @default(now())
 
   @@index([order_id, ref_id, status])
 }
+
+
+
+
+
 
 model Comment{
   id String   @id @default(cuid())

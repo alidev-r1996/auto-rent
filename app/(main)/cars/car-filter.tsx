@@ -1,6 +1,9 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { RangeSlider } from "@/components/ui/range-slider";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useState } from "react";
 
 const carFilterItems = [
   { id: 1, title: "پژو", query: "pegouet" },
@@ -21,6 +24,47 @@ const carTypeFilterItems = [
 ];
 
 const CarFilter = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [carType, setCarType] = useState<string[]>([]);
+  const [brandType, setBrandType] = useState<string[]>([]);
+  const [carPrice, setCarPrice] = useState<[number, number]>([2000000, 60000000]);
+
+  const CarTypeHandler = (e: React.ChangeEvent<HTMLInputElement>, label: string, query: string) => {
+    const { checked, value } = e.target;
+
+    if (label === "type") {
+      setCarType((prev: any) => (checked ? [...prev, value] : prev.filter(i => i !== value)));
+    }
+
+    if (label === "brand") {
+      setBrandType((prev: any) => (checked ? [...prev, value] : prev.filter(i => i !== value)));
+    }
+  };
+
+  const handlePriceChange = (val: number[]) => {
+    const newRange: [number, number] = [Math.min(val[0], val[1]), Math.max(val[0], val[1])];
+    setCarPrice(newRange);
+  };
+
+  const carFilterHandler = () => {
+    const params = new URLSearchParams(searchParams);
+    if (carType.length > 0) {
+      params.set("type", carType.toString());
+    } else {
+      params.delete("type");
+    }
+    if (brandType.length > 0) {
+      params.set("brand", brandType.toString());
+    } else {
+      params.delete("brand");
+    }
+    params.set("min", carPrice[0].toString());
+    params.set("max", carPrice[1].toString());
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
   return (
     <div className="w-full md:w-1/6 md:flex flex-col gap-5 hidden">
       <div className="bg-white rounded-xl shadow border border-slate-100 p-4 flex flex-col gap-3">
@@ -38,8 +82,9 @@ const CarFilter = () => {
                 <input
                   type="checkbox"
                   id={i.query}
-                  name={i.query}
+                  name="carType"
                   value={i.query}
+                  onChange={e => CarTypeHandler(e, "brand", i.query)}
                   className="cursor-pointer"
                 />
                 <p>{i.title}</p>
@@ -59,8 +104,9 @@ const CarFilter = () => {
                 <input
                   type="checkbox"
                   id={i.query}
-                  name={i.query}
+                  name="brandType"
                   value={i.query}
+                  onChange={e => CarTypeHandler(e, "type", i.query)}
                   className="cursor-pointer"
                 />
                 <p>{i.title}</p>
@@ -70,8 +116,17 @@ const CarFilter = () => {
         </div>
         <div className="flex flex-col text-sm mt-6 gap-2">
           <h3 className="font-bold text-slate-700 mb-1">انتخاب بازه قیمتی </h3>
-          <RangeSlider />
+          <RangeSlider
+            min={2000000}
+            max={60000000}
+            step={1}
+            value={carPrice}
+            onValueChange={handlePriceChange}
+          />
         </div>
+        <Button onClick={carFilterHandler} className="mt-8">
+          اعمال کردن فیلتر
+        </Button>
       </div>
     </div>
   );

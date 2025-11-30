@@ -18,6 +18,9 @@ type CarCardProps = {
   price_day: number | string;
   price_month: number | string;
   price_garranty: number | string;
+  availaibility?: {
+    isBlocked: boolean;
+  }[];
 };
 
 const CarCard: FC<CarCardProps> = ({
@@ -30,6 +33,7 @@ const CarCard: FC<CarCardProps> = ({
   price_day,
   price_garranty,
   price_month,
+  availaibility,
 }) => {
   return (
     <div className="rounded-xl flex flex-col gap-3 shadow border border-slate-200 p-4">
@@ -69,11 +73,18 @@ const CarCard: FC<CarCardProps> = ({
         <p>مبلغ ضمانت</p>
         <p className="font-bold">{PersianCurrency(`${price_garranty}`)} تومان</p>
       </div>
-      <Link href="/reserve">
-        <Button variant={"blue"} className="w-full mt-4">
-          درخواست رزرو
+
+      {availaibility?.[0]?.isBlocked == true ? (
+        <Button disabled variant={"blue"} className="w-full mt-4">
+          در حال حاضر موجود نیست
         </Button>
-      </Link>
+      ) : (
+        <Link href={`/reserve/${id}`}>
+          <Button variant={"blue"} className="w-full mt-4">
+            درخواست رزرو
+          </Button>
+        </Link>
+      )}
     </div>
   );
 };

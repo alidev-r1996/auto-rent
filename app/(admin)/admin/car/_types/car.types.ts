@@ -13,6 +13,7 @@ export type CarTableProps = {
     price_day: string;
     price_month: string;
     price_garranty: string;
+    availaibility: { isBlocked: boolean }[];
   }[];
   info: {
     currentPage: number;

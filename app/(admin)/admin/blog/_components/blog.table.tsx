@@ -4,10 +4,11 @@ import { FC } from "react";
 import { blogTablHeader } from "../_constant/blog.constant";
 import BlogStatus from "./blog.status";
 import { BlogTableProps } from "../_types/blog.types";
-import RemoveBlogModal from "./blog.remove";
-
+import RemoveModal from "@/components/common/remove.modal";
+import { useRemoveBlog } from "../_hooks/blog.hook";
 
 const BlogTable: FC<BlogTableProps> = ({ blogs, info, theme = "dark" }) => {
+  const { isPending, mutateAsync } = useRemoveBlog();
   return (
     <Table theme={theme} className="mt-4">
       <Table.Header>
@@ -35,7 +36,13 @@ const BlogTable: FC<BlogTableProps> = ({ blogs, info, theme = "dark" }) => {
                 <BlogStatus status={i.status} id={i.id} theme={theme} />
               </Table.Col>
               <Table.Col>
-                <RemoveBlogModal title={i.title} theme={theme} id={i.id} />
+                <RemoveModal
+                  title={i.title}
+                  label="وبلاگ"
+                  theme={theme}
+                  isPending={isPending}
+                  onRemove={() => mutateAsync(i.id)}
+                />
               </Table.Col>
             </Table.Row>
           );

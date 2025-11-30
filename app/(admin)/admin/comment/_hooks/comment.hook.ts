@@ -20,10 +20,10 @@ export function useCommentStatus(id: string) {
   return { mutateAsync, isPending, isError };
 }
 
-export function useRemoveComment(id: string) {
+export function useRemoveComment() {
   const queryClient = useQueryClient();
   const { mutateAsync, isPending, isError } = useMutation({
-    mutationFn: async () => await RemoveComment(id),
+    mutationFn: async (id: any) => await RemoveComment(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["adminComments"] });
     },

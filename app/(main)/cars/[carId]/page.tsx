@@ -53,13 +53,17 @@ const CarDetailPage = async ({ params }: { params: Promise<{ [index: string]: st
         <div className="flex flex-col gap-4">
           <CarFeatureMobile featureItems={featureItems} className="hidden md:flex" />
           <CarOptions options={car.features} className="hidden md:flex" />
-          <Link href="/reserve">
-            <div className="rounded-lg shadow-xs border border-slate-200 md:border-slate-100 flex flex-col gap-4 p-8 bg-white/50 backdrop-blur-sm  md:bg-white md:static fixed bottom-0 z-10 w-screen mx-auto md:translate-x-0 md:w-full left-1/2 -translate-x-1/2">
-              <Button variant={"blue"} className="py-5! ">
+          {car?.availaibility?.[0]?.isBlocked == true ? (
+            <Button disabled variant={"blue"} className="w-full mt-4">
+              در حال حاضر موجود نیست
+            </Button>
+          ) : (
+            <Link href={`/reserve/${car.id}`}>
+              <Button variant={"blue"} className="w-full mt-4">
                 درخواست رزرو
               </Button>
-            </div>
-          </Link>
+            </Link>
+          )}
         </div>
       </div>
     </section>

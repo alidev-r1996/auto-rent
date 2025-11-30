@@ -9,7 +9,6 @@ export async function GetCars(page) {
   }
 }
 
-
 export async function RemoveCar(carId) {
   try {
     const res = await AdminAxios.delete("/car", { data: { id: carId } });
@@ -23,6 +22,15 @@ export async function CreateCar(car) {
   try {
     const res = await AdminAxios.post("/car", { car });
     return await res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+export async function GetAllCars() {
+  try {
+    const res = await AdminAxios.get(`/car/all`);
+    return await res.data.cars;
   } catch (err) {
     return err;
   }

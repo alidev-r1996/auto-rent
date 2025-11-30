@@ -9,8 +9,13 @@ import { EnglishDigits, PersianDigits } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
 import { useAddCar } from "../_hooks/car.hooks";
-import { TagsInput } from "react-tag-input-component";
-import { CarFuelOptions, CarGearOptions, CarSteeringOptions, CarTypeOptions } from "../_constant/car.constant";
+import {
+  CarFuelOptions,
+  CarGearOptions,
+  CarSteeringOptions,
+  CarTypeOptions,
+} from "../_constant/car.constant";
+import TagInput from "@/components/ui/input.tag";
 
 const AdminCarEditor = () => {
   const [name, setName] = useState("");
@@ -133,17 +138,27 @@ const AdminCarEditor = () => {
               ویژگی‌های خودرو
             </p>
           )}
-          <TagsInput
+
+          <TagInput
+            name="features"
+            label="ویژگی‌های خودرو"
             value={features}
-            separators={["Enter", "Tab", ",", " "]}
-            onChange={setFeatures}
-            classNames={{
-              input:
-                "rounded placeholder:text-xs placeholder:text-slate-400/70 text-slate-500 text-sm focus:outline-none! px-1 border",
-              tag: "bg-slate-400 text-xs",
-            }}
-            placeHolder="ویژگی‌های خودرو..."
+            onChange={v => setFeatures(v)}
+            placeholder="ویژگی‌های خودرو"
           />
+
+          {/* <Controller
+            name="tags"
+            control={control}
+            render={({ field }) => (
+              <TagInput
+                label="تگ‌ها"
+                value={field.value}
+                onChange={field.onChange}
+                placeholder="تگ جدید اضافه کن..."
+              />
+            )}
+          /> */}
         </label>
         <Input
           name="description"
@@ -158,6 +173,7 @@ const AdminCarEditor = () => {
         <UploadFile img={slider2} onChange={setSlider2} label="عکس اسلایدر " />
         <UploadFile img={slider3} onChange={setSlider3} label="عکس اسلایدر " />
         <UploadFile img={slider4} onChange={setSlider4} label="عکس اسلایدر " />
+        <p className="hidden md:block"></p>
         <div className="flex items-center gap-2 w-max mr-auto md:col-start-3 mt-8">
           <Link href={"/admin/car"}>
             <Button type="button" variant={"outline"}>

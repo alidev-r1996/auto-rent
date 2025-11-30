@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { CreateCar, GetCars, RemoveCar } from "../_services/car.service";
+import { CreateCar, GetAllCars, GetCars, RemoveCar } from "../_services/car.service";
 
 export function useGetCars(page: string) {
   const { data, isLoading, isError } = useQuery({
@@ -10,10 +10,18 @@ export function useGetCars(page: string) {
   return { data, isLoading, isError };
 }
 
-export function useRemoveCar(id: string) {
+export function useGetAllCars() {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["adminAllCars"],
+    queryFn: async () => await GetAllCars(),
+  });
+  return { data, isLoading, isError };
+}
+
+export function useRemoveCar() {
   const queryClient = useQueryClient();
   const { mutateAsync, isPending, isError } = useMutation({
-    mutationFn: async () => await RemoveCar(id),
+    mutationFn: async (id: string) => await RemoveCar(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["adminCars"] });
     },

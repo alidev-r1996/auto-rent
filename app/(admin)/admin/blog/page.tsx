@@ -32,7 +32,7 @@ const AdminBlog = () => {
       </div>
       {!data || (data.blogs?.length == 0 && <div>هیچ داده ای وجود ندارد</div>)}
       {isError && <div>خطایی رخ داده است</div>}
-      {data && <BlogTable blogs={data.blogs} info={data.info} />}
+      {data && data.blogs?.length > 0 && <BlogTable blogs={data.blogs} info={data.info} />}
       {data?.info?.totalPage > 1 && (
         <div className="flex items-center justify-center my-8">
           <Paginate shape="square" theme="blue" totalPage={data.info.totalPage} />

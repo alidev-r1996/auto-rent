@@ -21,10 +21,10 @@ export function useUpdateBlogStatus(id: string) {
   return { mutateAsync, isPending, isError };
 }
 
-export function useRemoveBlog(id: string) {
+export function useRemoveBlog() {
   const queryClient = useQueryClient();
   const { mutateAsync, isPending, isError } = useMutation({
-    mutationFn: async () => await RemoveBlog(id),
+    mutationFn: async (id: string) => await RemoveBlog(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["adminBlogs"] });
     },
@@ -41,6 +41,7 @@ export function useAddBlog() {
       title: string;
       reading_time: string;
       slug: string;
+      cover_img: string;
     }) => await CreateBlog(blog),
     onSuccess: async () => {
       queryClient.invalidateQueries({ queryKey: ["adminBlogs"] });

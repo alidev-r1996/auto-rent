@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
 import { UpdateBlogstatus } from "@/lib/actions/blog.action";
 import { CreateCar, GetCars, RemoveCarById } from "@/lib/actions/car.action";
 

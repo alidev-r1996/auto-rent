@@ -7,13 +7,20 @@ import {
   ShoppingCart,
   Rss,
   CarFront,
+  CalendarCog,
 } from "lucide-react";
 
 export const profileMenuItems = [
   { title: "پروفایل من", englishTitle: "admin", icon: IdCard, href: "" },
   { title: "رزروها ", englishTitle: "reserve", icon: ShoppingCart, href: "reserve" },
   { title: "پرداخت‌ها ", englishTitle: "payment", icon: CreditCard, href: "payment" },
-  { title: "خودروها ", englishTitle: "car", icon: CarFront, href: "car" },
+  { title: "لیست خودروها ", englishTitle: "car", icon: CarFront, href: "car" },
+  {
+    title: "مدیریت خودروها ",
+    englishTitle: "availaibility",
+    icon: CalendarCog,
+    href: "availaibility",
+  },
   { title: "نظرات ", englishTitle: "comment", icon: MessageSquareMore, href: "comment" },
   { title: " بلاگ", englishTitle: "blog", icon: Rss, href: "blog" },
   { title: " پشتیبانی", englishTitle: "support", icon: Headset, href: "support" },

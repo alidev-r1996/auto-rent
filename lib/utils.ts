@@ -123,6 +123,44 @@ export function carFuelConveter(fuel: string) {
   return fuel;
 }
 
+export function MarkdownToText(md: string): string {
+  if (!md) return "";
+
+  return (
+    md
+      // Convert escaped newlines \\n into space
+      .replace(/\\n/g, " ")
+      .replace(/\\r/g, " ")
+      // Convert actual newlines to space
+      .replace(/\n+/g, " ")
+      .replace(/\r+/g, " ")
+      // Remove quotes
+      .replace(/"/g, "")
+      // Remove image markdown ![]( )
+      .replace(/!\[.*?\]\(.*?\)/g, "")
+      // Remove links [text](url) -> text
+      .replace(/\[([^\]]+)\]\((.*?)\)/g, "$1")
+      // Remove headings ### ##
+      .replace(/^#+\s+/gm, "")
+      // Remove bold/italic markdown
+      .replace(/(\*\*|__)(.*?)\1/g, "$2")
+      .replace(/(\*|_)(.*?)\1/g, "$2")
+      // Remove inline code ``
+      .replace(/`([^`]+)`/g, "$1")
+      // Remove blockquotes >
+      .replace(/^\s*>+\s?/gm, "")
+      // Remove HR ---
+      .replace(/^(-\s?){3,}$/gm, "")
+      // Remove list bullets
+      .replace(/^\s*([-*+]|\d+\.)\s+/gm, "")
+      // Remove overload symbols
+      .replace(/[\\#>*_`~\-]/g, "")
+      // Collapse multiple spaces
+      .replace(/\s\s+/g, " ")
+      .trim()
+  );
+}
+
 export const uploadToCloudinary = async (file: File) => {
   const formData = new FormData();
   formData.append("file", file);

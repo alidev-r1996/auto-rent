@@ -1,12 +1,14 @@
 import Table from "@/components/ui/table";
-import { PersianCurrency, PersianDate, PersianDigits, TruncateText } from "@/lib/utils";
+import { PersianCurrency, PersianDigits } from "@/lib/utils";
 import { FC } from "react";
 import { carTableHeader } from "../_constant/car.constant";
 import { CarTableProps } from "../_types/car.types";
-import RemoveCarModal from "./car.remove.modal";
-
+import RemoveModal from "@/components/common/remove.modal";
+import { useRemoveCar } from "../_hooks/car.hooks";
+import { Badge } from "@/components/ui/badge";
 
 const CarTable: FC<CarTableProps> = ({ cars, info, theme = "dark" }) => {
+  const { isPending, mutateAsync } = useRemoveCar();
   return (
     <Table theme={theme} className="mt-4">
       <Table.Header>
@@ -29,9 +31,20 @@ const CarTable: FC<CarTableProps> = ({ cars, info, theme = "dark" }) => {
               <Table.Col>{PersianCurrency(`${i.price_day}`)}</Table.Col>
               <Table.Col>{PersianCurrency(`${i.price_month}`)}</Table.Col>
               <Table.Col>{PersianCurrency(`${i.price_garranty}`)}</Table.Col>
-              <Table.Col>{'ندارد'}</Table.Col>
+              <Table.Col>{"ندارد"}</Table.Col>
               <Table.Col>
-                <RemoveCarModal title={i.name} theme={theme} id={i.id} />
+                <Badge variant={i.availaibility[0]?.isBlocked ? "rose" : "emerald"}>
+                  {i.availaibility[0]?.isBlocked ? "بلاک" : "در دسترس"}
+                </Badge>
+              </Table.Col>
+              <Table.Col>
+                <RemoveModal
+                  title={i.name}
+                  label="خودروی"
+                  theme={theme}
+                  onRemove={() => mutateAsync(i.id)}
+                  isPending={isPending}
+                />
               </Table.Col>
             </Table.Row>
           );

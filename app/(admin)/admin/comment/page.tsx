@@ -25,7 +25,9 @@ const Comment = () => {
       <UserHeader title="نظرات کاربران" />
       {!data || (data.comments?.length == 0 && <div>هیچ داده ای وجود ندارد</div>)}
       {isError && <div>خطایی رخ داده است</div>}
-      {data && <CommentTable comments={data.comments} info={data.info} />}
+      {data && data.comments?.length > 0 && (
+        <CommentTable comments={data.comments} info={data.info} />
+      )}
       {data?.info?.totalPage > 1 && (
         <div className="flex items-center justify-center my-8">
           <Paginate shape="square" theme="blue" totalPage={data.info.totalPage} />

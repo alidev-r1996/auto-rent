@@ -1,34 +1,73 @@
 import { Button } from "@/components/ui/button";
 import { profileItems } from "./profile.constant";
 import UserHeader from "../user-header";
+import {
+  Calendar1,
+  CreditCard,
+  IdCard,
+  LockKeyhole,
+  Mail,
+  MapPin,
+  Phone,
+  UserRound,
+} from "lucide-react";
+import { useState } from "react";
+import Input from "@/components/ui/input";
+import DatePickerCar from "@/app/(main)/(reserve)/reserve/[carId]/_components/date-picker";
 
 const Profile = () => {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [nationalId, setNationalId] = useState("");
+  const [email, setEmail] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [birth, setBirth] = useState(new Date());
+
   return (
     <div className="bg-white border border-slate-200 shadow-xs rounded-lg p-4 flex flex-col">
       <UserHeader title="حساب کاربری" />
       <form className="grid md:grid-cols-2 gap-5 mt-8">
-        {profileItems.map((i, index) => {
-          const Icon = i.icon;
-          return (
-            <label
-              key={index}
-              htmlFor={i.name}
-              className="flex items-center gap-2 rounded-lg border border-slate-200 relative p-3 text-slate-400 text-xs md:text-sm flex-1"
-            >
-              <Icon className="size-5" />
-              <p className="border-r border-r-slate-300">&nbsp;</p>
-              <input
-                type="text"
-                name={i.name}
-                className="appearance-none outline-none flex-1 peer text-slate-500"
-                placeholder={i.label}
-              />
-              <p className="absolute hidden md:block peer-placeholder-shown:hidden text-[10px] bg-white px-1 py-1 -top-3 right-6">
-                {i.label}
-              </p>
-            </label>
-          );
-        })}
+        <Input
+          value={name}
+          name="name"
+          onChange={e => setName(e.target.value)}
+          label="نام و نام خانوادگی"
+        >
+          <UserRound className="size-4" />
+        </Input>
+        <Input
+          name="phone"
+          value={phone}
+          onChange={e => setPhone(e.target.value)}
+          label="تلفن همراه"
+        >
+          <Phone className="size-4" />
+        </Input>
+        <Input
+          name="nationalId"
+          value={nationalId}
+          onChange={e => setNationalId(e.target.value)}
+          label="کد ملی"
+        >
+          <IdCard className="size-4" />
+        </Input>
+        <Input
+          name="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          label="آدرس ایمیل"
+        >
+          <Mail className="size-4" />
+        </Input>
+        <Input
+          name="cardNumber"
+          value={cardNumber}
+          onChange={e => setCardNumber(e.target.value)}
+          label="شماره شبا جهت بازگشت وجه"
+        >
+          <CreditCard className="size-4" />
+        </Input>
+        <DatePickerCar label="تاریخ تولد" date={birth} setDate={setBirth} />
         <Button variant={"blue"} className="h-full! md:col-start-2">
           ویرایش حساب کاربری
         </Button>

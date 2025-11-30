@@ -23,7 +23,7 @@ export default function UploadFile({ img, onChange, title, label }: UploadFilePr
     return (
       <div
         dir="ltr"
-        className="w-full h-12 relative mb-8 p-1 border border-slate-200 rounded-lg flex items-center gap-3 relative"
+        className="w-full h-12 p-1 border border-slate-200 rounded-lg flex items-center gap-3 relative"
       >
         <p className="text-sm capitalize text-zinc-600 dark:text-zinc-400 ">{title}</p>
         <div className="relative aspect-square h-full ">
@@ -91,8 +91,8 @@ export default function UploadFile({ img, onChange, title, label }: UploadFilePr
 
             return "Getting ready...";
           },
-          allowedContent({ ready, fileTypes, isUploading }) {
-            if (!ready) return "Checking what you allow";
+          allowedContent({ ready, isUploading }) {
+            if (!ready) return "لطفا منتظر بمانید...";
             if (isUploading) return "در حال بارگزاری...";
             return `${label}`;
           },

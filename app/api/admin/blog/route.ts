@@ -37,7 +37,7 @@ export async function DELETE(req: Request) {
 export async function POST(req: Request) {
   try {
     const {
-      blog: { content, reading_time, slug, title },
+      blog: { content, reading_time, slug, title, cover_img },
     } = await req.json();
 
     await prisma.blog.create({
@@ -45,6 +45,7 @@ export async function POST(req: Request) {
         reading_time,
         title,
         slug,
+        cover_img,
         content: JSON.stringify(content),
         author_id: "wptQyUkNrTJkCW75edCxT5YIPGBLSoTl",
       },

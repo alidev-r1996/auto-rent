@@ -1,0 +1,139 @@
+import { Button } from "@/components/ui/button";
+import { EnglishDigits, PersianDigits } from "@/lib/utils";
+import { insuranceItems } from "./info.constant";
+import { useState } from "react";
+import Input from "@/components/ui/input";
+import { IdCard, MapPin, Phone, User } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
+import { useReservationStore } from "@/provider/zustand-store";
+
+const Info = ({ setStep }) => {
+  const { personalInfo, setPersonalInfo } = useReservationStore();
+  const [insurance, setInsurance] = useState<"basic" | "premium">(personalInfo.insurance);
+  const [name, setName] = useState(personalInfo.name);
+  const [phone, setPhone] = useState(personalInfo.phone);
+  const [nationalId, setNationalId] = useState(personalInfo.nationalId);
+  const [address, setAddress] = useState(personalInfo.address);
+
+  const infoFormHandler = () => {
+    setPersonalInfo({
+      address,
+      insurance,
+      name,
+      nationalId: EnglishDigits(nationalId),
+      phone: EnglishDigits(phone),
+    });
+    setStep(3);
+  };
+
+  return (
+    <div className="grid md:grid-cols-2 gap-4">
+      <div className="rounded-lg shadow-xs border bg-white border-slate-100 flex flex-col h-max gap-3 p-4 w-full ">
+        <h2 className="font-bold text-slate-500 md:text-lg "> انتخاب بیمه </h2>
+        <p className="border-b border-b-slate-300 relative after:w-20 after:h-0.5 after:bg-amber-500 after:absolute after:top-0 after:right-0"></p>
+        <table className="w-full table-fixed text-sm">
+          <thead>
+            <tr className="border-b border-b-slate-200 [&>th]:p-4 text-xs md:text-sm">
+              <th></th>
+              <th>
+                <label
+                  htmlFor="basic"
+                  className="flex items-center  cursor-pointer gap-2 justify-center"
+                >
+                  <input
+                    type="radio"
+                    name="insurance"
+                    id="basic"
+                    value={"basic"}
+                    onChange={() => setInsurance("basic")}
+                    checked={insurance == "basic"}
+                  />
+                  <p>بیمه پایه</p>
+                </label>
+              </th>
+              <th>
+                <label
+                  htmlFor="premium"
+                  className="flex items-center cursor-pointer  gap-2 justify-center"
+                >
+                  <input
+                    type="radio"
+                    name="insurance"
+                    id="premium"
+                    value={"premium"}
+                    onChange={() => setInsurance("premium")}
+                    checked={insurance == "premium"}
+                  />
+                  <p>بیمه کامل</p>
+                </label>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {insuranceItems.map((i, index) => {
+              return (
+                <tr
+                  key={index}
+                  className="border-b border-b-slate-200 last:border-none [&>th]:p-2 [&>td]:p-2 [&>td]:text-center text-[11px] md:text-sm text-slate-600"
+                >
+                  <th className="text-right!">{i.title}</th>
+                  <td>{PersianDigits(i.basic)}</td>
+                  <td>{PersianDigits(i.premium)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="rounded-lg shadow-xs border bg-white border-slate-100 flex flex-col gap-3 p-4 w-full h-full">
+        <h2 className="font-bold text-slate-500 md:text-lg "> مشخصات تحویل گیرنده </h2>
+        <p className="border-b border-b-slate-300 relative after:w-20 after:h-0.5 after:bg-amber-500 after:absolute after:top-0 after:right-0 mb-8"></p>
+        <form className="grid md:grid-cols-2 gap-4 mb-2 w-full ">
+          <Input
+            label="نام و نام خانوادگی"
+            name="name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          >
+            <User className="size-4" />
+          </Input>
+          <Input
+            label="شماره همراه"
+            name="phone"
+            value={PersianDigits(phone)}
+            onChange={e => setPhone(PersianDigits(e.target.value))}
+          >
+            <Phone className="size-4" />
+          </Input>
+          <Input
+            label="کدملی"
+            name="nationalId"
+            value={PersianDigits(nationalId)}
+            onChange={e => setNationalId(PersianDigits(e.target.value))}
+          >
+            <IdCard className="size-4" />
+          </Input>
+          <Input
+            label="آدرس"
+            name="address"
+            value={address}
+            onChange={e => setAddress(e.target.value)}
+          >
+            <MapPin className="size-4" />
+          </Input>
+
+          <Button
+            onClick={infoFormHandler}
+            variant={"blue"}
+            className="w-full  md:mr-auto mt-3 md:col-start-2 py-5!"
+          >
+            ادامه رزرو
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Info;

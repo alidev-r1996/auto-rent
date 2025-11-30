@@ -1,8 +1,8 @@
 import CarCard from "./carcard";
 
 const CarList = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cars`, {
-    next: { revalidate: 36000 },
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cars/main`, {
+    next: { tags: ["cars"] },
   });
   const { cars } = await res.json();
 

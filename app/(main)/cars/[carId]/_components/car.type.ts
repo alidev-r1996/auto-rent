@@ -18,6 +18,11 @@ export type CarType = {
   features: string[];
   images: string[];
   cover: string;
+  availaibility: {
+    isBlocked: boolean;
+    start_date: string;
+    end_date: string;
+  }[];
 };
 
 export type CarPriceProps = {

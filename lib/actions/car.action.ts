@@ -20,6 +20,12 @@ export async function GetCars({ page, limit }: { page: string; limit: string }) 
             },
           },
         },
+        availaibility: {
+          orderBy: {
+            created_at: "desc",
+          },
+          take: 1,
+        },
       },
       orderBy: { created_at: "desc" },
     });
@@ -89,4 +95,95 @@ export async function CreateCar(car: any) {
   } catch (error) {
     return error;
   }
+}
+
+export async function GetAllCar() {
+  const cars = await prisma.car.findMany({
+    select: {
+      name: true,
+      id: true,
+    },
+  });
+  const carOptions = cars.map(({ name, id }) => {
+    return { label: name, value: id };
+  });
+  return carOptions;
+}
+
+export async function GetCarsWithFilter({
+  page,
+  limit,
+  sort,
+  q,
+  min,
+  max,
+  type,
+  brand,
+}: {
+  page: string;
+  limit: string;
+  sort: string;
+  q?: string;
+  min?: string;
+  max?: string;
+  type: any[];
+  brand: any[];
+}) {
+  const limitDefault = Number(limit) || 8;
+  const skip = (Number(page) - 1) * limitDefault;
+  const sortOrder: "asc" | "desc" = sort === "asc" ? "asc" : "desc";
+  const carType = type ;
+  return await prisma.$transaction(async tx => {
+    const cars = await tx.car.findMany({
+      where: {
+        AND: [
+          q ? { name: { contains: q, mode: "insensitive" } } : {},
+          min ? { price_day: { gte: Number(min) } } : {},
+          max ? { price_day: { lte: Number(max) } } : {},
+          carType && carType.length > 0 ? { type: { in: carType } } : {},
+          brand && brand.length > 0 ? { brand: { in: brand } } : {},
+        ],
+      },
+      skip,
+      take: limitDefault,
+      include: {
+        availaibility: {
+          select: { isBlocked: true },
+        },
+        discount: {
+          include: {
+            discount: {
+              select: {
+                percentage: true,
+                active: true,
+              },
+            },
+          },
+        },
+      },
+      orderBy: { created_at: sortOrder },
+    });
+
+    const count = await tx.car.count({
+      where: {
+        AND: [
+          q ? { name: { contains: q, mode: "insensitive" } } : {},
+          min ? { price_day: { gte: Number(min) } } : {},
+          max ? { price_day: { lte: Number(max) } } : {},
+          carType && carType.length > 0 ? { type: { in: carType } } : {},
+          brand && brand.length > 0 ? { brand: { in: brand } } : {},
+        ],
+      },
+    });
+
+    return {
+      cars,
+      info: {
+        limit: limitDefault,
+        totalCars: count,
+        totalPage: Math.ceil(count / limitDefault),
+        currentPage: Number(page),
+      },
+    };
+  });
 }

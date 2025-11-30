@@ -1,8 +1,8 @@
 export type BlogCardProps = {
-  readingTime: string;
+  reading_time: string;
   title: string;
-  text: string;
-  image: string;
-  id: string | number;
+  content: string;
+  cover_img: string | null;
+  id: string;
   slug: string;
 };
