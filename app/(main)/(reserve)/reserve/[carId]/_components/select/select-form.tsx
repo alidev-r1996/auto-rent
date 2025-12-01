@@ -24,11 +24,17 @@ const SelectForm: FC<SelectFormProps> = ({
   setStep,
 }) => {
   const { setRentInfo, rentInfo } = useReservationStore();
-  const [rentType, setRentType] = useState<"driver" | "none" | "funeral">(rentInfo.rent_type);
+  const [rentType, setRentType] = useState<"driver" | "none">(rentInfo.rent_type);
   const [receiveLocation, setReceiveLocation] = useState<any>(rentInfo.receive_location);
   const [returnLocation, setReturnLocation] = useState<any>(rentInfo.return_location);
-  const [receiveDate, setReceiveDate] = useState<Date>(rentInfo.receive_date);
-  const [returnDate, setReturnDate] = useState<Date>(rentInfo.return_date);
+  const [receiveDate, setReceiveDate] = useState<Date>(
+    rentInfo.receive_date ? new Date(rentInfo.receive_date) : new Date()
+  );
+
+  const [returnDate, setReturnDate] = useState<Date>(
+    rentInfo.return_date ? new Date(rentInfo.return_date) : new Date()
+  );
+
   const [receiveTime, setReceiveTime] = useState(rentInfo.receive_time);
   const [returnTime, setReturnTime] = useState(rentInfo.return_time);
 
@@ -44,10 +50,6 @@ const SelectForm: FC<SelectFormProps> = ({
     });
     setStep(2);
   };
-
-  
-
-
 
   return (
     <div className="rounded-lg shadow-xs border bg-white border-slate-100 flex flex-col h-max gap-3 p-4 w-full ">
@@ -71,7 +73,7 @@ const SelectForm: FC<SelectFormProps> = ({
         </div>
       </div>
       {/* ---------------------------------driver Type------------------------- */}
-      <div className="flex flex-wrap items-center gap-2 mb-2 md:w-1/3">
+      <div className="flex flex-wrap items-center gap-2 mb-2 md:w-1/5">
         <Button
           variant={"outline_blue"}
           onClick={() => setRentType("none")}
@@ -85,13 +87,6 @@ const SelectForm: FC<SelectFormProps> = ({
           className={`${rentType == "driver" && "bg-blue-600 text-white hover:bg-blue-600"} text-xs! rounded-full flex-1`}
         >
           اجاره خودرو با راننده
-        </Button>
-        <Button
-          variant={"outline_blue"}
-          onClick={() => setRentType("funeral")}
-          className={`${rentType == "funeral" && "bg-blue-600 text-white hover:bg-blue-600"} text-xs! rounded-full flex-1`}
-        >
-          اجاره ماشین عروس
         </Button>
       </div>
       <div className="grid md:grid-cols-2 gap-4">

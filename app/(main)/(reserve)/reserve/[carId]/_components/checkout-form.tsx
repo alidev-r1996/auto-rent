@@ -9,9 +9,12 @@ import Payment from "./payment/payment";
 type CheckoutFormProps = {
   price_day: string | number;
   price_month: string | number;
+  guarranty: string | number;
   carName: string;
   min_Date: string;
   max_Date: string;
+  carId: string;
+  userId: string;
 };
 
 const CheckoutForm: FC<CheckoutFormProps> = ({
@@ -20,6 +23,9 @@ const CheckoutForm: FC<CheckoutFormProps> = ({
   min_Date,
   max_Date,
   carName,
+  guarranty,
+  carId,
+  userId,
 }) => {
   const [step, setStep] = useState(1);
   return (
@@ -35,7 +41,16 @@ const CheckoutForm: FC<CheckoutFormProps> = ({
         />
       )}
       {step == 2 && <Info setStep={setStep} />}
-      {step == 3 && <Payment price_day={price_day} carName={carName} />}
+      {step == 3 && (
+        <Payment
+          price_day={price_day}
+          carName={carName}
+          guarranty={guarranty}
+          price_month={price_month}
+          carId={carId}
+          userId={userId}
+        />
+      )}
     </>
   );
 };

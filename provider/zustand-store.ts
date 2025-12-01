@@ -6,7 +6,7 @@ type PersonalInfo = {
   phone: string;
   nationalId: string;
   address: string;
-  insurance: "basic" | "premium";
+  insurance: "Basic" | "Premium";
 };
 
 type rentInfo = {
@@ -16,7 +16,7 @@ type rentInfo = {
   return_date: Date;
   return_time: string;
   return_location: "airport" | "east-port" | "south-port";
-  rent_type: "driver" | "none" | "funeral";
+  rent_type: "driver" | "none";
 };
 
 type ReservationState = {
@@ -42,11 +42,24 @@ export const useReservationStore = create<ReservationState>()(
         return_location: "airport",
         rent_type: "none",
       },
-      personalInfo: { name: "", phone: "", address: "", nationalId: "", insurance: "basic" },
+      personalInfo: { name: "", phone: "", address: "", nationalId: "", insurance: "Basic" },
       setStep: step => set({ step }),
       setPersonalInfo: personalInfo => set({ personalInfo }),
       setRentInfo: rentInfo => set({ rentInfo }),
-      reset: () => set({}),
+      reset: () =>
+        set({
+          step: 1,
+          rentInfo: {
+            receive_date: new Date(),
+            receive_time: "10:00",
+            receive_location: "airport",
+            return_date: new Date(),
+            return_time: "10:00",
+            return_location: "airport",
+            rent_type: "none",
+          },
+          personalInfo: { name: "", phone: "", address: "", nationalId: "", insurance: "Basic" },
+        }),
     }),
     { name: "reservation-storage" }
   )

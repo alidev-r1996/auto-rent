@@ -187,14 +187,15 @@ model Discount {
   endDate     String?
   active      Boolean       @default(true)
   cars        CarDiscount[]
-
+  created_at   DateTime @default(now())
+  updated_at DateTime @default(now())
   @@index([active, title])
 }
 
 model Availability {
   id            String   @id @default(cuid())
   car           Car   @relation(fields: [car_id], references: [id], onDelete: Cascade)
-  car_id        String
+  car_id        String 
   start_date    String
   end_date      String
   isBlocked     Boolean  @default(false)
@@ -205,17 +206,15 @@ model Availability {
 
 }
 
-
 model CarDiscount {
   car_id       String 
   discount_id  String
   car         Car       @relation(fields: [car_id], references: [id])
   discount    Discount  @relation(fields: [discount_id], references: [id])
-
+  created_at   DateTime @default(now())
+  updated_at DateTime @default(now())
   @@id([car_id, discount_id])
 }
-
-
 
 
 
@@ -242,25 +241,40 @@ model Order{
 }
 
 
-
 model Payment {
   id            String        @id @default(cuid())
   user_id        String 
   order_id       String @unique
   amount        Decimal
   status        PaymentStatus
-  authority     String?
+  authority     String  @unique
   method        String?
   ref_id        String?
   order         Order         @relation(fields: [order_id], references: [id])
   user          User          @relation(fields: [user_id], references: [id])
   created_at    DateTime      @default(now())
+  payment_detail    PaymentDetail?
 
-  @@index([order_id, ref_id, status])
+  @@index([order_id, ref_id, status, authority])
 }
 
+model PaymentDetail {
+  id                String        @id @default(cuid())
+  rent              Decimal
+  delivery          Decimal
+  return            Decimal
+  insurance         Decimal
+  guarranty         Decimal
+  driver            Decimal
+  tax               Decimal
+  total_price       Decimal
+  discount          Decimal?
+  payment_id        String      @unique
+  created_at        DateTime    @default(now())
+  payment           Payment @relation(fields: [payment_id], references: [id], onDelete: Cascade)
 
-
+@@index([payment_id])
+}
 
 
 

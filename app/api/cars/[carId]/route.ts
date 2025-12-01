@@ -18,6 +18,8 @@ export async function GET(req: Request, { params }: { params: Promise<{ carId: s
             select: { percentage: true, active: true },
           },
         },
+        take: 1,
+        orderBy: { created_at: "desc" },
       },
     },
   });

@@ -3,11 +3,15 @@ import FailPayment from "./fail";
 import Stepper from "../[carId]/_components/stepper";
 
 const Page = async ({ searchParams }: { searchParams: Promise<{ [key: string]: string }> }) => {
-  const { status, refId } = await searchParams;
+  const { status, refId, authority, orderId } = await searchParams;
   return (
     <>
       <Stepper steps={5} />
-      {status == "success" ? <SuccessPayment refId={refId} /> : <FailPayment refId={refId} />}
+      {status == "success" ? (
+        <SuccessPayment refId={refId} orderId={orderId} />
+      ) : (
+        <FailPayment authority={authority} orderId={orderId} />
+      )}
     </>
   );
 };

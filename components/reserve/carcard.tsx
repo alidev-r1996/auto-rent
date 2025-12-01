@@ -41,7 +41,7 @@ const CarCard: FC<CarCardProps> = ({
         <Image src={cover} alt="car" fill />
         <Link
           href={`/cars/${id}`}
-          className="group-hover:size-full absolute bg-slate-800/60 z-50 inset-0 flex justify-center items-center size-0 transition-all duration-300"
+          className="group-hover:size-full absolute bg-slate-800/60 z-10 inset-0 flex justify-center items-center size-0 transition-all duration-300"
         >
           <p className="text-slate-100 flex items-center gap-3">
             اطلاعات بیشتر

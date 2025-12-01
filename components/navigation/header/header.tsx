@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <nav
-      className={`${isPending && "blur-xs"} h-18 shadow-xs border-b border-b-slate-200 z-20 bg-white/95! backdrop-blur-sm" max-w-[1690px] mx-auto md:rounded-xl  sticky top-0 p-4 flex items-center justify-between`}
+      className={`${isPending && "blur-xs"} h-18 shadow-xs border-b border-b-slate-200 z-50 bg-white/95! backdrop-blur-sm" max-w-[1690px] mx-auto md:rounded-xl  sticky top-0 p-4 flex items-center justify-between`}
     >
       <MobileHeader />
       <Image src="/assets/logo/header-logo.svg" alt="Logo" width={100} height={100} />

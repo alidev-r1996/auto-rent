@@ -177,3 +177,19 @@ export const uploadToCloudinary = async (file: File) => {
   );
   return res.data.secure_url as string;
 };
+
+export const rentTypeMaker = rentType => {
+  if (rentType == "none") return "بدون راننده";
+  return "با راننده";
+};
+
+export const insuranceTypeMaker = insuranceType => {
+  if (insuranceType == "Basic") return "پایه";
+  return "کامل";
+};
+
+export const locationMaker = location => {
+  if (location == "airport") return "فروگاه امام خمینی";
+  if (location == "east-port") return "ترمینال شرق";
+  return "ترمینال جنوب";
+};

@@ -17,6 +17,7 @@ const FaqPage = async ({ params }: { params: Promise<{ [index: string]: string }
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
   const user = await prisma.user.findUnique({
     where: { id: session?.user.id },
     include: {
@@ -37,9 +38,13 @@ const FaqPage = async ({ params }: { params: Promise<{ [index: string]: string }
     <CheckoutForm
       price_day={car.price_day}
       price_month={car.price_month}
+      guarranty={car.price_garranty}
       min_Date={car.availaibility[0].start_date}
       max_Date={car.availaibility[0].end_date}
       carName={car.name}
+      carId={car.id}
+      userId={session?.user.id || ""}
+      // discount={car.}
     />
   );
 };

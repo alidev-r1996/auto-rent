@@ -4,12 +4,11 @@ import { insuranceItems } from "./info.constant";
 import { useState } from "react";
 import Input from "@/components/ui/input";
 import { IdCard, MapPin, Phone, User } from "lucide-react";
-import { authClient } from "@/lib/auth-client";
 import { useReservationStore } from "@/provider/zustand-store";
 
 const Info = ({ setStep }) => {
   const { personalInfo, setPersonalInfo } = useReservationStore();
-  const [insurance, setInsurance] = useState<"basic" | "premium">(personalInfo.insurance);
+  const [insurance, setInsurance] = useState<"Basic" | "Premium">(personalInfo.insurance);
   const [name, setName] = useState(personalInfo.name);
   const [phone, setPhone] = useState(personalInfo.phone);
   const [nationalId, setNationalId] = useState(personalInfo.nationalId);
@@ -37,32 +36,32 @@ const Info = ({ setStep }) => {
               <th></th>
               <th>
                 <label
-                  htmlFor="basic"
+                  htmlFor="Basic"
                   className="flex items-center  cursor-pointer gap-2 justify-center"
                 >
                   <input
                     type="radio"
                     name="insurance"
-                    id="basic"
-                    value={"basic"}
-                    onChange={() => setInsurance("basic")}
-                    checked={insurance == "basic"}
+                    id="Basic"
+                    value={"Basic"}
+                    onChange={() => setInsurance("Basic")}
+                    checked={insurance == "Basic"}
                   />
                   <p>بیمه پایه</p>
                 </label>
               </th>
               <th>
                 <label
-                  htmlFor="premium"
+                  htmlFor="Premium"
                   className="flex items-center cursor-pointer  gap-2 justify-center"
                 >
                   <input
                     type="radio"
                     name="insurance"
-                    id="premium"
-                    value={"premium"}
-                    onChange={() => setInsurance("premium")}
-                    checked={insurance == "premium"}
+                    id="Premium"
+                    value={"Premium"}
+                    onChange={() => setInsurance("Premium")}
+                    checked={insurance == "Premium"}
                   />
                   <p>بیمه کامل</p>
                 </label>
