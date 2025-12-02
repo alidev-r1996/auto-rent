@@ -15,9 +15,12 @@ export async function POST(request: Request) {
     total_price,
     user_id,
     car_id,
+    active,
+    discountPrice,
   } = await request.json();
 
   const { rent, delivery_price, return_price, insurance_price, guarranty, driver, tax } = detail;
+  const totalPrice = active ? discountPrice : total_price;
 
   const user = await prisma.user.findUnique({ where: { id: user_id } });
   if (!user)
@@ -42,7 +45,7 @@ export async function POST(request: Request) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         callback_url: process.env.ZARINPAL_CALLBACK_URL,
-        amount: total_price * 10, // Rials
+        amount: totalPrice * 10, // Rials
         description: `جهت اجاره خودروی ${car.name}`,
         merchant_id: process.env.ZARINPAL_MERCHANT_ID,
         metadata: {
@@ -65,7 +68,7 @@ export async function POST(request: Request) {
             end_time,
             receive_location,
             return_location,
-            total_price,
+            total_price: totalPrice,
           },
         });
         await tx.insurance.create({
@@ -79,7 +82,7 @@ export async function POST(request: Request) {
           data: {
             user_id,
             order_id: order.id,
-            amount: total_price,
+            amount: totalPrice,
             status: "Pending",
             authority: data.authority,
             method: "Website",
@@ -95,6 +98,7 @@ export async function POST(request: Request) {
             driver,
             tax,
             total_price,
+            discount: Number(active ? totalPrice : 0),
             payment_id: payment.id,
           },
         });

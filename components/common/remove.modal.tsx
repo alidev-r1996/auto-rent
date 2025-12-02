@@ -9,7 +9,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { FC } from "react";
-import { useRemoveComment } from "../../app/(admin)/admin/comment/_hooks/comment.hook";
 
 const themeRemove = {
   blue: "bg-sky-600 hover:bg-sky-700",

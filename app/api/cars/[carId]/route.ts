@@ -14,9 +14,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ carId: s
       },
       discount: {
         include: {
-          discount: {
-            select: { percentage: true, active: true },
-          },
+          discount: true,
         },
         take: 1,
         orderBy: { created_at: "desc" },

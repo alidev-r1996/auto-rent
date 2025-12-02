@@ -12,13 +12,10 @@ export async function GET() {
       },
       discount: {
         include: {
-          discount: {
-            select: {
-              percentage: true,
-              active: true,
-            },
-          },
+          discount: true,
         },
+        take: 1,
+        orderBy: { created_at: "desc" },
       },
     },
     omit: {

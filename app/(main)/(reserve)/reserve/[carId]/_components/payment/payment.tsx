@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import {
   insuranceTypeMaker,
+  isActiveDiscount,
   locationMaker,
   PersianCurrency,
   PersianDate,
@@ -24,7 +25,7 @@ import { useReservationStore } from "@/provider/zustand-store";
 import PaymentInfoCard from "./payment.info.card";
 import { TbSteeringWheelFilled } from "react-icons/tb";
 
-const Payment = ({ price_day, price_month, carName, guarranty, carId, userId }) => {
+const Payment = ({ price_day, price_month, carName, guarranty, carId, userId, discount }) => {
   const { rentInfo, personalInfo, reset } = useReservationStore();
   const {
     receive_date,
@@ -36,6 +37,7 @@ const Payment = ({ price_day, price_month, carName, guarranty, carId, userId }) 
     return_time,
   } = rentInfo;
   const { address, insurance, name, nationalId, phone } = personalInfo;
+  const active = isActiveDiscount(discount);
 
   const [privacy, setPrivacy] = useState("rejected");
   const insurancePrice = insurance == "Basic" ? "0" : "32000000";
@@ -54,6 +56,7 @@ const Payment = ({ price_day, price_month, carName, guarranty, carId, userId }) 
     Number(driverPrice);
   const tax = price * 0.09;
   const total_price = price + tax;
+  const discountPrice = active ? (1 - discount.percentage / 100) * total_price : total_price;
 
   const paymentHandler = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/payment`, {
@@ -69,6 +72,8 @@ const Payment = ({ price_day, price_month, carName, guarranty, carId, userId }) 
         total_price,
         user_id: userId,
         car_id: carId,
+        active,
+        discountPrice,
         detail: {
           rent: carPrice,
           delivery_price: deliveryPrice,
@@ -163,8 +168,12 @@ const Payment = ({ price_day, price_month, carName, guarranty, carId, userId }) 
                 <td>{PersianCurrency(guarranty)} </td>
               </tr>
               <tr className="border-b border-b-slate-200 last:border-none [&>th]:p-2 [&>td]:p-2 [&>td]:text-center text-[11px] md:text-sm text-slate-600">
+                <th className="text-right!">تخفیف</th>
+                <td>%{PersianDigits(active ? discount.percentage : 0)} </td>
+              </tr>
+              <tr className="border-b border-b-slate-200 last:border-none [&>th]:p-2 [&>td]:p-2 [&>td]:text-center text-[11px] md:text-sm text-slate-600">
                 <th className="text-right!">
-                  هزینه راننده{" "}
+                  هزینه راننده
                   <span className="text-[9px] md:text-[11px] font-medium">(روزانه)</span>
                 </th>
                 <td>{PersianCurrency(driverPrice)}</td>
@@ -203,10 +212,13 @@ const Payment = ({ price_day, price_month, carName, guarranty, carId, userId }) 
           </label>
           <div className="flex flex-col md:flex-row items-center justify-between gap-2 bg-slate-200 rounded-lg p-4 mt-4">
             <div className="flex items-center gap-2 text-sm">
-              <h3>مبلغ قابل پرداخت :</h3>
-              <p className="font-bold text-base text-slate-600">
+              <h3> قابل پرداخت :</h3>
+              <p
+                className={`${active && "line-through text-xs font-mono"} font-bold text-base text-slate-600`}
+              >
                 {PersianCurrency(`${total_price}`)}
               </p>
+              <p className="font-bold">{active && PersianCurrency(`${discountPrice}`)}</p>
               <p>تومان</p>
             </div>
 

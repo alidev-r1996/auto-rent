@@ -1,5 +1,5 @@
 import { PersianDigits } from "@/lib/utils";
-import { ChevronDown, MapPin } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import React, { Activity, FC, useState } from "react";
 
 type DropDownInputProps = {
@@ -7,16 +7,24 @@ type DropDownInputProps = {
   value: string;
   onChange: (value) => void;
   options: { label: string; value: string }[];
-  children: React.ReactNode
+  children: React.ReactNode;
+  className?: string;
 };
 
-const DropDownInput: FC<DropDownInputProps> = ({ label, value, onChange, options , children }) => {
+const DropDownInput: FC<DropDownInputProps> = ({
+  label,
+  value,
+  onChange,
+  options,
+  children,
+  className,
+}) => {
   const [show, setShow] = useState(false);
 
   return (
     <div
       onClick={() => setShow(!show)}
-      className="flex items-center gap-2 justify-between rounded-lg border hover:bg-slate-50 border-slate-200 relative p-3 text-xs md:text-sm text-slate-400 cursor-pointer select-none"
+      className={`${className} flex items-center gap-2 justify-between rounded-lg border hover:bg-slate-50 border-slate-200 relative p-3 text-xs md:text-sm text-slate-400 cursor-pointer select-none`}
     >
       <p className="flex items-center gap-2">
         {children}

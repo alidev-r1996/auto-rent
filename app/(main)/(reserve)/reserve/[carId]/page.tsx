@@ -8,9 +8,7 @@ import prisma from "@/lib/prisma";
 const FaqPage = async ({ params }: { params: Promise<{ [index: string]: string }> }) => {
   const { carId } = await params;
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cars/${carId}`, {
-    next: { revalidate: 36000 },
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cars/${carId}`);
   const data = await res.json();
   if (data.code == 404) return notFound();
   const car: CarType = data.car;
@@ -30,6 +28,7 @@ const FaqPage = async ({ params }: { params: Promise<{ [index: string]: string }
     },
   });
 
+
   // if (!user?.profile){
   //   redirect("/user")
   // }
@@ -44,7 +43,7 @@ const FaqPage = async ({ params }: { params: Promise<{ [index: string]: string }
       carName={car.name}
       carId={car.id}
       userId={session?.user.id || ""}
-      // discount={car.}
+      discount={car?.discount[0]?.discount}
     />
   );
 };

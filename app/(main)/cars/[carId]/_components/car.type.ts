@@ -23,6 +23,7 @@ export type CarType = {
     start_date: string;
     end_date: string;
   }[];
+  discount: any;
 };
 
 export type CarPriceProps = {

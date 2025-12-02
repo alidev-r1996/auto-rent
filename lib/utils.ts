@@ -193,3 +193,11 @@ export const locationMaker = location => {
   if (location == "east-port") return "ترمینال شرق";
   return "ترمینال جنوب";
 };
+
+export const isActiveDiscount = discount => {
+  if (!discount) return false;
+  if (discount.active == false) return false;
+  if (new Date().getTime() < new Date(discount.startDate).getTime()) return false;
+  if (new Date().getTime() > new Date(discount.endDate).getTime()) return false;
+  return true;
+};

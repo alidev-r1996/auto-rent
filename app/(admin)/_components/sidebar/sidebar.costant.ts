@@ -21,6 +21,7 @@ export const profileMenuItems = [
     icon: CalendarCog,
     href: "availaibility",
   },
+  { title: "تخفیف‌ها ", englishTitle: "discount", icon: MessageSquareMore, href: "discount" },
   { title: "نظرات ", englishTitle: "comment", icon: MessageSquareMore, href: "comment" },
   { title: " بلاگ", englishTitle: "blog", icon: Rss, href: "blog" },
   { title: " پشتیبانی", englishTitle: "support", icon: Headset, href: "support" },

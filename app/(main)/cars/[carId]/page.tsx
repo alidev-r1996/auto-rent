@@ -12,7 +12,6 @@ import { getCarInfo } from "./_components/car.request";
 const CarDetailPage = async ({ params }: { params: Promise<{ [index: string]: string }> }) => {
   const { carId } = await params;
   const { car, featureItems } = await getCarInfo(carId);
-
   return (
     <section className="max-w-[1920px]">
       <div className="absolute  top-0 mx-auto max-w-screen w-[1920px] h-60 md:h-98 -z-5">

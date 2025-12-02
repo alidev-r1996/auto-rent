@@ -5,6 +5,7 @@ import Stepper from "./stepper";
 import SelectForm from "./select/select-form";
 import Info from "./info/info";
 import Payment from "./payment/payment";
+import { isActiveDiscount } from "@/lib/utils";
 
 type CheckoutFormProps = {
   price_day: string | number;
@@ -15,6 +16,7 @@ type CheckoutFormProps = {
   max_Date: string;
   carId: string;
   userId: string;
+  discount: any;
 };
 
 const CheckoutForm: FC<CheckoutFormProps> = ({
@@ -26,6 +28,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({
   guarranty,
   carId,
   userId,
+  discount
 }) => {
   const [step, setStep] = useState(1);
   return (
@@ -49,6 +52,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({
           price_month={price_month}
           carId={carId}
           userId={userId}
+          discount={discount}
         />
       )}
     </>
