@@ -1,12 +1,6 @@
-import { PersianDigits, PersianTime } from "@/lib/utils";
+import { PersianTime } from "@/lib/utils";
 import { FC } from "react";
-
-type SupportCardMsgProps = {
-  text: string;
-  id?: string;
-  date?: string;
-  isYou: boolean;
-};
+import { SupportCardMsgProps } from "../_types/support.type";
 
 const SupportCardMsg: FC<SupportCardMsgProps> = ({ text, id, date, isYou }) => {
   return (

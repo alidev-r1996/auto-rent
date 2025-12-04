@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { useRemoveDiscount } from "../_hooks/discount.hooks";
 import { DiscountTableProps } from "../_types/discount.types";
 import { discountTableHeader } from "../_constant/discount.constant";
+import DiscountStatus from "./discount.status";
 
 const DiscountTable: FC<DiscountTableProps> = ({ discounts, info, theme = "dark" }) => {
   const { isPending, mutateAsync } = useRemoveDiscount();
@@ -29,10 +30,8 @@ const DiscountTable: FC<DiscountTableProps> = ({ discounts, info, theme = "dark"
               <Table.Col> %{PersianDigits(i.percentage)} </Table.Col>
               <Table.Col>{PersianDate(i.startDate)}</Table.Col>
               <Table.Col>{PersianDate(i.endDate)}</Table.Col>
-              <Table.Col>
-                <Badge variant={!i.active ? "rose" : "emerald"}>
-                  {i.active ? "فعال" : " غیرفعال"}
-                </Badge>
+              <Table.Col className="flex items-center justify-center">
+                <DiscountStatus status={i.active} id={i.id} theme={"emerald"} />
               </Table.Col>
               <Table.Col>{PersianDate(i.created_at)}</Table.Col>
               <Table.Col>

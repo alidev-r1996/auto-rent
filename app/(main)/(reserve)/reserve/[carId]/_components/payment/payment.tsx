@@ -74,6 +74,7 @@ const Payment = ({ price_day, price_month, carName, guarranty, carId, userId, di
         car_id: carId,
         active,
         discountPrice,
+        userInfo: { address, name, nationalId, phone },
         detail: {
           rent: carPrice,
           delivery_price: deliveryPrice,

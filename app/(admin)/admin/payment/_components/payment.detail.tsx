@@ -22,6 +22,8 @@ const PaymentDetail = ({ details, title }) => {
     tax,
     total_price,
   } = details;
+
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -60,7 +62,7 @@ const PaymentDetail = ({ details, title }) => {
                 <td className="text-right!">مبلغ اجاره </td>
                 <td className="text-left!">{PersianCurrency(rent)}</td>
               </tr>
-              {discount == 0 && (
+              {!discount && (
                 <tr className="border-b-2 border-dotted border-b-slate-400 last:border-none [&>th]:p-2 [&>th]:pb-4 [&>td]:p-2 [&>td]:text-center text-[11px] md:text-sm text-slate-600">
                   <td className="text-right!">تخفیف </td>
                   <td className="text-left!">{PersianCurrency("0")}</td>
@@ -73,12 +75,12 @@ const PaymentDetail = ({ details, title }) => {
               <tr className="border-b border-b-slate-200 last:border-none [&>th]:p-2 [&>td]:p-2 [&>td]:text-center text-[11px] md:text-sm text-slate-600">
                 <th className="text-right! pt-4">قیمت کل </th>
                 <td
-                  className={`${discount != 0 && "font-mono line-through text-xs"} text-left! pt-4 font-semibold`}
+                  className={`${discount && "font-mono! line-through text-xs text-rose-500"} text-left! pt-4 font-semibold`}
                 >
                   {PersianCurrency(total_price)} تومان
                 </td>
               </tr>
-              {discount != 0 && (
+              {discount && (
                 <tr className="border-b border-b-slate-200 last:border-none [&>th]:p-2 [&>td]:p-2 [&>td]:text-center text-[11px] md:text-sm text-slate-600">
                   <th className="text-right! pt-4">قیمت با تخفیف </th>
                   <td className={`text-left! pt-4 font-semibold`}>

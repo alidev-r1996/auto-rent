@@ -56,3 +56,14 @@ export async function CreateNewDiscount(discount) {
     },
   });
 }
+
+export async function UpdateDiscountStatus(id: string) {
+  const discount = await prisma.discount.findUnique({ where: { id } });
+  if (!discount) throw new Error("discount not found");
+  return await prisma.discount.update({
+    where: { id },
+    data: { active: !discount.active },
+  });
+}
+
+

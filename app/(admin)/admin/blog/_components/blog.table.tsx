@@ -32,8 +32,8 @@ const BlogTable: FC<BlogTableProps> = ({ blogs, info, theme = "dark" }) => {
               <Table.Col>{i.slug}</Table.Col>
               <Table.Col>{PersianDigits(i.reading_time)}</Table.Col>
               <Table.Col>{PersianDate(i.created_at)}</Table.Col>
-              <Table.Col>
-                <BlogStatus status={i.status} id={i.id} theme={theme} />
+              <Table.Col className="flex items-center justify-center">
+                <BlogStatus status={i.status} id={i.id} theme={"emerald"} />
               </Table.Col>
               <Table.Col>
                 <RemoveModal

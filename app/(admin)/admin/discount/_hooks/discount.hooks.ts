@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { CreateDiscount, GetDiscounts, RemoveDiscount } from "../_services/discount.service";
+import { CreateDiscount, GetDiscounts, RemoveDiscount, UpdateDiscountStatus } from "../_services/discount.service";
 import { GetAllCars } from "../../car/_services/car.service";
 
 export function useGetDiscount(page: string) {
@@ -17,6 +17,17 @@ export function useGetAllCars() {
     queryFn: async () => await GetAllCars(),
   });
   return { data, isLoading, isError };
+}
+
+export function useDiscountStatus(id: string) {
+  const queryClient = useQueryClient();
+  const { mutateAsync, isPending, isError } = useMutation({
+    mutationFn: async () => await UpdateDiscountStatus(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["adminDiscount"] });
+    },
+  });
+  return { mutateAsync, isPending, isError };
 }
 
 export function useRemoveDiscount() {

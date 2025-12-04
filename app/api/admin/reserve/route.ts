@@ -1,4 +1,4 @@
-import { GetPayments, RemovePaymentById } from "@/lib/actions/payment.action";
+import { GetOrders, RemoveOrderById } from "@/lib/actions/order.action";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
@@ -6,17 +6,17 @@ export async function GET(req: Request) {
   const page = searchParams.get("page") as string;
   const limit = searchParams.get("limit") as string;
   try {
-    const payments = await GetPayments({ page, limit });
-    return NextResponse.json({ status: 200, payments, message: "success" });
+    const reserves = await GetOrders({ page, limit });
+    return NextResponse.json({ status: 200, reserves, message: "success" });
   } catch (error) {
-    return NextResponse.json({ status: 500, message: error, payments: null });
+    return NextResponse.json({ status: 500, message: error, reserves: null });
   }
 }
 
 export async function DELETE(req: Request) {
   const { id } = await req.json();
   try {
-    const comment = await RemovePaymentById(id);
+    const comment = await RemoveOrderById(id);
     return NextResponse.json({ status: 200, comment, message: "success" });
   } catch (error) {
     return NextResponse.json({ status: 500, message: error, comment: null });

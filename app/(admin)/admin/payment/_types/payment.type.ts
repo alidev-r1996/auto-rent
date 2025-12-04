@@ -13,7 +13,12 @@ export type PaymentTableProps = {
     status: "Success" | "Failed" | "Pending";
     authority: string;
     ref_id: string | null;
-    order: { car: { name: string }; user: { name: string; phoneNumber: string }; id: string };
+    order: {
+      car: { name: string };
+      user: { name: string; phoneNumber: string };
+      id: string;
+      order_number: string;
+    };
     payment_detail: {
       delivery: string;
       discount: string;

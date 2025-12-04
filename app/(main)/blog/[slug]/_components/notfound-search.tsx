@@ -1,8 +1,18 @@
 import Image from "next/image";
 
-const NotFoundSearch = ({ search, title }: { search?: string, title: string }) => {
+const NotFoundSearch = ({
+  search,
+  title,
+  className,
+}: {
+  search?: string;
+  title: string;
+  className?: string;
+}) => {
   return (
-    <div className="md:col-span-2 flex flex-col items-center w-full justify-center gap-4 p-10 bg-white rounded-xl shadow border border-slate-200 text-center">
+    <div
+      className={`${className} md:col-span-2 flex flex-col items-center w-full justify-center gap-4 p-10 bg-white rounded-xl shadow border border-slate-200 text-center`}
+    >
       <Image
         src="/assets/images/404.png"
         alt="نتیجه‌ای یافت نشد"

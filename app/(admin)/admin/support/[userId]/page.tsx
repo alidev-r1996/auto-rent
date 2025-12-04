@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { PersianDigits } from "@/lib/utils";
 import { Send } from "lucide-react";
-import UserHeader from "../user-header";
-import SupportCardMsg from "./support-card";
+import SupportCardMsg from "../_components/support.chat.card";
+import UserHeader from "@/app/(admin)/_components/user-header";
+
 
 const Support = () => {
   return (

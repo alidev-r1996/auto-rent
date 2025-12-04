@@ -23,7 +23,7 @@ const carTypeFilterItems = [
   { id: 6, title: "اسپرت", query: "Sport" },
 ];
 
-const CarFilter = () => {
+const CarFilter = ({ className }: { className?: string }) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -66,7 +66,7 @@ const CarFilter = () => {
   };
 
   return (
-    <div className="w-full md:w-1/6 md:flex flex-col gap-5 hidden">
+    <div className={`${className} w-full md:w-1/6 md:flex flex-col gap-5 hidden`}>
       <div className="bg-white rounded-xl shadow border border-slate-100 p-4 flex flex-col gap-3">
         <h2 className="font-bold text-slate-500 text-lg ">فیلتر جستجو </h2>
         <p className="border-b border-b-slate-300 relative after:w-20 after:h-0.5 after:bg-amber-500 after:absolute after:top-0 after:right-0"></p>

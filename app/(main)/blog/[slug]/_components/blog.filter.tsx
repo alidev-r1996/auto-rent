@@ -66,7 +66,7 @@ const BlogFilter: FC<BlogFilterProps> = ({ options, title, className, icon }) =>
         </div>
 
         {show && (
-          <div className="absolute z-10 left-0 top-[115%] w-full border border-slate-200 bg-white text-xs rounded-lg shadow-xs flex flex-col">
+          <div className="absolute z-30 left-0 top-[115%] w-full border border-slate-200 bg-white text-xs rounded-lg shadow-xs flex flex-col">
             {options.map((option, index) => (
               <p
                 key={index}

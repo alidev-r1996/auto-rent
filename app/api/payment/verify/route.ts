@@ -40,7 +40,7 @@ export async function GET(req: Request) {
     ]);
     revalidateTag("cars", "max");
     return NextResponse.redirect(
-      `${process.env.BETTER_AUTH_URL}/reserve/payment?status=failed&reason=user_cancelled&authority=${authority}&orderId=${payment.order_id}`
+      `${process.env.BETTER_AUTH_URL}/reserve/payment?status=failed&reason=user_cancelled&authority=${authority}&orderId=${order?.order_number}`
     );
   }
 
@@ -67,7 +67,7 @@ export async function GET(req: Request) {
         }),
       ]);
       return NextResponse.redirect(
-        `${process.env.BETTER_AUTH_URL}/reserve/payment?status=success&refId=${data.ref_id}&orderId=${payment.order_id}`
+        `${process.env.BETTER_AUTH_URL}/reserve/payment?status=success&refId=${data.ref_id}&orderId=${order?.order_number}`
       );
     } else {
       await prisma.$transaction([
@@ -85,12 +85,12 @@ export async function GET(req: Request) {
       ]);
       revalidateTag("cars", "max");
       return NextResponse.redirect(
-        `${process.env.BETTER_AUTH_URL}/reserve/payment?status=failed&reason=verify_failed&authority=${authority}&orderId=${payment.order_id}`
+        `${process.env.BETTER_AUTH_URL}/reserve/payment?status=failed&reason=verify_failed&authority=${authority}&orderId=${order?.order_number}`
       );
     }
   } catch (error) {
     return NextResponse.redirect(
-      `${process.env.BETTER_AUTH_URL}/reserve/payment?status=failed&reason=server_error&authority=${authority}&orderId=${payment.order_id}`
+      `${process.env.BETTER_AUTH_URL}/reserve/payment?status=failed&reason=server_error&authority=${authority}&orderId=${order?.order_number}`
     );
   }
 }

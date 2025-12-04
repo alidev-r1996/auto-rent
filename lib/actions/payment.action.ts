@@ -16,6 +16,7 @@ export async function GetPayments({ page, limit }: { page: string; limit: string
             },
             user: { select: { name: true, phoneNumber: true } },
             id: true,
+            order_number: true,
           },
         },
         payment_detail: true,
@@ -38,9 +39,9 @@ export async function GetPayments({ page, limit }: { page: string; limit: string
   });
 }
 
-export async function RemoveCommentById(id: string) {
-  const comment = await prisma.comment.findUnique({ where: { id } });
-  if (!comment) throw new Error("comment not found");
+export async function RemovePaymentById(id: string) {
+  const payment = await prisma.payment.findUnique({ where: { id } });
+  if (!payment) throw new Error("payment not found");
   return await prisma.comment.delete({
     where: { id },
   });

@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
-import { UpdateBlogstatus } from "@/lib/actions/blog.action";
-import { CreateCar, RemoveCarById } from "@/lib/actions/car.action";
-import { CreateNewDiscount, GetDiscounts, RemoveDiscountById } from "@/lib/actions/discount.action";
+import {
+  CreateNewDiscount,
+  GetDiscounts,
+  RemoveDiscountById,
+  UpdateDiscountStatus,
+} from "@/lib/actions/discount.action";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -15,16 +18,6 @@ export async function GET(req: Request) {
   }
 }
 
-export async function PATCH(req: Request) {
-  const { id } = await req.json();
-  try {
-    const comment = await UpdateBlogstatus(id);
-    return NextResponse.json({ status: 200, comment, message: "success" });
-  } catch (error) {
-    return NextResponse.json({ status: 500, message: error, comment: null });
-  }
-}
-
 export async function DELETE(req: Request) {
   const { id } = await req.json();
   try {
@@ -35,8 +28,18 @@ export async function DELETE(req: Request) {
   }
 }
 
+export async function PATCH(req: Request) {
+  const { id } = await req.json();
+  try {
+    const discount = await UpdateDiscountStatus(id);
+    return NextResponse.json({ status: 200, discount, message: "success" });
+  } catch (error) {
+    return NextResponse.json({ status: 500, message: error, discount: null });
+  }
+}
+
 export async function POST(req: Request) {
-  const {discount} = await req.json();
+  const { discount } = await req.json();
   try {
     const newDiscount = await CreateNewDiscount(discount);
     return NextResponse.json({ status: 201, message: "success", discount: newDiscount });

@@ -16,12 +16,14 @@ export async function POST(request: Request) {
     user_id,
     car_id,
     active,
+    userInfo,
     discountPrice,
   } = await request.json();
 
   const { rent, delivery_price, return_price, insurance_price, guarranty, driver, tax } = detail;
   const totalPrice = active ? discountPrice : total_price;
-
+  const { address, name, nationalId, phone } = userInfo;
+  const order_number = String(crypto.randomUUID())
   const user = await prisma.user.findUnique({ where: { id: user_id } });
   if (!user)
     return NextResponse.json({ status: 401, message: "please first login in to your account!" });
@@ -58,13 +60,14 @@ export async function POST(request: Request) {
 
     if (data.message == "Success") {
       await prisma.$transaction(async tx => {
-        const order = await tx.order.create({
+       const order = await tx.order.create({
           data: {
             user_id,
             car_id,
             start_date,
             end_date,
             start_time,
+            order_number,
             end_time,
             receive_location,
             return_location,
@@ -109,6 +112,15 @@ export async function POST(request: Request) {
             isBlocked: true,
             reason: "رزرو شده",
             car_id,
+          },
+        });
+        await tx.receiver.create({
+          data: {
+            name: name,
+            national_id: nationalId,
+            phoneNumber: phone,
+            address: address,
+            order_id: order.id,
           },
         });
         revalidateTag("cars", "max");

@@ -189,7 +189,7 @@ model Discount {
   cars        CarDiscount[]
   created_at   DateTime @default(now())
   updated_at DateTime @default(now())
-  @@index([active, title])
+  @@index([active, title, startDate, endDate])
 }
 
 model Availability {
@@ -202,7 +202,7 @@ model Availability {
   reason        String?
   created_at    DateTime @default(now())
 
-  @@index([start_date, end_date, car_id])
+  @@index([start_date, end_date, car_id, isBlocked])
 
 }
 
@@ -210,12 +210,13 @@ model CarDiscount {
   car_id       String 
   discount_id  String
   car         Car       @relation(fields: [car_id], references: [id])
-  discount    Discount  @relation(fields: [discount_id], references: [id])
+  discount    Discount  @relation(fields: [discount_id], references: [id], onDelete: Cascade)
   created_at   DateTime @default(now())
   updated_at DateTime @default(now())
-  @@id([car_id, discount_id])
-}
 
+  @@id([car_id, discount_id])
+  @@index([car_id, discount_id])
+}
 
 
 model Order{
@@ -229,15 +230,32 @@ model Order{
   receive_location String
   return_location String
   total_price Decimal
+  order_number String
   status OrderStatus @default(Pending)
   user User @relation(fields:[user_id], references: [id])
   car Car @relation(fields:[car_id], references: [id])
   insurance Insurance?
   payment Payment?
+  receiverInfo Receiver?
   created_at   DateTime @default(now())
   updated_at DateTime @default(now())
 
   @@index([user_id, car_id, start_date, end_date])
+}
+
+model Receiver {
+  id          String   @id @default(cuid())
+  name        String
+  phoneNumber String
+  national_id String
+  address     String
+  order_id    String  @unique
+  order       Order @relation(fields: [order_id], references: [id], onDelete: Cascade)
+  created_at   DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@index([phoneNumber, national_id])
+
 }
 
 
@@ -246,7 +264,7 @@ model Payment {
   user_id        String 
   order_id       String @unique
   amount        Decimal
-  status        PaymentStatus
+  status        PaymentStatus @default(Pending)
   authority     String  @unique
   method        String?
   ref_id        String?

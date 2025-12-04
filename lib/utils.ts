@@ -201,3 +201,4 @@ export const isActiveDiscount = discount => {
   if (new Date().getTime() > new Date(discount.endDate).getTime()) return false;
   return true;
 };
+

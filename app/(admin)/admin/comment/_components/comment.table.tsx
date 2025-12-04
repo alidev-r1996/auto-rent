@@ -32,8 +32,8 @@ const CommentTable: FC<CommentTableProps> = ({ comments, info, theme = "dark" })
               </Table.Col>
               <Table.Col>{PersianDigits(i?.blog?.title || i?.car?.name || "")}</Table.Col>
               <Table.Col>{PersianDate(i.created_at)}</Table.Col>
-              <Table.Col>
-                <CommentStatus verified={i.verified} id={i.id} theme={theme} />
+              <Table.Col className="flex items-center justify-center">
+                <CommentStatus verified={i.verified} id={i.id} theme={"emerald"} />
               </Table.Col>
               <Table.Col>
                 <RemoveModal

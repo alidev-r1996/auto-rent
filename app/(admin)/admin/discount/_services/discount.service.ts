@@ -18,6 +18,15 @@ export async function RemoveDiscount(discountId) {
   }
 }
 
+export async function UpdateDiscountStatus(discountId) {
+  try {
+    const res = await AdminAxios.patch(`/discount`, { id: discountId });
+    return await res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
 export async function CreateDiscount(discount) {
   try {
     const res = await AdminAxios.post("/discount", { discount });
