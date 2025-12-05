@@ -4,8 +4,8 @@ import Loading from "@/components/ui/loading";
 import UserHeader from "../../_components/user-header";
 import Paginate from "@/components/ui/paginate";
 import { useSearchParams } from "next/navigation";
-import { useGetPayment } from "./_hooks/payment.hook";
-import PaymentTable from "./_components/payment.table";
+import { useGetPayment } from "../../_hooks/payment.hook";
+import PaymentTable from "../../_components/payment/payment.table";
 
 const Payment = () => {
   const page = useSearchParams().get("page") || "1";

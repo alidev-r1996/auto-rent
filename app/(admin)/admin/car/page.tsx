@@ -4,8 +4,8 @@ import UserHeader from "../../_components/user-header";
 import Loading from "@/components/ui/loading";
 import { useSearchParams } from "next/navigation";
 import Paginate from "@/components/ui/paginate";
-import { useGetCars } from "./_hooks/car.hooks";
-import CarTable from "./_components/car.table";
+import { useGetCars } from "../../_hooks/car.hooks";
+import CarTable from "../../_components/car/car.table";
 
 const AdminCar = () => {
   const page = useSearchParams().get("page") || "1";

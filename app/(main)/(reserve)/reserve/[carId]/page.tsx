@@ -28,10 +28,9 @@ const FaqPage = async ({ params }: { params: Promise<{ [index: string]: string }
     },
   });
 
-
-  // if (!user?.profile){
-  //   redirect("/user")
-  // }
+  if (!user?.profile) {
+    redirect("/user");
+  }
 
   return (
     <CheckoutForm

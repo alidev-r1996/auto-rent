@@ -5,8 +5,8 @@ import UserHeader from "../../_components/user-header";
 import Loading from "@/components/ui/loading";
 import { useSearchParams } from "next/navigation";
 import Paginate from "@/components/ui/paginate";
-import AvailaibilityTable from "./_components/availaibility.table";
-import { useGetAvailaibility } from "./_hooks/availaibility.hook";
+import AvailaibilityTable from "../../_components/availaibility/availaibility.table";
+import { useGetAvailaibility } from "../../_hooks/availaibility.hook";
 
 const AdaminAvailaibility = () => {
   const page = useSearchParams().get("page") || "1";

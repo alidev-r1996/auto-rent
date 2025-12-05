@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FC } from "react";
+import React, { FC } from "react";
 
 const themeRemove = {
   blue: "bg-sky-600 hover:bg-sky-700",
@@ -25,6 +25,7 @@ type CommentRemoveProps = {
   isPending: boolean;
   theme?: "blue" | "rose" | "teal" | "orange" | "dark" | "emerald";
   onRemove: () => void;
+  children?: React.ReactNode;
 };
 
 const RemoveModal: FC<CommentRemoveProps> = ({
@@ -33,16 +34,21 @@ const RemoveModal: FC<CommentRemoveProps> = ({
   isPending,
   onRemove,
   label,
+  children,
 }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button
-          disabled={isPending}
-          className={`${themeRemove[theme]} px-4 py-1 disabled:opacity-50 rounded transition-all duration-300 text-white cursor-pointer hover:scale-105 active:scale-95`}
-        >
-          {isPending ? "در حال حذف کردن..." : "حذف"}
-        </button>
+        {children ? (
+          children
+        ) : (
+          <button
+            disabled={isPending}
+            className={`${themeRemove[theme]} px-4 py-1 disabled:opacity-50 rounded transition-all duration-300 text-white cursor-pointer hover:scale-105 active:scale-95`}
+          >
+            {isPending ? "در حال حذف کردن..." : "حذف"}
+          </button>
+        )}
       </DialogTrigger>
       <DialogContent dir="rtl">
         <DialogHeader>

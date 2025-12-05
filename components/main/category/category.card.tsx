@@ -23,7 +23,7 @@ export const CardCategory: FC<CardCategoryProps> = ({ alt, img, variant, text })
         />
       </div>
       <div className="top-1/2 group-hover:scale-100 scale-0 left-1/2 size-full rounded-full absolute -translate-x-1/2 -translate-y-1/2 flex items-center justify-center bg-linear-to-t from-slate-800 from-20% to-transparent text-slate-200">
-        <p className="font-bold text-2xl md:text-5xl">{text}</p>
+        <p className="font-semibold text-2xl md:text-3xl">{text}</p>
       </div>
     </div>
   );

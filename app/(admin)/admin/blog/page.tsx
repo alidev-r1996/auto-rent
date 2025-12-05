@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import UserHeader from "../../_components/user-header";
-import { useGetBlogs } from "./_hooks/blog.hook";
+import { useGetBlogs } from "../../_hooks/blog.hook";
 import Loading from "@/components/ui/loading";
 import { useSearchParams } from "next/navigation";
-import BlogTable from "./_components/blog.table";
+import BlogTable from "../../_components/blog/blog.table";
 import Paginate from "@/components/ui/paginate";
 
 const AdminBlog = () => {

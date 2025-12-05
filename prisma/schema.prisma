@@ -218,7 +218,6 @@ model CarDiscount {
   @@index([car_id, discount_id])
 }
 
-
 model Order{
   id String   @id @default(cuid())
   user_id String
@@ -258,7 +257,6 @@ model Receiver {
 
 }
 
-
 model Payment {
   id            String        @id @default(cuid())
   user_id        String 
@@ -294,8 +292,6 @@ model PaymentDetail {
 @@index([payment_id])
 }
 
-
-
 model Comment{
   id String   @id @default(cuid())
   user_id String
@@ -316,7 +312,6 @@ model Comment{
   @@index([blog_id,car_id, verified])
 }
 
-
 model Insurance{
   id String   @id @default(cuid())
   order_id String @unique
@@ -330,7 +325,6 @@ model Insurance{
   
   @@index([order_id])
 }
-
 
 model Blog {
   id          String   @id @default(cuid())
@@ -380,7 +374,6 @@ enum SteeringType {
   Hydraulic 
   Electric 
 }
-
 
 enum Role {
   Admin

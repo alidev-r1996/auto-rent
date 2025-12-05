@@ -1,22 +1,18 @@
 import { PersianDigits } from "@/lib/utils";
 import Image from "next/image";
-import { profileMenuItems } from "./sidebar.costant";
+import { profileMenuItems } from "../../_constant/sidebar.costant";
 import { FC } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 type SideBarProps = {
   show: boolean;
   setShow: () => void;
-  setMenu: (string) => void;
-  menu: "profile" | "reserve" | "payment" | "comment" | "support" | "logout";
 };
 
-const SideBar: FC<SideBarProps> = ({ setMenu, setShow, show, menu }) => {
-  const menuHandler = (path: string) => {
-    if (menu == path) return;
-    setMenu(path);
-    setShow();
-  };
-
+const SideBar: FC<SideBarProps> = ({ setShow, show }) => {
+  const pathname = usePathname();
+  const url = pathname.slice(pathname.lastIndexOf("/") + 1);
   return (
     <div className={`${show ? "flex" : "hidden md:flex"} flex-col gap-2 min-w-full! max-w-full!`}>
       <div className="rounded-lg h-20 p-4 w-full flex items-center bg-white gap-2 text-sm border border-slate-200 shadow-xs">
@@ -27,17 +23,18 @@ const SideBar: FC<SideBarProps> = ({ setMenu, setShow, show, menu }) => {
         </div>
       </div>
       <div className="bg-white border border-slate-200 shadow-xs rounded-lg p-4 w-full flex flex-col text-slate-700">
-        {profileMenuItems.map(({ icon, title, englishTitle }, index) => {
+        {profileMenuItems.map(({ icon, title, englishTitle, href }, index) => {
           const Icon = icon;
           return (
-            <div
+            <Link
+              href={`/user/${href}`}
               key={index}
-              onClick={() => menuHandler(englishTitle)}
-              className={`${menu == englishTitle && !show ? "bg-blue-500 text-white" : "hover:bg-slate-100"} flex gap-2 p-4 cursor-pointer text-sm md:text-base transition-colors duration-300 last:hover:bg-rose-100  rounded-xl `}
+              onClick={() => setShow()}
+              className={`${url == englishTitle ? "md:bg-blue-500 md:text-white" : "hover:bg-slate-100"} flex gap-2 p-4 cursor-pointer text-sm md:text-base transition-colors duration-300 last:hover:bg-rose-100  rounded-xl `}
             >
               <Icon className="size-6" />
               <p>{title}</p>
-            </div>
+            </Link>
           );
         })}
       </div>

@@ -13,6 +13,7 @@ type DatePickerCarProps = {
   date: Date;
   setDate: any;
   className?: string;
+  dropDown?: boolean;
 };
 
 const DatePickerCar: FC<DatePickerCarProps> = ({
@@ -22,6 +23,7 @@ const DatePickerCar: FC<DatePickerCarProps> = ({
   date,
   setDate,
   className,
+  dropDown,
 }) => {
   const min = new Date(minDate);
   const max = new Date(maxDate);
@@ -57,6 +59,7 @@ const DatePickerCar: FC<DatePickerCarProps> = ({
                 }
               : undefined
           }
+          captionLayout={dropDown ? "dropdown" : undefined}
         />
       </PopoverContent>
     </Popover>

@@ -1,6 +1,6 @@
 import { PersianDigits } from "@/lib/utils";
 import Image from "next/image";
-import { profileMenuItems } from "./sidebar.costant";
+import { profileMenuItems } from "../../_constant/sidebar.costant";
 import { FC } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";

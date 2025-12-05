@@ -2,14 +2,14 @@
 
 import UserHeader from "@/app/(admin)/_components/user-header";
 import { useState } from "react";
-import { useGetAllCars } from "../../car/_hooks/car.hooks";
+import { useGetAllCars } from "../../../_hooks/car.hooks";
 import Input from "@/components/ui/input";
 import DropdownInput from "@/components/ui/input-option";
 import BooleanRadioInput from "@/components/ui/input-radio";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import DatePickerUi from "../_components/date-picker";
-import { useAddAvailaibility } from "../_hooks/availaibility.hook";
+import DatePickerUi from "../../../_components/availaibility/date-picker";
+import { useAddAvailaibility } from "../../../_hooks/availaibility.hook";
 
 const AdminInventoryCar = () => {
   const [start_date, setStartDate] = useState(new Date());
@@ -22,8 +22,8 @@ const AdminInventoryCar = () => {
 
   const registerInventoryHandler = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (new Date(end_date).getTime() <= new Date(start_date).getTime()){
-      console.log("invalide end_date, end_date should be greater than start_date")
+    if (new Date(end_date).getTime() <= new Date(start_date).getTime()) {
+      console.log("invalide end_date, end_date should be greater than start_date");
     }
     const newStatus = {
       start_date,

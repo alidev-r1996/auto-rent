@@ -4,8 +4,8 @@ import UserHeader from "../../_components/user-header";
 import Loading from "@/components/ui/loading";
 import { useSearchParams } from "next/navigation";
 import Paginate from "@/components/ui/paginate";
-import CarTable from "./_components/discount.table";
-import { useGetDiscount } from "./_hooks/discount.hooks";
+import CarTable from "../../_components/discount/discount.table";
+import { useGetDiscount } from "../../_hooks/discount.hooks";
 
 const AdminDiscount = () => {
   const page = useSearchParams().get("page") || "1";

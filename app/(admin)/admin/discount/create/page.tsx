@@ -7,8 +7,8 @@ import Input from "@/components/ui/input";
 import { EnglishDigits, PersianDigits } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
-import DropDownMultiSelect from "../_components/discount.dropdown";
-import { useAddDiscount, useGetAllCars } from "../_hooks/discount.hooks";
+import DropDownMultiSelect from "../../../_components/discount/discount.dropdown";
+import { useAddDiscount, useGetAllCars } from "../../../_hooks/discount.hooks";
 
 const AdminDiscount = () => {
   const [title, setTitle] = useState("");

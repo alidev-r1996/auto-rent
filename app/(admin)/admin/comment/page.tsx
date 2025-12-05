@@ -1,11 +1,11 @@
 "use client";
 
 import Loading from "@/components/ui/loading";
-import { useGetComment } from "./_hooks/comment.hook";
+import { useGetComment } from "../../_hooks/comment.hook";
 import UserHeader from "../../_components/user-header";
 import Paginate from "@/components/ui/paginate";
 import { useSearchParams } from "next/navigation";
-import CommentTable from "./_components/comment.table";
+import CommentTable from "../../_components/comment/comment.table";
 
 const Comment = () => {
   const page = useSearchParams().get("page") || "1";

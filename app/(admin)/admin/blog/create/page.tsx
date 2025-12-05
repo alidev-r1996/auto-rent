@@ -11,14 +11,14 @@ import { Captions, Clock4, ScanBarcode } from "lucide-react";
 import { uploadToCloudinary } from "@/lib/utils";
 import UserHeader from "@/app/(admin)/_components/user-header";
 import Link from "next/link";
-import { useAddBlog } from "../_hooks/blog.hook";
+import { useAddBlog } from "../../../_hooks/blog.hook";
 import UploadFile from "@/components/ui/uploader";
 
 export default function AdminBlogEditor() {
   const [title, setTitle] = useState("");
   const [readingTime, setReadingTime] = useState("");
   const [slug, setSlug] = useState("");
-  const [cover_img, setCoverImg] = useState("")
+  const [cover_img, setCoverImg] = useState("");
   const { isError, isPending, mutateAsync } = useAddBlog();
 
   const editor = useCreateBlockNote({
@@ -35,7 +35,7 @@ export default function AdminBlogEditor() {
       title,
       reading_time: readingTime,
       slug,
-      cover_img
+      cover_img,
     };
     mutateAsync(newBLog);
   };

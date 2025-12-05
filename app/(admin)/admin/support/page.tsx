@@ -3,9 +3,9 @@
 import Loading from "@/components/ui/loading";
 import UserHeader from "../../_components/user-header";
 import Paginate from "@/components/ui/paginate";
-import ReserveTable from "./_components/support.table";
+import ReserveTable from "../../_components/support/support.table";
 import { useSearchParams } from "next/navigation";
-import { useGetChats } from "./_hooks/support.hook";
+import { useGetChats } from "../../_hooks/support.hook";
 
 const Reserve = () => {
   const page = useSearchParams().get("page") || "1";

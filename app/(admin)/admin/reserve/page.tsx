@@ -3,9 +3,10 @@
 import Loading from "@/components/ui/loading";
 import UserHeader from "../../_components/user-header";
 import Paginate from "@/components/ui/paginate";
-import ReserveTable from "./_components/reserve.table";
-import { useGetReserve } from "./_hooks/reserve.hook";
+import ReserveTable from "../../_components/reserve/reserve.table";
+
 import { useSearchParams } from "next/navigation";
+import { useGetReserve } from "../../_hooks/reserve.hook";
 
 const Reserve = () => {
   const page = useSearchParams().get("page") || "1";

@@ -8,13 +8,13 @@ import UploadFile from "@/components/ui/uploader";
 import { EnglishDigits, PersianDigits } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
-import { useAddCar } from "../_hooks/car.hooks";
+import { useAddCar } from "../../../_hooks/car.hooks";
 import {
   CarFuelOptions,
   CarGearOptions,
   CarSteeringOptions,
   CarTypeOptions,
-} from "../_constant/car.constant";
+} from "../../../_constant/car.constant";
 import TagInput from "@/components/ui/input.tag";
 
 const AdminCarEditor = () => {
