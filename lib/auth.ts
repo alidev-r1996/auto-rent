@@ -8,20 +8,35 @@ export const auth = betterAuth({
     provider: "postgresql",
   }),
   user: {
-      additionalFields: {
-        role: {
-          type: "string",
-          required: false,
-          defaultValue: "USER",
-          input: false,
-        },
+    additionalFields: {
+      role: {
+        type: "string",
+        required: false,
+        defaultValue: "USER",
+        input: false,
       },
     },
+  },
   plugins: [
     phoneNumber({
       expiresIn: 3000,
-      sendOTP: ({ phoneNumber, code }, request) => {
-        // console.log(request)
+      sendOTP: async ({ phoneNumber, code }, request) => {
+        const body = {
+          mobile: phoneNumber,
+          templateId: 123456,
+          parameters: [{ name: "Code", value: code }],
+        };
+        const res = await fetch(" https://api.sms.ir/v1/send/verify", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "text/plain",
+            "x-api-key": "7jzAvE6vYDeahwW1xTXoJsLNuwbibCN2VxZbfjJicTmNBXt1",
+          },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        console.log("data in otp", data);
         console.log(`successfully sent ${code} to ${phoneNumber}`);
       },
       signUpOnVerification: {

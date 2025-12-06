@@ -9,16 +9,16 @@ const Reserve = () => {
       <h2 className="font-bold md:text-4xl md:mb-4 text-2xl text-center flex items-center gap-4 justify-center">
         رزرو خودرو در <p className="text-amber-400"> اُتـــورِنت</p>
       </h2>
-      <div className="flex items-center justify-between mt-5 md:p-2">
-        <div className="flex items-center gap-1">
+      <div className="flex items-center justify-end mt-5 md:p-2">
+        {/* <div className="flex items-center gap-1">
           <Button variant={"outline_blue"}>پرطرفدار</Button>
           <Button variant={"outline_blue"}>لوکس</Button>
           <Button variant={"outline_blue"}>اقتصادی</Button>
-        </div>
+        </div> */}
         <Link href="/cars">
-          <div className="mr-auto flex items-center gap-2 text-sm md:text-base text-indigo-600 justify-end">
+          <div className="mr-auto flex items-center gap-2 text-sm md:text-base text-indigo-600 justify-end group">
             <p> مشاهده همه</p>
-            <ChevronLeft className="size-5" />
+            <ChevronLeft className="size-5 group-hover:-translate-x-1" />
           </div>
         </Link>
       </div>

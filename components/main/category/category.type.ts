@@ -5,4 +5,5 @@ export type CardCategoryProps = {
   img: StaticImageData;
   alt: string;
   text: string;
+  href: string;
 };

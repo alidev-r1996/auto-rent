@@ -5,9 +5,9 @@ import Crook from "@/public/assets/images/category/crook.png";
 import Cuv from "@/public/assets/images/category/cuv.png";
 
 export const carCategory = [
-  { id: 1, text: "سدان", alt: "sedan", img: Sedan, variant: "gray" },
+  { id: 1, text: "سدان", alt: "sedan", img: Sedan, variant: "gray", href: "/cars?type=Sedan" },
   // { id: 2, text: "اسپرت", alt: "sport", img: Sport, variant: "orange" },
-  { id: 3, text: "کوپه", alt: "coupe", img: Coupe, variant: "blue" },
-  { id: 4, text: "کروک", alt: "crook", img: Crook, variant: "black" },
-  { id: 5, text: "شاسی‌بلند", alt: "cuv", img: Cuv, variant: "white" },
+  { id: 3, text: "کوپه", alt: "coupe", img: Coupe, variant: "blue", href: "/cars?type=Coupe" },
+  { id: 4, text: "کروک", alt: "crook", img: Crook, variant: "black", href: "/cars?type=Crook" },
+  { id: 5, text: "شاسی‌بلند", alt: "cuv", img: Cuv, variant: "white", href: "/cars?type=SUV" },
 ];
