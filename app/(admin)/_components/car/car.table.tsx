@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { carTableHeader } from "../../_constant/car.constant";
 import { useRemoveCar } from "../../_hooks/car.hooks";
 import { CarTableProps } from "../../_types/car.types";
+import Link from "next/link";
 
 const CarTable: FC<CarTableProps> = ({ cars, info, theme = "dark" }) => {
   const { isPending, mutateAsync } = useRemoveCar();
@@ -37,7 +38,13 @@ const CarTable: FC<CarTableProps> = ({ cars, info, theme = "dark" }) => {
                   {i.availaibility[0]?.isBlocked ? "بلاک" : "در دسترس"}
                 </Badge>
               </Table.Col>
-              <Table.Col>
+              <Table.Col className="flex items-center gap-1">
+                <Link
+                  href={`/admin/car/${i.id}`}
+                  className="px-3 py-0.5  rounded bg-slate-100 border hover:bg-slate-200  border-slate-700 text-slate-700 cursor-pointer transition-all duration-300 active:scale-95 hover:scale-103"
+                >
+                  ویرایش
+                </Link>
                 <RemoveModal
                   title={i.name}
                   label="خودروی"

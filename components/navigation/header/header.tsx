@@ -49,10 +49,10 @@ const Header = () => {
           <DropdownMenuContent className="w-auto py-2 px-1">
             <Link
               onClick={() => setOpen(false)}
-              href={"/user"}
+              href={session?.user?.role == "User" ? "/user" : "/admin"}
               className="flex items-center gap-2 p-2 text-sm transition-colors duration-300 cursor-pointer hover:bg-slate-200 rounded-md"
             >
-              <IdCard /> مشاهده پروفایل
+              <IdCard /> مشاهده {session?.user?.role == "User" ? "پروفایل" : "داشبورد"}
             </Link>
             <DropdownMenuSeparator />
             <Logout className="text-xs! bg-transparent text-slate-800 hover:bg-rose-500 hover:text-white" />

@@ -1,6 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { CreateBlog, GetBlogs, RemoveBlog, UpdateBlogStatus } from "../_services/blog.service";
+import {
+  CreateBlog,
+  EditBlog,
+  GetBlogById,
+  GetBlogs,
+  RemoveBlog,
+  UpdateBlogStatus,
+} from "../_services/blog.service";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export function useGetBlogs(page: string) {
   const { data, isLoading, isError } = useQuery({
@@ -8,6 +16,30 @@ export function useGetBlogs(page: string) {
     queryFn: async () => await GetBlogs(page),
   });
   return { data, isLoading, isError };
+}
+
+export function useGetBlog(id: string) {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["adminBlog", id],
+    queryFn: async () => await GetBlogById(id),
+    enabled: !!id,
+  });
+  return { data, isLoading, isError };
+}
+
+export function useEditBlog() {
+  const [initialized, setInitialized] = useState(false);
+  const queryClient = useQueryClient();
+  const router = useRouter();
+  const { mutateAsync, isPending, isError } = useMutation({
+    mutationFn: async (blog: any) => await EditBlog(blog),
+    onSuccess: async () => {
+      queryClient.invalidateQueries({ queryKey: ["adminBlogs"] });
+      router.push("/admin/blog");
+      setInitialized(false);
+    },
+  });
+  return { mutateAsync, isPending, isError, initialized, setInitialized };
 }
 
 export function useUpdateBlogStatus(id: string) {

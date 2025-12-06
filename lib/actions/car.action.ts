@@ -132,7 +132,7 @@ export async function GetCarsWithFilter({
   const limitDefault = Number(limit) || 8;
   const skip = (Number(page) - 1) * limitDefault;
   const sortOrder: "asc" | "desc" = sort === "asc" ? "asc" : "desc";
-  const carType = type ;
+  const carType = type;
   return await prisma.$transaction(async tx => {
     const cars = await tx.car.findMany({
       where: {
@@ -149,6 +149,8 @@ export async function GetCarsWithFilter({
       include: {
         availaibility: {
           select: { isBlocked: true },
+          orderBy: { created_at: "desc" },
+          take: 1,
         },
         discount: {
           include: {
@@ -186,4 +188,51 @@ export async function GetCarsWithFilter({
       },
     };
   });
+}
+
+export async function EditCar(car: any) {
+  const {
+    name,
+    model,
+    brand,
+    type,
+    description,
+    mile_age,
+    capacity,
+    gear,
+    steering,
+    fuel,
+    price_day,
+    price_month,
+    price_garranty,
+    features,
+    images,
+    cover,
+    id,
+  } = car;
+  try {
+    return await prisma.car.update({
+      where: { id },
+      data: {
+        name,
+        model: Number(model),
+        brand,
+        type,
+        description,
+        mile_age: Number(mile_age),
+        capacity: Number(capacity),
+        gear,
+        steering,
+        fuel,
+        price_day,
+        price_month,
+        price_garranty,
+        features,
+        images,
+        cover,
+      },
+    });
+  } catch (error) {
+    return error;
+  }
 }

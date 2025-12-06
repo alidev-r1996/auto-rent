@@ -12,7 +12,8 @@ export const CardCategory: FC<CardCategoryProps> = ({ alt, img, variant, text, h
     black: "shadow-stone-500 bg-radial from-stone-500 from-20% to-stone-900",
   };
   return (
-    <Link href={href}
+    <Link
+      href={href}
       className={`rounded-full ${bgStyle[variant]} mx-auto p-2 relative size-40 md:size-70 px-4 flex items-center justify-center group cursor-pointer`}
     >
       <div className="relative rounded-full flex-1 p-2 group-hover:p-1 transtion-all duration-300 aspect-video">

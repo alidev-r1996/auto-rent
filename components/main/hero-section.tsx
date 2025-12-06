@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { CarFront, Headset } from "lucide-react";
 import HeroCar from "@/public/assets/images/car-hero.png";
 import HeroRoad from "@/public/assets/images/hero-road.png";
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -27,17 +28,21 @@ const HeroSection = () => {
             سرویس دهنده رزرو خودرو در ایران با کمترین زمان ممکن!
           </p>
           <div className="flex items-center gap-3">
-            <Button variant={"amber"} className="px-8 py-5 md:text-base !important">
-              <CarFront className="size-6" />
-              رزرو خودرو
-            </Button>
-            <Button
-              variant={"outline"}
-              className="px-8 py-5 md:text-base text-white hover:text-slate-800 !important"
-            >
-              <Headset className="size-5" />
-              تماس با ما
-            </Button>
+            <Link href="/cars">
+              <Button variant={"amber"} className="px-8 py-5 md:text-base !important">
+                <CarFront className="size-6" />
+                رزرو خودرو
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button
+                variant={"outline"}
+                className="px-8 py-5 md:text-base text-white hover:text-slate-800 !important"
+              >
+                <Headset className="size-5" />
+                تماس با ما
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="md:w-1/2 w-full h-120 relative -translate-y-10 md:translate-y-0">

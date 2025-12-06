@@ -30,8 +30,10 @@ export default function UploadFile({ img, onChange, title, label }: UploadFilePr
           <Image src={img} alt=" " fill className="object-fill rounded border shadow" />
         </div>
         <div className="flex flex-col md:flex-row">
-          <p className="text-slate-500 text-xs">name: {imgInfo.name}</p>
-          <p className="text-slate-500 text-xs">size: {(imgInfo.size / 1024).toFixed(2)} KB</p>
+          {imgInfo && <p className="text-slate-500 text-xs">name: {imgInfo.name}</p>}
+          {imgInfo && (
+            <p className="text-slate-500 text-xs">size: {(imgInfo.size / 1024).toFixed(2)} KB</p>
+          )}
         </div>
         <p className="absolute -top-3 right-4 text-[11px] text-slate-400 bg-white px-1 py-0.5">
           {label}

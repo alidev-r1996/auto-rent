@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { UpdateBlogstatus } from "@/lib/actions/blog.action";
-import { CreateCar, GetCars, RemoveCarById } from "@/lib/actions/car.action";
+import { CreateCar, EditCar, GetCars, RemoveCarById } from "@/lib/actions/car.action";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -39,6 +39,17 @@ export async function POST(req: Request) {
   try {
     const newCar = await CreateCar(car);
     return NextResponse.json({ status: 201, message: "success", car: newCar });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ status: 500, message: "Internal Server Error", car: null });
+  }
+}
+
+export async function PUT(req: Request) {
+  const { car } = await req.json();
+  try {
+    const editCar = await EditCar(car);
+    return NextResponse.json({ status: 201, message: "success", car: editCar });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ status: 500, message: "Internal Server Error", car: null });

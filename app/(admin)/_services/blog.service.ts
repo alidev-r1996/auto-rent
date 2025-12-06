@@ -35,3 +35,21 @@ export async function CreateBlog(blog) {
     return err;
   }
 }
+
+export async function GetBlogById(id: string) {
+  try {
+    const res = await AdminAxios.get(`/blog/${id}`);
+    return await res.data.blog;
+  } catch (err) {
+    return err;
+  }
+}
+
+export async function EditBlog(blog) {
+  try {
+    const res = await AdminAxios.put("/blog", { blog });
+    return await res.data;
+  } catch (err) {
+    return err;
+  }
+}

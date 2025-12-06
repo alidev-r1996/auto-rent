@@ -57,3 +57,28 @@ export async function POST(req: Request) {
     return NextResponse.json({ status: 500, message: "Internal Server Error" });
   }
 }
+
+export async function PUT(req: Request) {
+  try {
+    const {
+      blog: { content, reading_time, slug, title, cover_img, id },
+    } = await req.json();
+
+    await prisma.blog.update({
+      where: { id },
+      data: {
+        reading_time,
+        title,
+        slug,
+        cover_img,
+        content: JSON.stringify(content),
+        author_id: "wptQyUkNrTJkCW75edCxT5YIPGBLSoTl",
+      },
+    });
+
+    return NextResponse.json({ status: 201, message: "success" });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ status: 500, message: "Internal Server Error" });
+  }
+}

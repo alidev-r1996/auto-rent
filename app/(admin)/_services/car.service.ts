@@ -27,10 +27,28 @@ export async function CreateCar(car) {
   }
 }
 
+export async function EditCar(car) {
+  try {
+    const res = await AdminAxios.put("/car", { car });
+    return await res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
 export async function GetAllCars() {
   try {
     const res = await AdminAxios.get(`/car/all`);
     return await res.data.cars;
+  } catch (err) {
+    return err;
+  }
+}
+
+export async function GetCarById(id: string) {
+  try {
+    const res = await AdminAxios.get(`/car/edit/${id}`);
+    return await res.data.car;
   } catch (err) {
     return err;
   }
