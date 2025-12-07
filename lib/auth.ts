@@ -31,7 +31,7 @@ export const auth = betterAuth({
           headers: {
             "Content-Type": "application/json",
             Accept: "text/plain",
-            "x-api-key": "7jzAvE6vYDeahwW1xTXoJsLNuwbibCN2VxZbfjJicTmNBXt1",
+            "x-api-key": process.env.SMS_X_API_KEY as string,
           },
           body: JSON.stringify(body),
         });

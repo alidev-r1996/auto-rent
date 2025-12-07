@@ -4,8 +4,8 @@ import { FC } from "react";
 import RemoveModal from "@/components/common/remove.modal";
 import { Badge } from "@/components/ui/badge";
 import { useRemoveChat } from "../../_hooks/support.hook";
-import { supportTablHeader } from "../../admin/support/_constant/support.constant";
 import { SupportTableProps } from "../../_types/support.type";
+import { supportTablHeader } from "../../_constant/support.constant";
 
 const SupportTable: FC<SupportTableProps> = ({ chats, info, theme }) => {
   const { isPending, mutateAsync } = useRemoveChat();
