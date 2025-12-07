@@ -47,7 +47,7 @@ export async function RemoveAvailaibilityById(id: string) {
 export async function CreateAvailaibility(availaibility: any) {
   const { start_date, end_date, reason, car_id, isBlocked } = availaibility;
   try {
-     await prisma.availability.create({
+    await prisma.availability.create({
       data: {
         start_date,
         end_date,
