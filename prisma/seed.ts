@@ -268,7 +268,6 @@ export async function seed() {
   await prisma.blog.createMany({
     data: [
       {
-        id: "cmid5w613000f8t8o2ggjpj5m",
         title: "مرسدس بنز s-class اوج لوکس‌سواری مدرن",
         slug: "mercedes-s-class-2025",
         content:
@@ -280,7 +279,6 @@ export async function seed() {
         updated_at: "2025-11-24T13:07:31.283Z",
       },
       {
-        id: "cmid5z4e5000h8t8ogia1pq8l",
         title: "پورشه 911 توربو S هنر مهندسی اسپرت",
         slug: "poche-911-s-turbo",
         content:
@@ -292,7 +290,6 @@ export async function seed() {
         updated_at: "2025-11-24T13:09:49.181Z",
       },
       {
-        id: "cmid62jbl000j8t8oasg8nfan",
         title: "بی‌ام‌و X7  شاسی‌بلند اشرافی با روح اسپرت",
         slug: "bmw-x7",
         content:
@@ -304,7 +301,6 @@ export async function seed() {
         updated_at: "2025-11-24T13:12:28.497Z",
       },
       {
-        id: "cmid77doa000p8t8ousz2c75a",
         title: "لامبورگینی اوروس؛ هیولای لوکس دنیای شاسی‌بلند‌ها",
         slug: "lamburgini-urus",
         content:
@@ -316,7 +312,6 @@ export async function seed() {
         updated_at: "2025-11-24T13:44:14.023Z",
       },
       {
-        id: "cmid7u60c000r8t8o1hd85jxd",
         title: "لکسوس LFA  شاهکار ژاپنی که افسانه شد",
         slug: "lexus-lfa",
         content:
