@@ -16,11 +16,20 @@ export default async function middleware(req: NextRequest) {
     }
   }
 
+  if (pathname.startsWith("/user")) {
+    if (!session) {
+      return NextResponse.redirect(new URL("/login", nextUrl));
+    }
+    if (session.user.role == "Admin") {
+      return NextResponse.redirect(new URL("/admin", nextUrl));
+    }
+  }
+
   if (pathname.startsWith("/admin")) {
     if (!session) {
       return NextResponse.redirect(new URL("/login", nextUrl));
     }
-    if (session.user.role !== "ADMIN") {
+    if (session.user.role !== "Admin") {
       return NextResponse.redirect(new URL("/user", nextUrl));
     }
   }
