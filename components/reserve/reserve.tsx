@@ -1,10 +1,8 @@
-"use client"
+
 import { ChevronLeft } from "lucide-react";
 // import { Button } from "../ui/button";
-const CarList = dynamic(() => import("./carlist"), { ssr: false, loading: () => <Loading /> });
 import Link from "next/link";
-import Loading from "../ui/loading";
-import dynamic from "next/dynamic";
+import CarList from "./carlist";
 
 const Reserve = () => {
   return (
