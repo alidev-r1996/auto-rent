@@ -1,7 +1,7 @@
 "use client";
 import { EnglishDigits, PersianDigits } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Activity, FC, FormEvent, useEffect, useRef, useState } from "react";
+import { FC, FormEvent, useEffect, useRef, useState } from "react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { Clock4 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -122,9 +122,7 @@ const CheckOTP: FC<checkOTPProps> = ({ mobile, onBack }) => {
           </InputOTPGroup>
         </InputOTP>
       </div>
-
-      <Activity mode={!retry ? "visible" : "hidden"}>
-        <div className="flex items-center gap-1  text-slate-400 ml-auto text-xs">
+        <div className={`${!retry ? "flex": "hidden"}  items-center gap-1  text-slate-400 ml-auto text-xs`}>
           <Clock4 className="size-4" />
           <p>
             {PersianDigits(String(minutes).padStart(2, "0"))}:
@@ -132,10 +130,8 @@ const CheckOTP: FC<checkOTPProps> = ({ mobile, onBack }) => {
           </p>
           <p>تا دریافت کد مجدد</p>
         </div>
-      </Activity>
 
-      <Activity mode={retry ? "visible" : "hidden"}>
-        <div className="flex items-center justify-between p-1 w-full">
+        <div className={`${retry ? "flex": "hidden"} flex items-center justify-between p-1 w-full`}>
           <button
             type="button"
             onClick={retryCodeHandler}
@@ -151,7 +147,6 @@ const CheckOTP: FC<checkOTPProps> = ({ mobile, onBack }) => {
             ویرایش شماره
           </button>
         </div>
-      </Activity>
 
       <Button
         type="submit"

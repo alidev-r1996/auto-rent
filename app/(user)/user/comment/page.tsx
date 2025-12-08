@@ -8,7 +8,7 @@ import { useGetComment } from "../../_hook/comment.hook";
 import Loading from "@/components/ui/loading";
 
 const Comment = () => {
-  const { data, isLoading, isError } = useGetComment();
+  const { data, isLoading } = useGetComment();
 
   if (isLoading) {
     return (

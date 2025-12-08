@@ -5,7 +5,6 @@ import Stepper from "./stepper";
 import SelectForm from "./select/select-form";
 import Info from "./info/info";
 import Payment from "./payment/payment";
-import { isActiveDiscount } from "@/lib/utils";
 
 type CheckoutFormProps = {
   price_day: string | number;

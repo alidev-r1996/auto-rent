@@ -1,6 +1,6 @@
 import { PersianDigits } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
-import React, { Activity, FC, useState } from "react";
+import React, { FC, useState } from "react";
 
 type DropDownInputProps = {
   label: string;
@@ -36,8 +36,7 @@ const DropDownInput: FC<DropDownInputProps> = ({
       <p className="absolute peer-placeholder-shown:hidden text-[10px] bg-white px-1 py-1 -top-3 right-8">
         {label}
       </p>
-      <Activity mode={show ? "visible" : "hidden"}>
-        <div className="flex flex-col items-center w-full absolute z-10 left-0 top-[115%] border border-slate-200 bg-white text-xs rounded-lg shadow-xs">
+        <div className={`${show? "flex": "hidden"} flex-col items-center w-full absolute z-10 left-0 top-[115%] border border-slate-200 bg-white text-xs rounded-lg shadow-xs`}>
           {options.map((i, index) => (
             <p
               key={index}
@@ -48,7 +47,6 @@ const DropDownInput: FC<DropDownInputProps> = ({
             </p>
           ))}
         </div>
-      </Activity>
     </div>
   );
 };

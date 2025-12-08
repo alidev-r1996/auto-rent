@@ -1,7 +1,7 @@
 import { GetAllCar } from "@/lib/actions/car.action";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     const cars = await GetAllCar();
     return NextResponse.json({ status: 200, cars, message: "success" });

@@ -37,7 +37,7 @@ const AdminCarEditor = () => {
   const [slider3, setSlider3] = useState("");
   const [slider4, setSlider4] = useState("");
   const [features, setFeatures] = useState(["کروز کنترل"]);
-  const { isError, isPending, mutateAsync } = useAddCar();
+  const { isPending, mutateAsync } = useAddCar();
 
   const registerCarHandler = async (e: React.FormEvent) => {
     e.preventDefault();

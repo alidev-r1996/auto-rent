@@ -5,7 +5,7 @@ export async function POST(req: Request) {
   const { car_id = "", user_id, parent_id = "", text, blog_id = "" } = await req.json();
 
   try {
-    const comment = await prisma.comment.create({
+    await prisma.comment.create({
       data: {
         car_id,
         user_id,
@@ -19,6 +19,7 @@ export async function POST(req: Request) {
       message: "پیام شما با موفقیت ثبت شد، پس از بررسی و تأیید نمایش داده خواهد شد!",
     });
   } catch (err) {
+    console.log(err)
     return NextResponse.json({
       status: "failed",
       message: "خطایی رخ داده است، لطفا مجدداً تلاش کنید!",

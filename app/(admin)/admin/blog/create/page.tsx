@@ -1,6 +1,6 @@
-"use client"; // این خط مهم است
+"use client";
 
-import CreateBlogClient from "./client"; 
+import CreateBlogClient from "./client";
 export default function Page() {
   return <CreateBlogClient />;
 }

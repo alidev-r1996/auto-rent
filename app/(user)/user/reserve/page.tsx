@@ -8,7 +8,7 @@ import { useGetReserve } from "../../_hook/reserve.hook";
 import Loading from "@/components/ui/loading";
 
 const Reserve = () => {
-  const { data, isLoading, isError } = useGetReserve();
+  const { data, isLoading } = useGetReserve();
 
   if (isLoading) {
     return (

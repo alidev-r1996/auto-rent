@@ -1,7 +1,7 @@
 "use client";
 
 import { CarFront, Check, CreditCard, FileCheck, IdCard } from "lucide-react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 const stepItems = [
   {

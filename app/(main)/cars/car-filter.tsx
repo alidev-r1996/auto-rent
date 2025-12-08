@@ -31,7 +31,7 @@ const CarFilter = ({ className }: { className?: string }) => {
   const [brandType, setBrandType] = useState<string[]>([]);
   const [carPrice, setCarPrice] = useState<[number, number]>([2000000, 60000000]);
 
-  const CarTypeHandler = (e: React.ChangeEvent<HTMLInputElement>, label: string, query: string) => {
+  const CarTypeHandler = (e: React.ChangeEvent<HTMLInputElement>, label: string) => {
     const { checked, value } = e.target;
 
     if (label === "type") {

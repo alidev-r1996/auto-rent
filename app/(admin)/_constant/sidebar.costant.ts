@@ -1,6 +1,6 @@
 import {
   CreditCard,
-  Headset,
+  // Headset,
   IdCard,
   LogOut,
   MessageSquareMore,

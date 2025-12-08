@@ -2,7 +2,7 @@
 
 import { PersianDigits } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
-import { Activity, FC, useState } from "react";
+import {FC, useState } from "react";
 
 type DropDownProps = {
   title: string;
@@ -25,8 +25,7 @@ const DropDown: FC<DropDownProps> = ({ options, title, className, icon }) => {
         <p>{PersianDigits(`${titleHead}`)} </p>
       </div>
       <ChevronDown className={`${show && "rotate-180"} size-4 transition-all duration-200`} />
-      <Activity mode={show ? "visible" : "hidden"}>
-        <div className="flex flex-col items-center w-full absolute z-10 left-0 top-[115%] border border-slate-200 bg-white text-xs rounded-lg shadow-xs">
+        <div className={`${show? "flex": "hidden"}  flex-col items-center w-full absolute z-10 left-0 top-[115%] border border-slate-200 bg-white text-xs rounded-lg shadow-xs`}>
           {options.map((i, index) => (
             <p
               key={index}
@@ -37,7 +36,6 @@ const DropDown: FC<DropDownProps> = ({ options, title, className, icon }) => {
             </p>
           ))}
         </div>
-      </Activity>
     </div>
   );
 };

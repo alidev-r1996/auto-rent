@@ -8,7 +8,7 @@ import UploadFile from "@/components/ui/uploader";
 import { EnglishDigits, PersianDigits } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useAddCar, useEditCar, useGetCar } from "../../../_hooks/car.hooks";
+import { useEditCar, useGetCar } from "../../../_hooks/car.hooks";
 import {
   CarFuelOptions,
   CarGearOptions,
@@ -37,7 +37,7 @@ const AdminCarEditor = ({ id }) => {
   const [slider3, setSlider3] = useState("");
   const [slider4, setSlider4] = useState("");
   const [features, setFeatures] = useState(["کروز کنترل"]);
-  const { isError, isPending, mutateAsync, initialized, setInitialized } = useEditCar();
+  const { isPending, mutateAsync, initialized, setInitialized } = useEditCar();
   const { isLoading, data } = useGetCar(id);
 
   const registerCarHandler = async (e: React.FormEvent) => {

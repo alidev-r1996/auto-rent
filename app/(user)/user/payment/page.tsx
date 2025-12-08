@@ -6,7 +6,7 @@ import { useGetPayment } from "../../_hook/payment.hook";
 import Loading from "@/components/ui/loading";
 
 const Payment = () => {
-  const { data, isLoading, isError } = useGetPayment();
+  const { data, isLoading } = useGetPayment();
 
   if (isLoading) {
     return (

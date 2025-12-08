@@ -16,8 +16,8 @@ const AdminDiscount = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [cars, setCars] = useState<any>([]);
-  const { isPending, mutateAsync, isError } = useAddDiscount();
-  const { data, isError: errorCar, isLoading } = useGetAllCars();
+  const { isPending, mutateAsync} = useAddDiscount();
+  const { data} = useGetAllCars();
 
   const registerCarHandler = async (e: React.FormEvent) => {
     e.preventDefault();
