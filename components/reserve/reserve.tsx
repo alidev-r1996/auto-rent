@@ -4,7 +4,9 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import CarList from "./carlist";
 
-const Reserve = () => {
+const Reserve = async() => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cars/main`, { cache: "no-store" });
+  const { cars } = await res.json();
   return (
     <section className="max-w-[1690px] flex flex-col md:gap-8 mx-auto md:p-8 gap-2 p-2 md:my-8">
       <h2 className="font-bold md:text-4xl md:mb-4 text-2xl text-center flex items-center gap-4 justify-center">
@@ -23,7 +25,7 @@ const Reserve = () => {
           </div>
         </Link>
       </div>
-      <CarList />
+      <CarList cars={cars}/>
     </section>
   );
 };
