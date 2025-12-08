@@ -20,7 +20,7 @@ export const auth = betterAuth({
   plugins: [
     phoneNumber({
       expiresIn: 3000,
-      sendOTP: async ({ phoneNumber, code }, request) => {
+      sendOTP: async ({ phoneNumber, code }) => {
         const body = {
           mobile: phoneNumber,
           templateId: 123456,

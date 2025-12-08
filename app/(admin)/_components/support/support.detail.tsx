@@ -8,7 +8,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { insuranceTypeMaker, locationMaker, PersianCurrency, PersianDigits } from "@/lib/utils";
-import { FC } from "react";
 
 const PaymentDetail = ({ details, title, receiverInfo, insurance }) => {
   const { start_time, end_time, receive_location, return_location } = details;

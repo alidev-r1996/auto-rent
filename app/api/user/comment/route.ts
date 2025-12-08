@@ -4,7 +4,7 @@ import { RemoveCommentById } from "@/lib/actions/comment.action";
 import { GetUserComment } from "@/lib/actions/user/comment.action";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
+export async function GET() {
   const comment = await GetUserComment();
   return NextResponse.json({ status: "success", message: "user created!", comment });
 }

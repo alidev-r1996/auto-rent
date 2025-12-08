@@ -2,7 +2,7 @@
 
 import { PaginateMaker, PersianDigits } from "@/lib/utils";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { memo, useMemo } from "react";
+import { useMemo } from "react";
 import { BiChevronRight } from "react-icons/bi";
 
 type PaginateProps = {

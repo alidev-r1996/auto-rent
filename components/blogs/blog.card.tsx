@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { BlogCardProps } from "./blog.type";
 
-const BlogCard: FC<BlogCardProps> = ({ id, cover_img, content, title, slug, reading_time }) => {
+const BlogCard: FC<BlogCardProps> = ({ cover_img, content, title, slug, reading_time }) => {
   return (
     <div className="flex flex-col gap-4 p-4 bg-white shadow rounded-xl group cursor-pointer">
       <div className="relative w-full aspect-video rounded-md overflow-hidden">
