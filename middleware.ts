@@ -6,11 +6,9 @@ import { headers } from "next/headers";
 export default async function middleware(req: NextRequest) {
   const { nextUrl } = req;
   const pathname = nextUrl.pathname;
-   const session = await auth.api.getSession({
-        headers: await headers()
-    })
-
-
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   if (pathname.startsWith("/reserve")) {
     if (!session) {
