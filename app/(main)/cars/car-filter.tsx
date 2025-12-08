@@ -84,7 +84,7 @@ const CarFilter = ({ className }: { className?: string }) => {
                   id={i.query}
                   name="carType"
                   value={i.query}
-                  onChange={e => CarTypeHandler(e, "brand", i.query)}
+                  onChange={e => CarTypeHandler(e, "brand")}
                   className="cursor-pointer"
                 />
                 <p>{i.title}</p>
@@ -106,7 +106,7 @@ const CarFilter = ({ className }: { className?: string }) => {
                   id={i.query}
                   name="brandType"
                   value={i.query}
-                  onChange={e => CarTypeHandler(e, "type", i.query)}
+                  onChange={e => CarTypeHandler(e, "type")}
                   className="cursor-pointer"
                 />
                 <p>{i.title}</p>
