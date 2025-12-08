@@ -44,7 +44,7 @@ const CheckOTP: FC<checkOTPProps> = ({ mobile, onBack }) => {
     if (error) {
       console.log(error, "error");
     }
-    console.log(data, "data");
+    // console.log(data, "data");
   };
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const CheckOTP: FC<checkOTPProps> = ({ mobile, onBack }) => {
           setSeconds(59);
         }
       }
-    }, 100);
+    }, 1000);
     return () => clearInterval(timer);
   }, [seconds, minutes]);
 
