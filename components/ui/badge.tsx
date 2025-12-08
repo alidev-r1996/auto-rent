@@ -18,7 +18,7 @@ const badgeVariants = cva(
         emerald: "bg-emerald-100 text-emerald-500 border-emerald-300",
         slate: "bg-slate-100 text-slate-500 border border-slate-300",
         blue: "bg-blue-600 text-white hover:bg-blue-700",
-        rose: "bg-rose-100 text-rose-500 border border-rose-300"
+        rose: "bg-rose-100 text-rose-500 border border-rose-300",
       },
     },
     defaultVariants: {

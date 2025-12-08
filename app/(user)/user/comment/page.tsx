@@ -19,7 +19,7 @@ const Comment = () => {
     );
   }
 
-  console.log(data)
+  console.log(data);
 
   return (
     <div className="bg-white border border-slate-200 shadow-sm rounded-2xl p-4 flex flex-col gap-4">

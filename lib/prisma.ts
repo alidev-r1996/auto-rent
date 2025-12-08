@@ -1,19 +1,16 @@
-import { PrismaPg } from '@prisma/adapter-pg';
-import { PrismaClient } from '@/lib/generated/prisma/client'
+// lib/prisma.ts
+import { PrismaClient } from "@prisma/client";
 
-
-const globalForPrisma = global as unknown as {
-    prisma: PrismaClient
+declare global {
+  // allow global var in dev to persist across HMR
+  // eslint-disable-next-line no-var
+  var __prisma__: PrismaClient | undefined;
 }
 
-const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL,
-})
+const prisma = global.__prisma__ ?? new PrismaClient();
 
-const prisma = globalForPrisma.prisma || new PrismaClient({
-  adapter,
-})
+if (process.env.NODE_ENV === "development") {
+  global.__prisma__ = prisma;
+}
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
-
-export default prisma
+export default prisma;

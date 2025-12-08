@@ -1,4 +1,3 @@
-
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import BlogCard from "./blog.card";

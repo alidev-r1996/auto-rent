@@ -18,18 +18,6 @@ export async function GET() {
         orderBy: { created_at: "desc" },
       },
     },
-    omit: {
-      description: true,
-      mile_age: true,
-      capacity: true,
-      gear: true,
-      steering: true,
-      fuel: true,
-      features: true,
-      images: true,
-      created_at: true,
-      updated_at: true,
-    },
     take: 6,
   });
 

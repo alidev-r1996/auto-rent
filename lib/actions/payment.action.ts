@@ -21,7 +21,6 @@ export async function GetPayments({ page, limit }: { page: string; limit: string
         },
         payment_detail: true,
       },
-      omit: { user_id: true, order_id: true, method: true },
       orderBy: { created_at: "desc" },
     });
 

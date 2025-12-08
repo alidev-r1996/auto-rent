@@ -9,7 +9,6 @@ export async function GetAvailaibility(page) {
   }
 }
 
-
 export async function RemoveInventory(inventoryId) {
   try {
     const res = await AdminAxios.delete("/inventory", { data: { id: inventoryId } });

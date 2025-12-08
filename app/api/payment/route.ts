@@ -123,7 +123,7 @@ export async function POST(request: Request) {
             order_id: order.id,
           },
         });
-        revalidateTag("cars", "max");
+        revalidateTag("cars");
       });
       return NextResponse.json({
         message: "order created successfully",

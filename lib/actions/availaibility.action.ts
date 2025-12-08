@@ -38,7 +38,7 @@ export async function GetAavailaibility({ page, limit }: { page: string; limit: 
 export async function RemoveAvailaibilityById(id: string) {
   const availaibility = await prisma.availability.findUnique({ where: { id } });
   if (!availaibility) throw new Error("availaibility not found");
-  revalidateTag("cars", "max");
+  revalidateTag("cars");
   return await prisma.availability.delete({
     where: { id },
   });
@@ -56,7 +56,7 @@ export async function CreateAvailaibility(availaibility: any) {
         isBlocked,
       },
     });
-    revalidateTag("cars", "max");
+    revalidateTag("cars");
   } catch (error) {
     return error;
   }

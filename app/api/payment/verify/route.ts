@@ -38,7 +38,7 @@ export async function GET(req: Request) {
         where: { car_id: order?.car_id, start_date: order?.start_date },
       }),
     ]);
-    revalidateTag("cars", "max");
+    revalidateTag("cars");
     return NextResponse.redirect(
       `${process.env.BETTER_AUTH_URL}/reserve/payment?status=failed&reason=user_cancelled&authority=${authority}&orderId=${order?.order_number}`
     );
@@ -83,7 +83,7 @@ export async function GET(req: Request) {
           where: { car_id: order?.car_id, start_date: order?.start_date },
         }),
       ]);
-      revalidateTag("cars", "max");
+      revalidateTag("cars");
       return NextResponse.redirect(
         `${process.env.BETTER_AUTH_URL}/reserve/payment?status=failed&reason=verify_failed&authority=${authority}&orderId=${order?.order_number}`
       );

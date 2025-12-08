@@ -1,4 +1,3 @@
-
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import Link from "next/link";

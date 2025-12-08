@@ -26,13 +26,6 @@ export async function GetComments({ page, limit }: { page: string; limit: string
           },
         },
       },
-      omit: {
-        user_id: true,
-        blog_id: true,
-        car_id: true,
-        parent_id: true,
-        rating: true,
-      },
       orderBy: { created_at: "desc" },
     });
 

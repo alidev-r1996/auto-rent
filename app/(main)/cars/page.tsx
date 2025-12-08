@@ -1,7 +1,7 @@
 import Image from "next/image";
 import BlogImg from "@/public/assets/images/contactus.png";
 import Paginate from "@/components/ui/paginate";
-import { SlidersHorizontal} from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
 import {
   Sheet,
   SheetContent,

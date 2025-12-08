@@ -28,7 +28,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({
   guarranty,
   carId,
   userId,
-  discount
+  discount,
 }) => {
   const [step, setStep] = useState(1);
   return (

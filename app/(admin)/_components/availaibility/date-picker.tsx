@@ -6,7 +6,7 @@ import { CalendarDays } from "lucide-react";
 import { PersianDate } from "@/lib/utils";
 import DatePicker from "@/components/ui/date-picker";
 
-const DatePickerUi = ({date, setDate, label}: {date: any, setDate: any, label: string}) => {
+const DatePickerUi = ({ date, setDate, label }: { date: any; setDate: any; label: string }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>

@@ -42,7 +42,7 @@ const CommentCard = comment => {
         >
           <Button className="bg-white border border-rose-300 text-xs! h-8 hover:border-none text-rose-500 hover:text-white px-5 rounded hover:bg-rose-600">
             <span className="md:block hidden">حذف دیدگاه</span>
-            <Trash2 className="block md:hidden"/>
+            <Trash2 className="block md:hidden" />
           </Button>
         </RemoveModal>
       </div>

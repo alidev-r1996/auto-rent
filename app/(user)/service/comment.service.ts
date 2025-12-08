@@ -17,4 +17,3 @@ export async function RemoveComment(commentId) {
     return err;
   }
 }
-

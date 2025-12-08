@@ -14,11 +14,11 @@ const SuccessPayment = ({ refId, orderId }) => {
       <div className="flex flex-col items-center gap-4 bg-slate-100 rounded-md p-3 mt-2">
         <div className="flex flex-col md:flex-row items-center gap-1 md:gap-3">
           <p className="text-sm text-emerald-600 text-center"> شناسه پرداخت :</p>
-        <p className="text-sm text-emerald-600 text-center font-bold">{PersianDigits(refId)}</p>
+          <p className="text-sm text-emerald-600 text-center font-bold">{PersianDigits(refId)}</p>
         </div>
         <div className="flex flex-col md:flex-row items-center gap-1 md:gap-3">
           <p className="text-sm text-emerald-600 text-center"> شماره سفارش :</p>
-        <p className="text-sm text-emerald-600 text-center font-bold">{PersianDigits(orderId)}</p>
+          <p className="text-sm text-emerald-600 text-center font-bold">{PersianDigits(orderId)}</p>
         </div>
       </div>
 
