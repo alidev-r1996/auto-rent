@@ -122,31 +122,33 @@ const CheckOTP: FC<checkOTPProps> = ({ mobile, onBack }) => {
           </InputOTPGroup>
         </InputOTP>
       </div>
-        <div className={`${!retry ? "flex": "hidden"}  items-center gap-1  text-slate-400 ml-auto text-xs`}>
-          <Clock4 className="size-4" />
-          <p>
-            {PersianDigits(String(minutes).padStart(2, "0"))}:
-            {PersianDigits(String(seconds).padStart(2, "0"))}
-          </p>
-          <p>تا دریافت کد مجدد</p>
-        </div>
+      <div
+        className={`${!retry ? "flex" : "hidden"}  items-center gap-1  text-slate-400 ml-auto text-xs`}
+      >
+        <Clock4 className="size-4" />
+        <p>
+          {PersianDigits(String(minutes).padStart(2, "0"))}:
+          {PersianDigits(String(seconds).padStart(2, "0"))}
+        </p>
+        <p>تا دریافت کد مجدد</p>
+      </div>
 
-        <div className={`${retry ? "flex": "hidden"} flex items-center justify-between p-1 w-full`}>
-          <button
-            type="button"
-            onClick={retryCodeHandler}
-            className="text-[11px] px-2 py-1 bg-indigo-500 text-white rounded cursor-pointer hover:bg-indigo-600 hover:scale-105 active:scale-95 transition-all duration-300"
-          >
-            درخواست مجدد کد
-          </button>
-          <button
-            type="button"
-            onClick={() => onBack()}
-            className="text-[11px] px-2 py-1 text-slate-300 rounded hover:scale-105 active:scale-95 transition-all duration-300 hover:bg-amber-600 hover:text-white cursor-pointer"
-          >
-            ویرایش شماره
-          </button>
-        </div>
+      <div className={`${retry ? "flex" : "hidden"} flex items-center justify-between p-1 w-full`}>
+        <button
+          type="button"
+          onClick={retryCodeHandler}
+          className="text-[11px] px-2 py-1 bg-indigo-500 text-white rounded cursor-pointer hover:bg-indigo-600 hover:scale-105 active:scale-95 transition-all duration-300"
+        >
+          درخواست مجدد کد
+        </button>
+        <button
+          type="button"
+          onClick={() => onBack()}
+          className="text-[11px] px-2 py-1 text-slate-300 rounded hover:scale-105 active:scale-95 transition-all duration-300 hover:bg-amber-600 hover:text-white cursor-pointer"
+        >
+          ویرایش شماره
+        </button>
+      </div>
 
       <Button
         type="submit"

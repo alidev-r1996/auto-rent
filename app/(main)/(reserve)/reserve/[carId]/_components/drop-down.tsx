@@ -36,17 +36,19 @@ const DropDownInput: FC<DropDownInputProps> = ({
       <p className="absolute peer-placeholder-shown:hidden text-[10px] bg-white px-1 py-1 -top-3 right-8">
         {label}
       </p>
-        <div className={`${show? "flex": "hidden"} flex-col items-center w-full absolute z-10 left-0 top-[115%] border border-slate-200 bg-white text-xs rounded-lg shadow-xs`}>
-          {options.map((i, index) => (
-            <p
-              key={index}
-              onClick={() => onChange(i.value)}
-              className="p-2.5 text-center w-full transition-colors duration-300 cursor-pointer hover:bg-slate-100 last:border-none border-b border-dotted border-b-slate-300"
-            >
-              {PersianDigits(i.label)}
-            </p>
-          ))}
-        </div>
+      <div
+        className={`${show ? "flex" : "hidden"} flex-col items-center w-full absolute z-10 left-0 top-[115%] border border-slate-200 bg-white text-xs rounded-lg shadow-xs`}
+      >
+        {options.map((i, index) => (
+          <p
+            key={index}
+            onClick={() => onChange(i.value)}
+            className="p-2.5 text-center w-full transition-colors duration-300 cursor-pointer hover:bg-slate-100 last:border-none border-b border-dotted border-b-slate-300"
+          >
+            {PersianDigits(i.label)}
+          </p>
+        ))}
+      </div>
     </div>
   );
 };

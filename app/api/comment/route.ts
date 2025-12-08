@@ -19,7 +19,7 @@ export async function POST(req: Request) {
       message: "پیام شما با موفقیت ثبت شد، پس از بررسی و تأیید نمایش داده خواهد شد!",
     });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return NextResponse.json({
       status: "failed",
       message: "خطایی رخ داده است، لطفا مجدداً تلاش کنید!",

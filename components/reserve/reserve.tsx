@@ -1,10 +1,9 @@
-
 import { ChevronLeft } from "lucide-react";
 // import { Button } from "../ui/button";
 import Link from "next/link";
 import CarList from "./carlist";
 
-const Reserve = async() => {
+const Reserve = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cars/main`, { cache: "no-store" });
   const { cars } = await res.json();
   return (
@@ -25,7 +24,7 @@ const Reserve = async() => {
           </div>
         </Link>
       </div>
-      <CarList cars={cars}/>
+      <CarList cars={cars} />
     </section>
   );
 };

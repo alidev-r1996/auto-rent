@@ -89,7 +89,7 @@ export async function GET(req: Request) {
       );
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return NextResponse.redirect(
       `${process.env.BETTER_AUTH_URL}/reserve/payment?status=failed&reason=server_error&authority=${authority}&orderId=${order?.order_number}`
     );
