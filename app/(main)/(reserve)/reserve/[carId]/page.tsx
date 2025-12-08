@@ -1,9 +1,8 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { CarType } from "@/app/(main)/cars/[carId]/_components/car.type";
 import { headers } from "next/headers";
 import CheckoutForm from "./_components/checkout-form";
 import { auth } from "@/lib/auth";
-import prisma from "@/lib/prisma";
 
 const FaqPage = async ({ params }: { params: Promise<{ [index: string]: string }> }) => {
   const { carId } = await params;
@@ -16,21 +15,6 @@ const FaqPage = async ({ params }: { params: Promise<{ [index: string]: string }
     headers: await headers(),
   });
 
-  const user = await prisma.user.findUnique({
-    where: { id: session?.user.id },
-    include: {
-      profile: {
-        select: {
-          address: true,
-          national_id: true,
-        },
-      },
-    },
-  });
-
-  if (!user?.profile) {
-    redirect("/user");
-  }
 
   return (
     <CheckoutForm

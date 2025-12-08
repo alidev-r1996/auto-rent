@@ -1,13 +1,12 @@
 // middleware.ts
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "./lib/auth";
-import { headers } from "next/headers";
 
 export default async function middleware(req: NextRequest) {
   const { nextUrl } = req;
   const pathname = nextUrl.pathname;
   const session = await auth.api.getSession({
-    headers: await headers(),
+    headers: req.headers,
   });
 
   if (pathname.startsWith("/reserve")) {
