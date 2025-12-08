@@ -21,7 +21,7 @@ const CarComment = async ({ carId }: { carId: string }) => {
       <p className="border-b border-b-slate-300 relative after:w-20 after:h-0.5 after:bg-amber-500 after:absolute after:top-0 after:right-0"></p>
       {session?.user && <CarCommentForm userId={session.user.id} carId={carId} />}
       {!session?.user && (
-        <div className="flex flex-col gap-4 items-center justify-center text-sm text-slate-700 p-4 border border-slate-200 rounded-lg w-max mx-auto">
+        <div className="flex flex-col gap-4 items-center justify-center text-sm text-slate-700 p-4 border border-slate-200 rounded-lg w-full md:w-max mx-auto">
           <p>
             برای نظر دادن ابتدا باید وارد حساب کاربری خود شوید و اطلاعات هویتی خود را کامل کنید!
           </p>
