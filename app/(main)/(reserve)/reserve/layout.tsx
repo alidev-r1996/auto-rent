@@ -1,6 +1,5 @@
 import Image from "next/image";
 import QuestionImg from "@/public/assets/images/contactus.png";
-import Stepper from "./[carId]/_components/stepper";
 
 export default async function ReserveLayout({
   children,
