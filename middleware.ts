@@ -1,11 +1,16 @@
 // middleware.ts
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "./lib/auth";
+import { headers } from "next/headers";
 
 export default async function middleware(req: NextRequest) {
   const { nextUrl } = req;
   const pathname = nextUrl.pathname;
-  const session = await auth.api.getSession({ headers: req.headers });
+   const session = await auth.api.getSession({
+        headers: await headers()
+    })
+
+
 
   if (pathname.startsWith("/reserve")) {
     if (!session) {
@@ -38,5 +43,6 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  runtime: "nodejs", // Required for auth.api calls
+  matcher: ["/admin/:path*", "/reserve/:path*", "/user/:path*"],
 };

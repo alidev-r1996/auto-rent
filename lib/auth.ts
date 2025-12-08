@@ -3,6 +3,7 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import prisma from "@/lib/prisma";
 import { phoneNumber } from "better-auth/plugins";
 
+
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
@@ -12,7 +13,7 @@ export const auth = betterAuth({
       role: {
         type: "string",
         required: false,
-        defaultValue: "USER",
+        defaultValue: "User",
         input: false,
       },
     },
@@ -23,7 +24,7 @@ export const auth = betterAuth({
       sendOTP: async ({ phoneNumber, code }) => {
         const body = {
           mobile: phoneNumber,
-          templateId: 123456,
+          templateId: 741709,
           parameters: [{ name: "Code", value: code }],
         };
         const res = await fetch(" https://api.sms.ir/v1/send/verify", {
