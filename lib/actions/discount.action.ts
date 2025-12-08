@@ -65,5 +65,3 @@ export async function UpdateDiscountStatus(id: string) {
     data: { active: !discount.active },
   });
 }
-
-

@@ -23,7 +23,7 @@ export async function POST(request: Request) {
   const { rent, delivery_price, return_price, insurance_price, guarranty, driver, tax } = detail;
   const totalPrice = active ? discountPrice : total_price;
   const { address, name, nationalId, phone } = userInfo;
-  const order_number = String(crypto.randomUUID())
+  const order_number = String(crypto.randomUUID());
   const user = await prisma.user.findUnique({ where: { id: user_id } });
   if (!user)
     return NextResponse.json({ status: 401, message: "please first login in to your account!" });
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
 
     if (data.message == "Success") {
       await prisma.$transaction(async tx => {
-       const order = await tx.order.create({
+        const order = await tx.order.create({
           data: {
             user_id,
             car_id,
