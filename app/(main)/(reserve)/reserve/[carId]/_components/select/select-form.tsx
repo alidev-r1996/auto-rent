@@ -128,7 +128,7 @@ const SelectForm: FC<SelectFormProps> = ({
           label="تاریخ تحویل خودرو"
           minDate={min_Date}
           maxDate={new Date(new Date(max_Date).getTime() - 1000 * 60 * 60 * 24)}
-        ></DatePickerCar>
+        />
         <div className="w-full relative mt-2">
           <DropDownInput
             label="ساعت تحویل خودرو"
@@ -150,7 +150,7 @@ const SelectForm: FC<SelectFormProps> = ({
           date={returnDate}
           setDate={setReturnDate}
           minDate={new Date(receiveDate.getTime() + 1000 * 60 * 60 * 24)}
-          maxDate={max_Date}
+          maxDate={new Date(max_Date)}
           label="تاریخ بازگشت خودرو"
         />
         <div className="w-full relative mt-2">

@@ -5,22 +5,30 @@ import { useState } from "react";
 import Input from "@/components/ui/input";
 import { IdCard, MapPin, Phone, User } from "lucide-react";
 import { useReservationStore } from "@/provider/zustand-store";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { infoFormInput, infoSchema } from "./info.schema";
 
 const Info = ({ setStep }) => {
   const { personalInfo, setPersonalInfo } = useReservationStore();
   const [insurance, setInsurance] = useState<"Basic" | "Premium">(personalInfo.insurance);
-  const [name, setName] = useState(personalInfo.name);
-  const [phone, setPhone] = useState(personalInfo.phone);
-  const [nationalId, setNationalId] = useState(personalInfo.nationalId);
-  const [address, setAddress] = useState(personalInfo.address);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    control,
+    reset,
+  } = useForm<infoFormInput>({
+    mode: "onTouched",
+    resolver: zodResolver(infoSchema),
+  });
 
-  const infoFormHandler = () => {
+  const infoFormHandler: SubmitHandler<infoFormInput> = values => {
     setPersonalInfo({
-      address,
+      ...values,
+      nationalId: EnglishDigits(values.nationalId),
+      phone: EnglishDigits(values.phone),
       insurance,
-      name,
-      nationalId: EnglishDigits(nationalId),
-      phone: EnglishDigits(phone),
     });
     setStep(3);
   };
@@ -88,42 +96,38 @@ const Info = ({ setStep }) => {
       <div className="rounded-lg shadow-xs border bg-white border-slate-100 flex flex-col gap-3 p-4 w-full h-full">
         <h2 className="font-bold text-slate-500 md:text-lg "> مشخصات تحویل گیرنده </h2>
         <p className="border-b border-b-slate-300 relative after:w-20 after:h-0.5 after:bg-amber-500 after:absolute after:top-0 after:right-0 mb-8"></p>
-        <form className="grid md:grid-cols-2 gap-4 mb-2 w-full ">
-          <Input
-            label="نام و نام خانوادگی"
-            name="name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-          >
+        <form className="grid md:grid-cols-2 gap-6 mb-2 w-full ">
+          <Input {...register("name")} label="نام و نام خانوادگی" errors={errors.name}>
             <User className="size-4" />
           </Input>
           <Input
-            label="شماره همراه"
-            name="phone"
-            value={PersianDigits(phone)}
-            onChange={e => setPhone(PersianDigits(e.target.value))}
+            {...register("phone", {
+              onChange: e => {
+                e.target.value = PersianDigits(e.target.value);
+              },
+            })}
+            label="تلفن همراه"
+            errors={errors.phone}
           >
             <Phone className="size-4" />
           </Input>
           <Input
-            label="کدملی"
-            name="nationalId"
-            value={PersianDigits(nationalId)}
-            onChange={e => setNationalId(PersianDigits(e.target.value))}
+            {...register("nationalId", {
+              onChange: e => {
+                e.target.value = PersianDigits(e.target.value);
+              },
+            })}
+            label="کد ملی"
+            errors={errors.nationalId}
           >
             <IdCard className="size-4" />
           </Input>
-          <Input
-            label="آدرس"
-            name="address"
-            value={address}
-            onChange={e => setAddress(e.target.value)}
-          >
+          <Input {...register("address")} label="آدرس" errors={errors.address}>
             <MapPin className="size-4" />
           </Input>
 
           <Button
-            onClick={infoFormHandler}
+            onClick={handleSubmit(infoFormHandler)}
             variant={"blue"}
             className="w-full  md:mr-auto mt-3 md:col-start-2 py-5!"
           >

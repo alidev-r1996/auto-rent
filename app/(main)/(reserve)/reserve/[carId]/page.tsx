@@ -15,7 +15,6 @@ const FaqPage = async ({ params }: { params: Promise<{ [index: string]: string }
     headers: await headers(),
   });
 
-
   return (
     <CheckoutForm
       price_day={car.price_day}
