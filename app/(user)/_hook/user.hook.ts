@@ -1,6 +1,7 @@
 import { EditUser, GetUserById } from "../service/user.service";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export function useGetUserById(userId?: string) {
   return useQuery({
@@ -17,8 +18,12 @@ export function useEditUser() {
   const { mutateAsync, isPending, isError } = useMutation({
     mutationFn: async (user: any) => await EditUser(user),
     onSuccess: async () => {
-      queryClient.invalidateQueries({ queryKey: ["userProfile"] });
+      await queryClient.invalidateQueries({ queryKey: ["userProfile"] });
       setInitialized(false);
+      toast.success("اطلاعات کاربری با موفقیت ویرایش شد");
+    },
+    onError: async error => {
+      toast.error(error.message);
     },
   });
   return { mutateAsync, isPending, isError, initialized, setInitialized };

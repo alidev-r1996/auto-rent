@@ -3,7 +3,6 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import prisma from "@/lib/prisma";
 import { phoneNumber } from "better-auth/plugins";
 
-
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
@@ -42,7 +41,7 @@ export const auth = betterAuth({
       },
       signUpOnVerification: {
         getTempEmail(phoneNumber) {
-          return `${phoneNumber}@gmail.com`;
+          return `${phoneNumber}@example.com`;
         },
         getTempName(phoneNumber) {
           return `${phoneNumber}`;

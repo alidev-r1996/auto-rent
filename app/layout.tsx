@@ -3,6 +3,7 @@ import "./globals.css";
 import { iranSans } from "@/lib/utils";
 import Header from "@/components/navigation/header/header";
 import Footer from "@/components/navigation/footer/footer";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,6 +22,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <Toaster />
         <Footer />
       </body>
     </html>

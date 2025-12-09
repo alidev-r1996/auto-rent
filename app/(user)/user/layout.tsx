@@ -5,6 +5,8 @@ import { useState } from "react";
 import SideBar from "../_components/sidebar/sideBar";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
+import { Toaster } from "@/components/ui/sonner";
+
 
 export default function RootLayout({
   children,
@@ -30,6 +32,7 @@ export default function RootLayout({
             بازگشت به منوی اصلی
           </Button>
           {children}
+          <Toaster />
         </div>
       </div>
     </ReactQueryProvider>

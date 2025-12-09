@@ -5,19 +5,26 @@ import { auth } from "@/lib/auth";
 
 export async function EditUser(user) {
   const { name, email, phoneNumber, national_id, card_number, birth, user_id } = user;
-  return await prisma.$transaction([
-    prisma.user.update({ where: { id: user_id }, data: { name, email, phoneNumber } }),
-    prisma.profile.upsert({
-      where: { user_id },
-      update: { national_id, card_number, birth },
-      create: {
-        user_id,
-        national_id,
-        card_number,
-        birth,
-      },
-    }),
-  ]);
+  if (!user_id) {
+    throw new Error("شناسه کاربر معتبر نیست.");
+  }
+  try {
+    return await prisma.$transaction([
+      prisma.user.update({ where: { id: user_id }, data: { name, email, phoneNumber } }),
+      prisma.profile.upsert({
+        where: { user_id },
+        update: { national_id, card_number, birth },
+        create: {
+          user_id,
+          national_id,
+          card_number,
+          birth,
+        },
+      }),
+    ]);
+  } catch (err) {
+    throw new Error("ویرایش اطلاعات کاربری با مشکل مواجه شد. لطفاً دوباره تلاش کنید.");
+  }
 }
 
 export async function GetUserById(userId) {

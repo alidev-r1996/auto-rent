@@ -4,8 +4,8 @@ export async function EditUser(user) {
   try {
     const res = await UserAxios.put(`/profile`, { user });
     return await res.data;
-  } catch (err) {
-    return err;
+  } catch (err: any) {
+    throw err?.response?.data || err;
   }
 }
 

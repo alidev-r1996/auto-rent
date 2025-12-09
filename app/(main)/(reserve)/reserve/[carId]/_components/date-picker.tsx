@@ -10,8 +10,8 @@ type DatePickerCarProps = {
   minDate?: any;
   maxDate?: any;
   label: string;
-  date: Date;
-  setDate: any;
+  date?: Date;
+  setDate?: any;
   className?: string;
   dropDown?: boolean;
 };

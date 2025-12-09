@@ -1,16 +1,17 @@
-import { cn } from "@/lib/utils";
+import { cn, PersianDigits } from "@/lib/utils";
 import { FC } from "react";
 
 type InputProps = {
-  name: string;
+  name?: string;
   label: string;
-  value: string;
-  onChange: (e) => void;
+  value?: string;
+  onChange?: (e) => void;
   children?: React.ReactNode;
   type?: string;
   labelStyle?: string;
   inputStyle?: string;
-};
+  errors?: any;
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input: FC<InputProps> = ({
   children,
@@ -21,6 +22,8 @@ const Input: FC<InputProps> = ({
   type = "text",
   labelStyle,
   inputStyle,
+  errors,
+  ...rest
 }) => {
   return (
     <label
@@ -34,6 +37,7 @@ const Input: FC<InputProps> = ({
       {children && <p className="border-r border-r-slate-300">&nbsp;</p>}
       <input
         type={type}
+        {...rest}
         name={name}
         value={value}
         onChange={onChange}
@@ -43,6 +47,7 @@ const Input: FC<InputProps> = ({
       <p className="absolute hidden md:block peer-placeholder-shown:hidden text-[10px] bg-white px-1 py-1 -top-3 right-6">
         {label}
       </p>
+      {errors && <p className="text-red-500 text-xs absolute -bottom-4  right-3">{PersianDigits(errors?.message)}</p>}
     </label>
   );
 };

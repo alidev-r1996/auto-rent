@@ -2,51 +2,58 @@
 
 import { Button } from "@/components/ui/button";
 import { CreditCard, IdCard, Mail, Phone, UserRound } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Input from "@/components/ui/input";
 import DatePickerCar from "@/app/(main)/(reserve)/reserve/[carId]/_components/date-picker";
 import { EnglishDigits, PersianDigits } from "@/lib/utils";
 import { authClient } from "@/lib/auth-client";
 import { useEditUser, useGetUserById } from "../_hook/user.hook";
 import UserHeader from "../_components/user-header";
+import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { profileFormInput, profileSchema } from "../schema/user.schema";
 
 const Profile = () => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [nationalId, setNationalId] = useState("");
-  const [email, setEmail] = useState("");
-  const [cardNumber, setCardNumber] = useState("");
-  const [birth, setBirth] = useState(new Date());
   const { data: session } = authClient.useSession();
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    control,
+    reset,
+  } = useForm<profileFormInput>({
+    mode: "onTouched",
+    resolver: zodResolver(profileSchema),
+  });
 
   const { data, isLoading } = useGetUserById(session?.user?.id);
   const { mutateAsync, isPending: isSaving, initialized, setInitialized } = useEditUser();
 
   useEffect(() => {
     if (!data || initialized) return;
-    setName(/\d/gi.test(data.name) ? "" : data.name);
-    setPhone(PersianDigits(data.phoneNumber ?? ""));
-    setNationalId(PersianDigits(data.profile?.national_id ?? ""));
-    setEmail(data.email ?? "");
-    setCardNumber(PersianDigits(data.profile?.card_number ?? ""));
-    setBirth(data.profile?.birth ? new Date(data.profile.birth) : new Date());
+    reset({
+      name: /\d/gi.test(data.name) ? "" : data.name,
+      phoneNumber: PersianDigits(data.phoneNumber ?? ""),
+      national_id: PersianDigits(data.profile?.national_id ?? ""),
+      email: /@example.com/gi.test(data.email) ? "" : data.email,
+      card_number: PersianDigits(data.profile?.card_number ?? ""),
+      birth: data.profile?.birth ? new Date(data.profile.birth) : new Date(),
+    });
 
     setInitialized(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, initialized]);
 
-  const formHandler = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const user = {
-      name,
-      email,
-      phoneNumber: EnglishDigits(phone),
-      national_id: EnglishDigits(nationalId),
-      card_number: EnglishDigits(cardNumber),
-      birth,
+  const formHandler: SubmitHandler<profileFormInput> = async values => {
+    const userProfile = {
+      ...values,
+      phoneNumber: EnglishDigits(values.phoneNumber),
+      national_id: EnglishDigits(values.national_id),
+      card_number: EnglishDigits(values.card_number),
       user_id: session!.user.id,
     };
-    await mutateAsync(user);
+    mutateAsync(userProfile);
   };
 
   return (
@@ -54,48 +61,59 @@ const Profile = () => {
       className={`${isLoading && "blur-xs"} bg-white border border-slate-200 shadow-xs rounded-lg p-4 flex flex-col`}
     >
       <UserHeader title="حساب کاربری" />
-      <form onSubmit={formHandler} className="grid md:grid-cols-2 gap-5 mt-8">
-        <Input
-          value={name}
-          name="name"
-          onChange={e => setName(e.target.value)}
-          label="نام و نام خانوادگی"
-        >
+      <form onSubmit={handleSubmit(formHandler)} className="grid md:grid-cols-2 gap-7 mt-8">
+        <Input {...register("name")} label="نام و نام خانوادگی" errors={errors.name}>
           <UserRound className="size-4" />
         </Input>
         <Input
-          name="phone"
-          value={phone}
-          onChange={e => setPhone(PersianDigits(e.target.value))}
+          {...register("phoneNumber", {
+            onChange: e => {
+              e.target.value = PersianDigits(e.target.value);
+            },
+          })}
+          disabled
           label="تلفن همراه"
+          errors={errors.phoneNumber}
         >
           <Phone className="size-4" />
         </Input>
         <Input
-          name="nationalId"
-          value={nationalId}
-          onChange={e => setNationalId(PersianDigits(e.target.value))}
+          {...register("national_id", {
+            onChange: e => {
+              e.target.value = PersianDigits(e.target.value);
+            },
+          })}
           label="کد ملی"
+          errors={errors.national_id}
         >
           <IdCard className="size-4" />
         </Input>
-        <Input
-          name="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          label="آدرس ایمیل"
-        >
+        <Input {...register("email")} label="آدرس ایمیل" errors={errors.email}>
           <Mail className="size-4" />
         </Input>
         <Input
-          name="cardNumber"
-          value={cardNumber}
-          onChange={e => setCardNumber(PersianDigits(e.target.value))}
+          {...register("card_number", {
+            onChange: e => {
+              e.target.value = PersianDigits(e.target.value);
+            },
+          })}
           label="شماره شبا جهت بازگشت وجه"
+          errors={errors.card_number}
         >
           <CreditCard className="size-4" />
         </Input>
-        <DatePickerCar label="تاریخ تولد" date={birth} setDate={setBirth} dropDown />
+        <Controller
+          control={control}
+          name="birth"
+          render={({ field }) => (
+            <DatePickerCar
+              label="تاریخ تولد"
+              date={field.value}
+              setDate={d => field.onChange(d)}
+              dropDown
+            />
+          )}
+        />
         <Button
           disabled={isSaving}
           variant={"blue"}
