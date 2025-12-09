@@ -47,7 +47,11 @@ const Input: FC<InputProps> = ({
       <p className="absolute hidden md:block peer-placeholder-shown:hidden text-[10px] bg-white px-1 py-1 -top-3 right-6">
         {label}
       </p>
-      {errors && <p className="text-red-500 text-xs absolute -bottom-4  right-3">{PersianDigits(errors?.message)}</p>}
+      {errors && (
+        <p className="text-red-500 text-xs absolute -bottom-4  right-3">
+          {PersianDigits(errors?.message)}
+        </p>
+      )}
     </label>
   );
 };
