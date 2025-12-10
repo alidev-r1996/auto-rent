@@ -1,7 +1,6 @@
 "use client";
 
 import UserHeader from "@/app/(admin)/_components/user-header";
-import { useState } from "react";
 import { useGetAllCars } from "../../../_hooks/car.hooks";
 import Input from "@/components/ui/input";
 import DropdownInput from "@/components/ui/input-option";
@@ -41,7 +40,7 @@ const AdminInventoryCar = () => {
 
   const registerInventoryHandler: SubmitHandler<availaibilityFormInput> = async values => {
     if (new Date(values.end_date).getTime() <= new Date(values.start_date).getTime()) {
-      toast.error("تاریخ پایان باید بعد از بازه زمانی تاریخ شروع باشد");
+      toast.error("تاریخ پایان باید بزرگتر از تاریخ شروع باشد");
       return;
     }
     await mutateAsync(values);

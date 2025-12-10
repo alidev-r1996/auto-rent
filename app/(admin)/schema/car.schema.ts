@@ -5,7 +5,7 @@ const numberRegex = /^[0-9۰-۹]+$/;
 export const carSchema = z.object({
   name: z.string().min(3, "حداقل ۳ حرف وارد کنید").max(16, "حداکثر ۱۶ حرف مجاز است"),
   brand: z.string().min(3, "حداقل ۳ حرف وارد کنید").max(16, "حداکثر ۱۶ حرف مجاز است"),
-  model: z.string().regex(numberRegex, "مدل باید فقط عدد باشد").length(4, "مدل باید ۴ رقمی باشد"),
+  model: z.string().regex(numberRegex, "مدل باید فقط عدد باشد").min(1, "مدل الزامی است"),
   mile_age: z.string().regex(numberRegex, "کارکرد معتبر نیست").min(1, "کارکرد الزامی است"),
   capacity: z.string().regex(numberRegex, "ظرفیت باید عدد باشد").min(1, "ظرفیت الزامی است"),
   price_day: z

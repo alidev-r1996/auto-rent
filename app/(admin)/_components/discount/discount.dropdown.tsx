@@ -10,7 +10,7 @@ type Option = {
 };
 
 type Props = {
-  name: string;
+  name?: string;
   label: string;
   options: Option[];
   value: string[]; // selected values
