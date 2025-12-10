@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import DropdownInput from "@/components/ui/input-option";
 import UploadFile from "@/components/ui/uploader";
+import TagInput from "@/components/ui/input.tag";
+
 import { EnglishDigits, PersianDigits } from "@/lib/utils";
 import Link from "next/link";
-import { useState } from "react";
 import { useAddCar } from "../../../_hooks/car.hooks";
 import {
   CarFuelOptions,
@@ -15,165 +16,255 @@ import {
   CarSteeringOptions,
   CarTypeOptions,
 } from "../../../_constant/car.constant";
-import TagInput from "@/components/ui/input.tag";
+
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { carFormInputs, carSchema } from "@/app/(admin)/schema/car.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const AdminCarEditor = () => {
-  const [name, setName] = useState("");
-  const [brand, setBrand] = useState("");
-  const [model, setModel] = useState("");
-  const [type, setType] = useState("");
-  const [description, setDescription] = useState("");
-  const [mile_age, setMileAge] = useState("");
-  const [capacity, setCapacity] = useState("");
-  const [gear, setGear] = useState("");
-  const [steering, setSteering] = useState("");
-  const [fuel, setFuel] = useState("");
-  const [price_day, setPriceDay] = useState("");
-  const [price_month, setPriceMonth] = useState("");
-  const [price_garranty, setPriceGarranty] = useState("");
-  const [cover, setCover] = useState("");
-  const [slider1, setSlider1] = useState("");
-  const [slider2, setSlider2] = useState("");
-  const [slider3, setSlider3] = useState("");
-  const [slider4, setSlider4] = useState("");
-  const [features, setFeatures] = useState(["کروز کنترل"]);
   const { isPending, mutateAsync } = useAddCar();
 
-  const registerCarHandler = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<carFormInputs>({
+    mode: "onTouched",
+    resolver: zodResolver(carSchema),
+  });
+
+  const registerCarHandler: SubmitHandler<carFormInputs> = async values => {
     const newCar = {
-      name,
-      model: EnglishDigits(model),
-      brand,
-      type,
-      description,
-      mile_age: EnglishDigits(mile_age),
-      capacity: EnglishDigits(capacity),
-      gear,
-      steering,
-      fuel,
-      price_day: EnglishDigits(price_day),
-      price_month: EnglishDigits(price_month),
-      price_garranty: EnglishDigits(price_garranty),
-      features,
-      images: [slider1, slider2, slider3, slider4],
-      cover,
+      ...values,
+      model: EnglishDigits(values.model),
+      mile_age: EnglishDigits(values.mile_age),
+      capacity: EnglishDigits(values.capacity),
+      price_day: EnglishDigits(values.price_day),
+      price_month: EnglishDigits(values.price_month),
+      price_garranty: EnglishDigits(values.price_garranty),
+      images: [values.slider1, values.slider2, values.slider3, values.slider4],
     };
+
     mutateAsync(newCar);
   };
 
   return (
     <div className="bg-white border border-slate-200 shadow-xs rounded-lg p-4 flex flex-col h-full">
-      <UserHeader title="  افزودن خودروی جدید " />
-      <form onSubmit={registerCarHandler} className="p-4 grid gap-4 md:grid-cols-3 mt-8">
-        <Input name="name" label="نام" value={name} onChange={e => setName(e.target.value)} />
-        <Input name="brand" label="برند" value={brand} onChange={e => setBrand(e.target.value)} />
+      <UserHeader title="افزودن خودروی جدید" />
+
+      <form
+        onSubmit={handleSubmit(registerCarHandler)}
+        className="p-4 grid gap-6 md:grid-cols-3 mt-8"
+      >
+        <Input label="نام" {...register("name")} errors={errors.name} />
+        <Input label="برند" {...register("brand")} errors={errors.brand} />
+
         <Input
-          name="model"
           label="مدل"
-          value={model}
-          onChange={e => setModel(PersianDigits(e.target.value))}
+          {...register("model", {
+            onChange: e => (e.target.value = PersianDigits(e.target.value)),
+          })}
+          errors={errors.model}
         />
+
         <Input
-          name="mile_age"
-          label="کارکرد (کیلومتر) "
-          value={mile_age}
-          onChange={e => setMileAge(PersianDigits(e.target.value))}
+          label="کارکرد (کیلومتر)"
+          {...register("mile_age", {
+            onChange: e => (e.target.value = PersianDigits(e.target.value)),
+          })}
+          errors={errors.mile_age}
         />
+
         <Input
-          name="capacity"
-          label=" ظرفیت "
-          value={capacity}
-          onChange={e => setCapacity(PersianDigits(e.target.value))}
+          label="ظرفیت"
+          {...register("capacity", {
+            onChange: e => (e.target.value = PersianDigits(e.target.value)),
+          })}
+          errors={errors.capacity}
         />
+
         <Input
-          name="price_day"
-          label=" مبلغ اجاره روزانه "
-          value={price_day}
-          onChange={e => setPriceDay(PersianDigits(e.target.value))}
+          label="اجاره روزانه"
+          {...register("price_day", {
+            onChange: e => (e.target.value = PersianDigits(e.target.value)),
+          })}
+          errors={errors.price_day}
         />
+
         <Input
-          name="price_month"
-          label=" مبلغ اجاره ماهیانه "
-          value={price_month}
-          onChange={e => setPriceMonth(PersianDigits(e.target.value))}
+          label="اجاره ماهانه"
+          {...register("price_month", {
+            onChange: e => (e.target.value = PersianDigits(e.target.value)),
+          })}
+          errors={errors.price_month}
         />
+
         <Input
-          name="price_garranty"
-          label=" مبلغ ضمانت "
-          value={price_garranty}
-          onChange={e => setPriceGarranty(PersianDigits(e.target.value))}
+          label="مبلغ ضمانت"
+          {...register("price_garranty", {
+            onChange: e => (e.target.value = PersianDigits(e.target.value)),
+          })}
+          errors={errors.price_garranty}
         />
-        <DropdownInput
+
+        <Controller
           name="gear"
-          label="نوع گیربکس"
-          value={gear}
-          onChange={setGear}
-          options={CarGearOptions}
-        />
-        <DropdownInput
-          name="type"
-          label="نوع خودرو"
-          value={type}
-          onChange={setType}
-          options={CarTypeOptions}
-        />
-        <DropdownInput
-          name="fuel"
-          label="نوع سوخت"
-          value={fuel}
-          onChange={setFuel}
-          options={CarFuelOptions}
-        />
-        <DropdownInput
-          name="steering"
-          label="نوع فرمان"
-          value={steering}
-          onChange={setSteering}
-          options={CarSteeringOptions}
-        />
-        <label htmlFor="tag" className="w-full relative">
-          {features.length > 0 && (
-            <p className="p-1  capitalize text-[10px] text-zinc-400 dark:text-zinc-400 absolute -top-2 bg-white px-1 py-0 right-4">
-              ویژگی‌های خودرو
-            </p>
+          control={control}
+          render={({ field }) => (
+            <DropdownInput
+              name={field.name}
+              label="نوع گیربکس"
+              value={field.value || ""}
+              onChange={field.onChange}
+              options={CarGearOptions}
+              errors={errors.gear}
+            />
           )}
+        />
 
-          <TagInput
-            name="features"
-            label="ویژگی‌های خودرو"
-            value={features}
-            onChange={v => setFeatures(v)}
-            placeholder="ویژگی‌های خودرو"
-          />
+        <Controller
+          name="type"
+          control={control}
+          render={({ field }) => (
+            <DropdownInput
+              name={field.name}
+              label="نوع خودرو"
+              value={field.value || ""}
+              onChange={field.onChange}
+              options={CarTypeOptions}
+              errors={errors.type}
+            />
+          )}
+        />
 
-          {/* <Controller
-            name="tags"
+        <Controller
+          name="fuel"
+          control={control}
+          render={({ field }) => (
+            <DropdownInput
+              name={field.name}
+              label="نوع سوخت"
+              value={field.value || ""}
+              onChange={field.onChange}
+              options={CarFuelOptions}
+              errors={errors.fuel}
+            />
+          )}
+        />
+
+        <Controller
+          name="steering"
+          control={control}
+          render={({ field }) => (
+            <DropdownInput
+              name={field.name}
+              label="نوع فرمان"
+              value={field.value || ""}
+              onChange={field.onChange}
+              options={CarSteeringOptions}
+              errors={errors.steering}
+            />
+          )}
+        />
+
+        <Controller
+          name="features"
+          control={control}
+          render={({ field }) => (
+            <TagInput
+              name={field.name}
+              label="ویژگی‌های خودرو"
+              value={field.value ?? []}
+              onChange={field.onChange}
+              placeholder="ویژگی جدید..."
+              errors={errors.features}
+            />
+          )}
+        />
+
+        <div className="md:col-span-2">
+          <Input label="توضیحات" {...register("description")} errors={errors.description} />
+        </div>
+
+        <div className="relative">
+          <Controller
+            name="cover"
             control={control}
             render={({ field }) => (
-              <TagInput
-                label="تگ‌ها"
-                value={field.value}
-                onChange={field.onChange}
-                placeholder="تگ جدید اضافه کن..."
-              />
+              <UploadFile img={field.value || ""} onChange={field.onChange} label="عکس کاور اصلی" />
             )}
-          /> */}
-        </label>
-        <Input
-          name="description"
-          label=" توضیحات "
-          value={description}
-          onChange={e => setDescription(e.target.value)}
-          labelStyle="md:col-span-2"
-        />
+          />
+          {errors && (
+            <p className="text-red-500 text-xs absolute -bottom-4.5  right-2">
+              {PersianDigits(errors?.cover?.message || "")}
+            </p>
+          )}
+        </div>
 
-        <UploadFile img={cover} onChange={setCover} label="عکس کاور اصلی" />
-        <UploadFile img={slider1} onChange={setSlider1} label="عکس اسلایدر " />
-        <UploadFile img={slider2} onChange={setSlider2} label="عکس اسلایدر " />
-        <UploadFile img={slider3} onChange={setSlider3} label="عکس اسلایدر " />
-        <UploadFile img={slider4} onChange={setSlider4} label="عکس اسلایدر " />
+        <div className="relative">
+          <Controller
+            name="slider1"
+            control={control}
+            render={({ field }) => (
+              <UploadFile img={field.value || ""} onChange={field.onChange} label="عکس اسلایدر 1" />
+            )}
+          />
+          {errors && (
+            <p className="text-red-500 text-xs absolute -bottom-4.5  right-2">
+              {PersianDigits(errors?.slider1?.message || "")}
+            </p>
+          )}
+        </div>
+
+        <div className="relative">
+          <Controller
+            name="slider2"
+            control={control}
+            render={({ field }) => (
+              <UploadFile img={field.value || ""} onChange={field.onChange} label="عکس اسلایدر 2" />
+            )}
+          />
+          {errors && (
+            <p className="text-red-500 text-xs absolute -bottom-4.5  right-2">
+              {PersianDigits(errors?.slider2?.message || "")}
+            </p>
+          )}
+        </div>
+
+        <div className="relative">
+          <Controller
+            name="slider3"
+            control={control}
+            render={({ field }) => (
+              <UploadFile img={field.value || ""} onChange={field.onChange} label="عکس اسلایدر 3" />
+            )}
+          />
+
+          {errors && (
+            <p className="text-red-500 text-xs absolute -bottom-4.5  right-2">
+              {PersianDigits(errors?.slider3?.message || "")}
+            </p>
+          )}
+        </div>
+
+        <div className="relative">
+          <Controller
+            name="slider4"
+            control={control}
+            render={({ field }) => (
+              <UploadFile img={field.value || ""} onChange={field.onChange} label="عکس اسلایدر 4" />
+            )}
+          />
+          {errors && (
+            <p className="text-red-500 text-xs absolute -bottom-4.5  right-2">
+              {PersianDigits(errors?.slider4?.message || "")}
+            </p>
+          )}
+        </div>
+
         <p className="hidden md:block"></p>
+
         <div className="flex items-center gap-2 w-max mr-auto md:col-start-3 mt-8">
           <Link href={"/admin/car"}>
             <Button type="button" variant={"outline"}>

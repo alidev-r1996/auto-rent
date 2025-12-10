@@ -2,10 +2,10 @@
 
 import { X } from "lucide-react";
 import { useState, KeyboardEvent, FC } from "react";
-import { cn } from "@/lib/utils";
+import { cn, PersianDigits } from "@/lib/utils";
 
 type TagInputProps = {
-  name: string;
+  name?: string;
   label: string;
   value: string[];
   onChange: (tags: string[]) => void;
@@ -13,6 +13,7 @@ type TagInputProps = {
   labelStyle?: string;
   inputStyle?: string;
   placeholder?: string;
+  errors?: any;
 };
 
 const TagInput: FC<TagInputProps> = ({
@@ -24,6 +25,7 @@ const TagInput: FC<TagInputProps> = ({
   labelStyle,
   inputStyle,
   placeholder,
+  errors,
 }) => {
   const [input, setInput] = useState("");
 
@@ -87,7 +89,7 @@ const TagInput: FC<TagInputProps> = ({
           placeholder={placeholder ?? label}
           className={cn(
             inputStyle,
-            "appearance-none h-full outline-none flex-1 min-w-20 bg-transparent peer text-slate-500"
+            "appearance-none h-full placeholder:text-xs outline-none flex-1 min-w-20 bg-transparent peer text-slate-500"
           )}
         />
       </div>
@@ -96,6 +98,11 @@ const TagInput: FC<TagInputProps> = ({
       <p className="absolute hidden md:block peer-placeholder-shown:hidden text-[10px] bg-white px-1 py-1 -top-3 right-6">
         {label}
       </p>
+      {errors && (
+        <p className="text-red-500 text-xs absolute -bottom-4.5  right-2">
+          {PersianDigits(errors?.message)}
+        </p>
+      )}
     </label>
   );
 };

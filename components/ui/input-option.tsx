@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FC } from "react";
-import { cn } from "@/lib/utils";
+import { cn, PersianDigits } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 
 type DropdownProps = {
@@ -13,6 +13,7 @@ type DropdownProps = {
   labelStyle?: string;
   inputStyle?: string;
   children?: React.ReactNode;
+  errors?: any;
 };
 
 const DropdownInput: FC<DropdownProps> = ({
@@ -23,6 +24,7 @@ const DropdownInput: FC<DropdownProps> = ({
   options,
   labelStyle,
   children,
+  errors,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -75,6 +77,11 @@ const DropdownInput: FC<DropdownProps> = ({
             </li>
           ))}
         </ul>
+      )}
+      {errors && (
+        <p className="text-red-500 text-xs absolute -bottom-4.5  right-2">
+          {PersianDigits(errors?.message)}
+        </p>
       )}
     </div>
   );

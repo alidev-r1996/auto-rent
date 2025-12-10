@@ -48,7 +48,7 @@ const Input: FC<InputProps> = ({
         {label}
       </p>
       {errors && (
-        <p className="text-red-500 text-xs absolute -bottom-4  right-3">
+        <p className="text-red-500 text-xs absolute -bottom-4.5  right-2">
           {PersianDigits(errors?.message)}
         </p>
       )}
