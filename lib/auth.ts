@@ -21,22 +21,22 @@ export const auth = betterAuth({
     phoneNumber({
       expiresIn: 3000,
       sendOTP: async ({ phoneNumber, code }) => {
-        // const body = {
-        //   mobile: phoneNumber,
-        //   templateId: 741709,
-        //   parameters: [{ name: "Code", value: code }],
-        // };
-        // const res = await fetch(" https://api.sms.ir/v1/send/verify", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Accept: "text/plain",
-        //     "x-api-key": process.env.SMS_X_API_KEY as string,
-        //   },
-        //   body: JSON.stringify(body),
-        // });
-        // const data = await res.json();
-        // console.log("data in otp", data);
+        const body = {
+          mobile: phoneNumber,
+          templateId: 741709,
+          parameters: [{ name: "Code", value: code }],
+        };
+        const res = await fetch(" https://api.sms.ir/v1/send/verify", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "text/plain",
+            "x-api-key": process.env.SMS_X_API_KEY as string,
+          },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        console.log("data in otp", data);
         console.log(`successfully sent ${code} to ${phoneNumber}`);
       },
       signUpOnVerification: {

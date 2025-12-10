@@ -2,8 +2,14 @@ import z from "zod";
 
 const numberRegex = /^[0-9۰-۹]+$/;
 export const discountSchema = z.object({
-  title: z.string().min(3, "حداقل ۳ حرف وارد کنید").max(16, "حداکثر ۱۶ حرف مجاز است"),
-  percentage: z.string().regex(numberRegex, "درصد باید فقط عدد باشد").min(1, "درصد الزامی است"),
+  title: z
+    .string()
+    .min(3, "عنوان حداقل باید 3 کاراکتر داشته باشد")
+    .max(16, "عنوان نباید بیشتر از 16 کاراکتر باشد"),
+  percentage: z
+    .string()
+    .regex(numberRegex, "درصد تخفیف الزامی و مقدار آن باید فقط عدد باشد")
+    .min(1, "درصد الزامی است"),
   start_date: z.date(),
   end_date: z.date(),
   cars: z

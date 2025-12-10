@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { GetComment, RemoveComment } from "../service/comment.service";
+import { toast } from "sonner";
 
 export function useGetComment() {
   const { data, isLoading, isError } = useQuery({
@@ -15,6 +16,7 @@ export function useRemoveComment() {
     mutationFn: async (id: any) => await RemoveComment(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userComment"] });
+      toast.success("پیام شما با موفقیت حذف شد.");
     },
   });
   return { mutateAsync, isPending, isError };

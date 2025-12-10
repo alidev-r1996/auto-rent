@@ -6,7 +6,6 @@ import BlogStatus from "./blog.status";
 import { BlogTableProps } from "../../_types/blog.types";
 import RemoveModal from "@/components/common/remove.modal";
 import { useRemoveBlog } from "../../_hooks/blog.hook";
-import Link from "next/link";
 
 const BlogTable: FC<BlogTableProps> = ({ blogs, info, theme = "dark" }) => {
   const { isPending, mutateAsync } = useRemoveBlog();
@@ -37,12 +36,6 @@ const BlogTable: FC<BlogTableProps> = ({ blogs, info, theme = "dark" }) => {
                 <BlogStatus status={i.status} id={i.id} theme={"emerald"} />
               </Table.Col>
               <Table.Col>
-                <Link
-                  href={`/admin/blog/${i.id}`}
-                  className="px-3 py-0.5 ml-1 rounded bg-slate-100 border hover:bg-slate-200  border-slate-700 text-slate-700 cursor-pointer transition-all duration-300 active:scale-95 hover:scale-103"
-                >
-                  ویرایش
-                </Link>
                 <RemoveModal
                   title={i.title}
                   label="وبلاگ"
