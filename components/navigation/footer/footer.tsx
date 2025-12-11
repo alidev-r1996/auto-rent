@@ -41,7 +41,7 @@ const Footer = () => {
         <h3 className="md:text-base text-sm font-semibold text-slate-100 ml-3 md:pb-2">
           دسترسی سریع
         </h3>
-        <Link href="#faq"> سوالات متداول</Link>
+        <Link href="/faq"> سوالات متداول</Link>
         <Link href="/contact"> تماس با ما </Link>
         <Link href="/about"> درباره ما</Link>
       </div>
