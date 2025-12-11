@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import "@blocknote/core/fonts/inter.css";
+import "@blocknote/shadcn/style.css";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/shadcn";
-import "@blocknote/shadcn/style.css";
 import Input from "@/components/ui/input";
 import { Captions, Clock4, ScanBarcode } from "lucide-react";
 import { EnglishDigits, PersianDigits, uploadToCloudinary } from "@/lib/utils";
@@ -87,15 +87,10 @@ export default function AdminBlogEditor() {
       </form>
 
       <BlockNoteView
-        className={`min-h-80 w-full border border-slate-200 rounded-lg shadow-xs p-4`}
+        className={`min-h-80 border border-slate-200 rounded-lg shadow-xs p-4`}
         editor={editor}
-        shadCNComponents={
-          {
-            // Pass modified ShadCN components from your project here.
-            // Otherwise, the default ShadCN components will be used.
-          }
-        }
       />
+
       <div className="flex items-center gap-2 w-max mr-auto">
         <Link href={"/admin/blog"}>
           <Button type="button" variant={"outline"}>

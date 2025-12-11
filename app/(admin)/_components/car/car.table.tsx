@@ -34,8 +34,16 @@ const CarTable: FC<CarTableProps> = ({ cars, info, theme = "dark" }) => {
               <Table.Col>{PersianCurrency(`${i.price_garranty}`)}</Table.Col>
               <Table.Col>{"ندارد"}</Table.Col>
               <Table.Col>
-                <Badge variant={i.availaibility[0]?.isBlocked ? "rose" : "emerald"}>
-                  {i.availaibility[0]?.isBlocked ? "بلاک" : "در دسترس"}
+                <Badge
+                  variant={
+                    i.availaibility?.[0]?.isBlocked == true || i.availaibility.length == 0
+                      ? "rose"
+                      : "emerald"
+                  }
+                >
+                  {i.availaibility?.[0]?.isBlocked == true || i.availaibility.length == 0
+                    ? "بلاک"
+                    : "در دسترس"}
                 </Badge>
               </Table.Col>
               <Table.Col className="flex items-center gap-1">

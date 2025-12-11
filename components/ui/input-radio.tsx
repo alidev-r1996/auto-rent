@@ -28,7 +28,7 @@ const BooleanRadioInput: FC<BooleanRadioProps> = ({
     <label
       className={cn(
         labelStyle,
-        "flex items-center gap-2 rounded-lg border border-slate-200 relative p-3 text-slate-400 text-xs md:text-sm flex-1"
+        "flex items-center gap-2 rounded-lg border border-slate-200 relative p-3 text-slate-400 text-xs md:text-sm w-full"
       )}
     >
       {children}

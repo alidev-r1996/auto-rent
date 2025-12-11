@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 
 export const profileMenuItems = [
-  { title: "پروفایل من", englishTitle: "admin", icon: IdCard, href: "" },
+  { title: " داشبورد", englishTitle: "admin", icon: IdCard, href: "" },
   { title: "رزروها ", englishTitle: "reserve", icon: ShoppingCart, href: "reserve" },
   { title: "پرداخت‌ها ", englishTitle: "payment", icon: CreditCard, href: "payment" },
   { title: "لیست خودروها ", englishTitle: "car", icon: CarFront, href: "car" },

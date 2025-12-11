@@ -107,7 +107,7 @@ const AdminInventoryCar = () => {
             </Button>
           </Link>
           <Button disabled={isPending} type="submit" className="px-8" variant={"blue"}>
-            {isPending ? "در حال ثبت‌کردن" : " ثبت وضعیت دسترسی"}
+            {isPending ? "در حال ثبت‌کردن" : " ثبت وضعیت "}
           </Button>
         </div>
       </form>
