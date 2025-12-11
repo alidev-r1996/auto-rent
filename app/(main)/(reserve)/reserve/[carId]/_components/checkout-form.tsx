@@ -15,6 +15,7 @@ type CheckoutFormProps = {
   max_Date: string;
   carId: string;
   userId: string;
+  name: string | null;
   discount: any;
 };
 
@@ -28,6 +29,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({
   carId,
   userId,
   discount,
+  name,
 }) => {
   const [step, setStep] = useState(1);
   return (
@@ -40,6 +42,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({
           min_Date={min_Date}
           max_Date={max_Date}
           setStep={setStep}
+          name={name}
         />
       )}
       {step == 2 && <Info setStep={setStep} />}

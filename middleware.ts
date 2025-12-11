@@ -11,16 +11,16 @@ export default async function middleware(req: NextRequest) {
 
   if (pathname.startsWith("/reserve")) {
     if (!session) {
-      return NextResponse.redirect(new URL("/login", nextUrl));
+      return NextResponse.redirect(new URL("/auth", nextUrl));
     }
-    if (/\d/gi.test(session.user.name)) {
-      return NextResponse.redirect(new URL("/user", nextUrl));
-    }
+    // if (/\d/gi.test(session.user.name)) {
+    //   return NextResponse.redirect(new URL("/user", nextUrl));
+    // }
   }
 
   if (pathname.startsWith("/user")) {
     if (!session) {
-      return NextResponse.redirect(new URL("/login", nextUrl));
+      return NextResponse.redirect(new URL("/auth", nextUrl));
     }
     if (session.user.role == "Admin") {
       return NextResponse.redirect(new URL("/admin", nextUrl));
@@ -29,7 +29,7 @@ export default async function middleware(req: NextRequest) {
 
   if (pathname.startsWith("/admin")) {
     if (!session) {
-      return NextResponse.redirect(new URL("/login", nextUrl));
+      return NextResponse.redirect(new URL("/auth", nextUrl));
     }
     if (session.user.role !== "Admin") {
       return NextResponse.redirect(new URL("/user", nextUrl));

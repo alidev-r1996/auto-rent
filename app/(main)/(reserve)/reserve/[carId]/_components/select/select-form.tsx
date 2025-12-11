@@ -7,12 +7,14 @@ import { PersianCurrency } from "@/lib/utils";
 import { FC, useState } from "react";
 import DropDownInput from "../drop-down";
 import { useReservationStore } from "@/provider/zustand-store";
+import Link from "next/link";
 
 type SelectFormProps = {
   price_day: string | number;
   price_month: string | number;
   min_Date: string;
   max_Date: string;
+  name: string | null;
   setStep: (step) => void;
 };
 
@@ -21,6 +23,7 @@ const SelectForm: FC<SelectFormProps> = ({
   price_month,
   min_Date,
   max_Date,
+  name,
   setStep,
 }) => {
   const { setRentInfo, rentInfo } = useReservationStore();
@@ -174,11 +177,27 @@ const SelectForm: FC<SelectFormProps> = ({
           type="button"
           onClick={selectFormHandler}
           variant={"blue"}
+          disabled={name && /\d/.test(name) ? true : false}
           className="w-full md:w-1/2 md:mr-auto mt-3 md:col-start-2 py-5!"
         >
           ادامه رزرو
         </Button>
       </div>
+      {name && /\d/.test(name) && (
+        <div className="flex flex-col items-center justify-center gap-2 md:flex-row w-max md:mr-auto">
+          <p className="text-rose-500 text-xs text-center ">
+            {name && /\d/.test(name)
+              ? "برای ادامه رزرو لطفا ابتدا اطلاعات خود را تکمیل کنید."
+              : "برای ادامه رزرو لطفا وارد حساب کاربری خود شوید."}
+          </p>
+          <Link
+            href={name ? "/user" : "/auth"}
+            className="text-xs bg-blue-500 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer hover:bg-blue-600 w-max px-3 py-1 text-white rounded"
+          >
+            {name ? "تکمیل اطلاعات" : "ورود / ثبت‌نام"}
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

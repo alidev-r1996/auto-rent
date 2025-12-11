@@ -14,7 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { profileFormInput, profileSchema } from "../schema/user.schema";
 
 const Profile = () => {
-  const { data: session } = authClient.useSession();
+  const { data: session, refetch } = authClient.useSession();
 
   const {
     register,
@@ -54,6 +54,7 @@ const Profile = () => {
       user_id: session!.user.id,
     };
     mutateAsync(userProfile);
+    await refetch();
   };
 
   return (

@@ -25,6 +25,7 @@ const FaqPage = async ({ params }: { params: Promise<{ [index: string]: string }
       carName={car.name}
       carId={car.id}
       userId={session?.user.id || ""}
+      name={session?.user.name || ""}
       discount={car?.discount[0]?.discount}
     />
   );

@@ -4,6 +4,7 @@ import { profileMenuItems } from "../../_constant/sidebar.costant";
 import { FC } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useSession } from "@/lib/auth-client";
 
 type SideBarProps = {
   show: boolean;
@@ -12,14 +13,17 @@ type SideBarProps = {
 
 const SideBar: FC<SideBarProps> = ({ setShow, show }) => {
   const pathname = usePathname();
+  const { data: session, isPending } = useSession();
   const url = pathname.slice(pathname.lastIndexOf("/") + 1);
   return (
     <div className={`${show ? "flex" : "hidden md:flex"} flex-col gap-2 min-w-full! max-w-full!`}>
       <div className="rounded-lg h-20 p-4 w-full flex items-center bg-white gap-2 text-sm border border-slate-200 shadow-xs">
         <Image src="/assets/images/avatar.png" alt="avatar" width={60} height={60} />
-        <div className="flex flex-col gap-1">
-          <p className="font-bold">علی رحیمی</p>
-          <p className="text-slate-500">{PersianDigits(`${"09358865344"}`)}</p>
+        <div className={`${isPending && "blur-xs"} flex flex-col gap-1`}>
+          <p className="font-bold">
+            {session && !/\d/.test(session?.user.name) ? session.user.name : "بدون نام"}
+          </p>
+          <p className="text-slate-500">{PersianDigits(session?.user.phoneNumber || "")}</p>
         </div>
       </div>
       <div className="bg-white border border-slate-200 shadow-xs rounded-lg p-4 w-full flex flex-col text-slate-700">

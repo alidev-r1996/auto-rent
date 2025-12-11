@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
