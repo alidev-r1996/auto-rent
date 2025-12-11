@@ -58,7 +58,7 @@ const CarCarousel: FC<CarCarouselProps> = ({ day_price, images, month_price, nam
       </div>
 
       {/* THUMBNAILS */}
-      <div className="flex gap-2 mt-3 overflow-x-auto p-2 mx-auto">
+      <div className="flex gap-0.5 md:gap-2 mt-3 overflow-x-auto p-2 mx-auto max-w-full">
         {images.map((i, idx) => (
           <button
             key={i}
