@@ -31,7 +31,7 @@ const SideBar: FC<SideBarProps> = ({ setShow, show }) => {
           const Icon = icon;
           return (
             <Link
-              href={`/user/${href}`}
+              href={`/admin/${href}`}
               key={index}
               onClick={() => setShow()}
               className={`${url == englishTitle ? "md:bg-blue-500 md:text-white" : "hover:bg-slate-100"} flex gap-2 p-4 cursor-pointer text-sm md:text-base transition-colors duration-300 last:hover:bg-rose-100  rounded-xl `}

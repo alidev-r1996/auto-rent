@@ -3,6 +3,7 @@
 import { PersianDigits } from "@/lib/utils";
 import { FC, useRef, useState } from "react";
 import { CarCommentFormProps } from "./car.type";
+import { toast } from "sonner";
 
 const CarCommentForm: FC<CarCommentFormProps> = ({
   carId = null,
@@ -18,6 +19,11 @@ const CarCommentForm: FC<CarCommentFormProps> = ({
     e.preventDefault();
     setLoading(true);
     const text = commentRef?.current?.value;
+    if (text?.length === 0) {
+      toast.error("لطفا دیدگاه خود را وارد کنید!");
+      setLoading(false);
+      return;
+    }
     const comment = {
       text,
       user_id: userId,
@@ -31,9 +37,13 @@ const CarCommentForm: FC<CarCommentFormProps> = ({
         body: JSON.stringify(comment),
       });
       const data = await res.json();
-      console.log(data.message);
+      if (data.status === 200) {
+        toast.success(data.message);
+      } else {
+        toast.error(data.messsage);
+      }
     } catch (error) {
-      console.log("comment error: ", error);
+      toast.error("خطایی رخ داده است، لطفا مجدداً تلاش کنید!");
     }
     if (commentRef?.current?.value) {
       commentRef.current.value = "";
