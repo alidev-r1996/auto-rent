@@ -5,6 +5,7 @@ import { EnglishDigits, PersianDigits } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { FC, FormEvent, useState } from "react";
 import { phoneNumber } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 type SendOTPProps = {
   mobile: string;
@@ -18,12 +19,18 @@ const SendOTP: FC<SendOTPProps> = ({ mobile, onBack, setMobile }) => {
   const mobileHandler = (e: FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
     if (!/\d/gi.test(value) && /\w/gi.test(value)) {
+      toast.error("لطفا فقط از اعداد استفاده کنید");
       return;
     }
     if (!/\d/gi.test(value)) {
       setMobile(mobile.slice(0, -1));
     }
     if (value.length > 11) {
+      toast.error("شماره موبایل نمی‌تواند بیشتر از 11 رقم باشد");
+      return;
+    }
+    if (value.length < 11) {
+      toast.error("شماره موبایل باید 11 رقم باشد");
       return;
     }
     setMobile(PersianDigits(value));
